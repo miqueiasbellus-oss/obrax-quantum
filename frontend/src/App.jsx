@@ -6,10 +6,10 @@ export default function App() {
   const [status, setStatus] = useState("carregando...");
 
   useEffect(() => {
-    fetch(${API_URL}/health)
+    fetch(`${API_URL}/health`)
       .then((r) => r.json())
       .then((d) => setStatus(JSON.stringify(d, null, 2)))
-      .catch((e) => setStatus(Erro: ));
+      .catch((e) => setStatus(`Erro: ${e.message}`));
   }, []);
 
   return (
