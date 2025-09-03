@@ -1,83 +1,126 @@
-import { useEffect, useState } from "react";
-import "./App.css";
+import { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import ComingSoon from './pages/ComingSoon';
+import './App.css';
 
-const API_URL = import.meta.env.VITE_API_URL || "https://obrax-api.onrender.com";
+const API_URL = import.meta.env.VITE_API_URL || 'https://obrax-api.onrender.com';
 
 export default function App() {
-  const [health, setHealth] = useState(null);
-  const [err, setErr] = useState(null);
+  const [apiStatus, setApiStatus] = useState({
+    online: false,
+    error: false,
+    version: null,
+    timestamp: null
+  });
 
   useEffect(() => {
-    fetch(`${API_URL}/health`)
-      .then((r) => r.json())
-      .then(setHealth)
-      .catch(setErr);
+    const checkApiHealth = async () => {
+      try {
+        const response = await fetch(`${API_URL}/health`);
+        const data = await response.json();
+        
+        setApiStatus({
+          online: data.status === 'healthy',
+          error: false,
+          version: data.version,
+          timestamp: data.timestamp ? new Date(data.timestamp).toLocaleString() : null
+        });
+      } catch (error) {
+        setApiStatus({
+          online: false,
+          error: true,
+          version: null,
+          timestamp: null
+        });
+      }
+    };
+
+    checkApiHealth();
+    const interval = setInterval(checkApiHealth, 30000); // Check every 30 seconds
+
+    return () => clearInterval(interval);
   }, []);
 
-  const online = !!health && String(health.status).toLowerCase() === "healthy";
-  const ts = health?.timestamp ? new Date(health.timestamp).toLocaleString() : null;
-
   return (
-    <div className="page">
-      <header className="topbar">
-        <div className="brand">OBRAX <span>QUANTUM</span></div>
-        <div className="actions">
-          <span className={`pill ${online ? "ok" : err ? "bad" : "warn"}`}>
-            {online ? "API Online" : err ? "API Offline" : "Conectando..."}
-          </span>
-          <a className="btn" href="#">Fazer Login</a>
-        </div>
-      </header>
-
-      <main className="container">
-        <section className="hero">
-          <h1>Simples no Campo, Poderoso no Escritório</h1>
-          <p>ERP nativo, controle total e obra viva. Zero surpresa, zero retrabalho, zero duplicidade.</p>
-        </section>
-
-        <section className={`status ${online ? "ok" : err ? "bad" : "warn"}`}>
-          <strong>{online ? "✅ Backend Conectado!" : err ? "❌ Erro ao conectar" : "⏳ Conectando..."}</strong>
-          <div className="muted">
-            {online && <>API funcionando em <b>{ts}</b></>}
-            {!online && !err && <>Tentando contato com a API...</>}
-            {err && <>Não foi possível contatar a API.</>}
-          </div>
-          <div className="kv">
-            <span>Versão:</span> <b>{health?.version ?? "—"}</b>
-            <span>Status:</span> <b>{online ? "online" : err ? "offline" : "aguarde"}</b>
-            <span>Docs:</span> <a href={`${API_URL}/docs`} target="_blank" rel="noreferrer">/docs</a>
-            <span>Redoc:</span> <a href={`${API_URL}/redoc`} target="_blank" rel="noreferrer">/redoc</a>
-          </div>
-        </section>
-
-        <section className="grid">
-          <Card title="Gestão de Obras" desc="Controle completo de atividades, cronogramas e dependências." />
-          <Card title="Equipes de Campo" desc="Interface simples para encarregados e equipes de execução." />
-          <Card title="Checklists Visuais" desc="Verificações de qualidade com fotos e evidências." />
-          <Card title="Controle de Materiais" desc="Solicitação, aprovação e rastreabilidade de materiais." />
-          <Card title="Dashboard Inteligente" desc="KPIs em tempo real e insights com IA." />
-          <Card title="ERP Nativo" desc="Controle financeiro e integração completa." />
-        </section>
-
-        <section className="sprint">
-          <h3>Sprint 0 • Fundações</h3>
-          <ul>
-            <li className={online ? "done" : ""}><span>✔</span> Backend FastAPI configurado</li>
-            <li className="done"><span>✔</span> Frontend Vite + React no Vercel</li>
-            <li className={online ? "done" : ""}><span>✔</span> Conexão Frontend ↔ API</li>
-          </ul>
-        </section>
-      </main>
-    </div>
+    <Router>
+      <div className="app">
+        <Navbar apiStatus={apiStatus} />
+        
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<Home apiStatus={apiStatus} />} />
+            
+            <Route 
+              path="/obras" 
+              element={
+                <ComingSoon 
+                  title="Gestão de Obras"
+                  description="Módulo completo para controle de atividades, cronogramas e dependências. Interface intuitiva para acompanhamento do progresso em tempo real."
+                  expectedDate="Sprint 1 - Dezembro 2024"
+                />
+              } 
+            />
+            
+            <Route 
+              path="/equipes" 
+              element={
+                <ComingSoon 
+                  title="Equipes de Campo"
+                  description="Interface simplificada para encarregados e equipes registrarem progresso, problemas e evidências diretamente do campo."
+                  expectedDate="Sprint 2 - Janeiro 2025"
+                />
+              } 
+            />
+            
+            <Route 
+              path="/checklists" 
+              element={
+                <ComingSoon 
+                  title="Checklists Visuais"
+                  description="Sistema de verificação de qualidade com captura de fotos, evidências e aprovações digitais em tempo real."
+                  expectedDate="Sprint 2 - Janeiro 2025"
+                />
+              } 
+            />
+            
+            <Route 
+              path="/materiais" 
+              element={
+                <ComingSoon 
+                  title="Controle de Materiais"
+                  description="Gestão completa de solicitação, aprovação e rastreabilidade de materiais com controle de estoque integrado."
+                  expectedDate="Sprint 4 - Março 2025"
+                />
+              } 
+            />
+            
+            <Route 
+              path="/dashboard" 
+              element={
+                <ComingSoon 
+                  title="Dashboard Inteligente"
+                  description="KPIs em tempo real, análises preditivas e insights com IA para otimização da gestão de obras."
+                  expectedDate="Sprint 6 - Maio 2025"
+                />
+              } 
+            />
+            
+            <Route 
+              path="/erp" 
+              element={
+                <ComingSoon 
+                  title="ERP Nativo"
+                  description="Módulo financeiro completo com controle de custos, integração contábil e gestão administrativa."
+                  expectedDate="Sprint 8 - Julho 2025"
+                />
+              } 
+            />
+          </Routes>
+        </main>
+      </div>
+    </Router>
   );
 }
 
-function Card({ title, desc }) {
-  return (
-    <div className="card">
-      <h4>{title}</h4>
-      <p>{desc}</p>
-      <button className="ghost">Abrir</button>
-    </div>
-  );
-}
