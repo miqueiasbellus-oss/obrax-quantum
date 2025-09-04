@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
+import Status from './pages/Status';
 import ComingSoon from './pages/ComingSoon';
 import './App.css';
 
@@ -51,6 +52,7 @@ export default function App() {
         <main className="main-content">
           <Routes>
             <Route path="/" element={<Home apiStatus={apiStatus} />} />
+            <Route path="/status" element={<Status />} />
             
             <Route 
               path="/obras" 

@@ -1,4 +1,5 @@
-import { Building2, Users, CheckSquare, Package, BarChart3, CreditCard } from 'lucide-react';
+import { Building2, Users, CheckSquare, Package, BarChart3, CreditCard, ExternalLink } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import FeatureCard from '../components/FeatureCard';
 
 const features = [
@@ -101,10 +102,10 @@ export default function Home({ apiStatus }) {
                     </a>
                   </div>
                   <div className="status-item">
-                    <span>Redoc:</span>
-                    <a href={`${import.meta.env.VITE_API_URL || 'https://obrax-api.onrender.com'}/redoc`} target="_blank" rel="noreferrer">
-                      ReDoc
-                    </a>
+                    <span>Detalhes:</span>
+                    <Link to="/status" className="status-link">
+                      Ver Status Completo <ExternalLink size={14} />
+                    </Link>
                   </div>
                 </div>
               </>
@@ -115,7 +116,12 @@ export default function Home({ apiStatus }) {
             )}
             
             {apiStatus.error && (
-              <p>Não foi possível conectar com a API. Verifique sua conexão.</p>
+              <div>
+                <p>Não foi possível conectar com a API. Verifique sua conexão.</p>
+                <Link to="/status" className="status-link">
+                  Ver Detalhes do Status <ExternalLink size={14} />
+                </Link>
+              </div>
             )}
           </div>
         </div>
