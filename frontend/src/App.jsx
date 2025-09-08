@@ -4,6 +4,8 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Status from './pages/Status';
 import ComingSoon from './pages/ComingSoon';
+import ProgramacaoQuinzenal from './pages/ProgramacaoQuinzenal';
+import PainelEncarregado from './pages/PainelEncarregado';
 import './App.css';
 
 const API_URL = import.meta.env.VITE_API_URL || 'https://obrax-api.onrender.com';
@@ -53,6 +55,10 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home apiStatus={apiStatus} />} />
             <Route path="/status" element={<Status />} />
+            
+            {/* Sprint 1 - Funcionalidades Implementadas */}
+            <Route path="/programacao" element={<ProgramacaoQuinzenal />} />
+            <Route path="/encarregado" element={<PainelEncarregado />} />
             
             <Route 
               path="/obras" 
