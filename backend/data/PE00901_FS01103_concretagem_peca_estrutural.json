@@ -1,0 +1,90 @@
+{
+  "codigo": "PE00901/FS01103",
+  "atividade": "Concretagem de Peça Estrutural (laje, viga, pilar)",
+  "ifs_tags": [
+    "ifs:estrutura",
+    "ifs:concretagem",
+    "ifs:laje",
+    "ifs:viga",
+    "ifs:pilar"
+  ],
+  "pre_condicoes": [
+    "Pavimento inferior liberado (quando aplicável)",
+    "Fôrmas executadas/limpas com desmoldante aplicado e conferidas",
+    "Armaduras posicionadas e conferidas",
+    "Instalações elétricas/hidráulicas posicionadas",
+    "Planejamento de cura úmida e logística de lançamento"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "Molhar fôrmas antes do lançamento",
+      "verificacao": "Visual",
+      "tolerancia": "Fôrma úmida",
+      "midia": "foto_molhar_forma.jpg"
+    },
+    {
+      "passo": "Lançar concreto (sem acumular em um ponto) – limite 2h30 entre saída/produção e lançamento",
+      "verificacao": "Registro NF + relógio",
+      "tolerancia": "≤150 min",
+      "midia": "foto_lancamento.jpg"
+    },
+    {
+      "passo": "Espalhar e vibrar em pontos (distância conforme diâmetro da agulha)",
+      "verificacao": "Visual + régua/agulha",
+      "tolerancia": "Φ25-30→15cm; Φ35-50→40cm; Φ50-75→60cm",
+      "midia": "video_vibracao.mp4"
+    },
+    {
+      "passo": "Pilares: concretar em camadas (~¾ do comprimento da agulha)",
+      "verificacao": "Visual",
+      "tolerancia": "Camadas compatíveis",
+      "midia": "foto_pilar_camadas.jpg"
+    },
+    {
+      "passo": "Abrir janelas em pilares altos (≥2,5 m)",
+      "verificacao": "Visual",
+      "tolerancia": "Janelas executadas",
+      "midia": "foto_janela_pilar.jpg"
+    },
+    {
+      "passo": "Acompanhar deslocamentos de ferragem/instalações/formas",
+      "verificacao": "Visual durante lançamento",
+      "tolerancia": "Sem deslocamentos",
+      "midia": "foto_monitoramento.jpg"
+    },
+    {
+      "passo": "Iniciar cura úmida (≥3 dias, superfície sempre úmida)",
+      "verificacao": "Registro e visual",
+      "tolerancia": "Cura contínua por 72h",
+      "midia": "foto_cura_umida.jpg"
+    }
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Adensamento do concreto",
+      "metodo": "Visual durante lançamento (vibração, camadas)",
+      "tolerancia": "Conforme procedimento"
+    },
+    {
+      "item": "Deslocamento de peças (formas/armaduras/MEP)",
+      "metodo": "Visual durante concretagem",
+      "tolerancia": "Sem deslocamentos"
+    },
+    {
+      "item": "Falhas de concretagem (bicheiras/segregação)",
+      "metodo": "Visual após desforma",
+      "tolerancia": "Ausência de grandes falhas"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Lançamento",
+    "Vibração",
+    "Cura",
+    "Pós-desforma (faces)"
+  ],
+  "bloqueios_pcc": [
+    "Tempo entre usina/produção e lançamento >150 min",
+    "Sem plano de cura",
+    "Deslocamento de formas/armaduras/instalações observado"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "versao_schema": "1.0",
+  "tipo": "FVM",
+  "codigo": "FM01401",
+  "titulo": "Laje pré-moldada",
+  "normas": [],
+  "campos_a_capturar": [
+    "dim_lajota",
+    "dim_viga",
+    "encaixe_ok"
+  ],
+  "inspecoes": [
+    {
+      "id": 1,
+      "nome": "Quantidade",
+      "inspecao": "Conferir quantidade entregue",
+      "criterios_aceite": "Aceitar, diferenças → reposição/desconto"
+    },
+    {
+      "id": 2,
+      "nome": "Aspecto",
+      "inspecao": "Vigas: empenamento, cavidades, trincas, falta de cobrimento; Lajotas: trincas, cozimento",
+      "criterios_aceite": "Segregar peças defeituosas"
+    },
+    {
+      "id": 3,
+      "nome": "Encaixe viga/lajota",
+      "inspecao": "Montar 5 lajotas sobre 2 vigas",
+      "criterios_aceite": "Sem frestas horizontais excessivas ou diferença vertical"
+    },
+    {
+      "id": 4,
+      "nome": "Dimensões",
+      "inspecao": "Medir lajotas e vigas",
+      "criterios_aceite": "Lajota: alt/larg/compr ±5 mm; abas ±3 mm. Viga: larg/alt ±5 mm"
+    }
+  ],
+  "fotos_obrigatorias": [],
+  "bloqueios_pcc": [],
+  "amostragem_aceitacao": {
+    "regra": "2–15: 2 peças (aceita 0 defeito). 16–50: 3 peças (0). 51–150: 5 peças (até 1). 151–500: 8 peças (até 1). 501–3200: 13 peças (até 2)."
+  },
+  "observacoes": []
+}

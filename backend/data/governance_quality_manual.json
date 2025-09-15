@@ -1,0 +1,64 @@
+{
+  "version": "1.0",
+  "source": {
+    "doc": "MQ",
+    "empresa": "Hipotética Construtora"
+  },
+  "processos_principais": [
+    "Incorporação",
+    "Comercialização",
+    "Planejamento da Produção",
+    "Projeto",
+    "Aquisição",
+    "Execução da Obra",
+    "Recebimento e estoque de materiais",
+    "Entrega da obra",
+    "Assistência Técnica"
+  ],
+  "processos_apoio": [
+    "Recursos Humanos",
+    "Segurança do Trabalho",
+    "SAC",
+    "Contas a Pagar",
+    "Contas a Receber"
+  ],
+  "controles_chave": {
+    "execucao_servicos": {
+      "PES": "PO.11",
+      "FVS": "PO.11"
+    },
+    "materiais": {
+      "FVM": "PO.14",
+      "rastreabilidade": "PO.14"
+    },
+    "equipamentos": {
+      "producao": "PO.12",
+      "medicao": "PO.13"
+    },
+    "nao_conformidade": "PO.04",
+    "auditorias": "PO.02",
+    "melhoria_continua": "PO.03",
+    "planejamento_qualidade_obra": "PO.08",
+    "projeto": "PO.07",
+    "vistoria_final": "PO.15",
+    "assistencia_tecnica": "PO.16",
+    "satisfacao_clientes": "PO.18"
+  },
+  "direcao_e_comites": {
+    "comite_sgq": [
+      "Diretor Técnico",
+      "Gerente Comercial",
+      "Engenheiro de Obra",
+      "Gerente de RH"
+    ],
+    "analise_critica_direcao": {
+      "periodicidade": "<=6 meses"
+    }
+  },
+  "politica_da_qualidade": [
+    "satisfazer_clientes",
+    "reduzir_custos",
+    "capacitar_colaboradores",
+    "melhoria_continua"
+  ]
+}

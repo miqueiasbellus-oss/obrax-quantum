@@ -1,0 +1,80 @@
+{
+  "codigo": "PE02201/FS02403",
+  "atividade": "Colocação de Esquadria Metálica (batente/porta/janela)",
+  "ifs_tags": [
+    "ifs:esquadrias",
+    "ifs:metalica"
+  ],
+  "pre_condicoes": [
+    "Alvenaria concluída/respaldada; vãos prontos (níveis finais marcados)",
+    "Para fixação por parafuso: blocos preenchidos com argamassa nas alturas dos furos",
+    "Para fixação por grapas: cortes/furos executados nas laterais dos vãos; ombreiras/travessas das esquadrias preenchidas com argamassa e furos protegidos"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "Posicionar batente no prumo; alinhar à régua entre taliscas do vão",
+      "verificacao": "Prumo + régua",
+      "tolerancia": "Sem envergamento",
+      "midia": "foto_posicionamento.jpg"
+    },
+    {
+      "passo": "Travar com cunhas a ~10 cm dos pontos de fixação (grapas/furação)",
+      "verificacao": "Visual",
+      "tolerancia": "Travamento uniforme",
+      "midia": "foto_cunhas.jpg"
+    },
+    {
+      "passo": "Fixação por parafusos: furar/instalar buchas e parafusos",
+      "verificacao": "Visual",
+      "tolerancia": "Parafusos firmes",
+      "midia": "foto_parafusos.jpg"
+    },
+    {
+      "passo": "Fixação por grapas: chumbamento das grapas; após ≥24 h, retirar cunhas e completar chumbamento",
+      "verificacao": "Visual",
+      "tolerancia": "Argamassa aderente e acabamento áspero",
+      "midia": "foto_grapas_chumba.jpg"
+    },
+    {
+      "passo": "Ajustar prumo/nível/alinhamento com laser/mangueira e linha de náilon (coerência com outras esquadrias)",
+      "verificacao": "Nível/linha",
+      "tolerancia": "≤ 3 mm/m",
+      "midia": "foto_alinhamento_geral.jpg"
+    },
+    {
+      "passo": "Limpeza e proteção para pintura/acabamentos",
+      "verificacao": "Visual",
+      "tolerancia": "Superfície pronta",
+      "midia": "foto_limpeza_protecao.jpg"
+    }
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Prumo das ombreiras",
+      "metodo": "Prumo de face",
+      "tolerancia": "≤ 3 mm/m"
+    },
+    {
+      "item": "Nível/alinhamento com demais esquadrias",
+      "metodo": "Nível a mangueira/laser + linha de náilon",
+      "tolerancia": "≤ 3 mm/m"
+    },
+    {
+      "item": "Funcionamento (folhas/ferragens)",
+      "metodo": "Visual/funcional",
+      "tolerancia": "OK/Não OK"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Prumo/nivel/alinhamento",
+    "Detalhe de fixação (parafuso/grapa)",
+    "Chumbamento",
+    "Funcionamento"
+  ],
+  "bloqueios_pcc": [
+    "Vãos não preparados (preenchimento/cortes)",
+    "Prumo/nível/alinhamento fora de tolerância",
+    "Chumbamento incompleto",
+    "Funcionamento inadequado"
+  ]
+}

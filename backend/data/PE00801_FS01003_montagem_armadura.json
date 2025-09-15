@@ -1,0 +1,86 @@
+{
+  "codigo": "PE00801/FS01003",
+  "atividade": "Montagem de Armadura (corte/dobra/montagem/posicionamento)",
+  "ifs_tags": [
+    "ifs:estrutura",
+    "ifs:armadura"
+  ],
+  "pre_condicoes": [
+    "Projeto estrutural vigente aprovado e disponível no local",
+    "Materiais e equipamentos disponíveis (arame 18, torquês, chave de dobra, policorte/tesoura, trena, guincho/grua)",
+    "Barras cortadas e dobradas conforme listas quando aplicável",
+    "Proteções nos arranques, acesso do vibrador assegurado"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "Corte de barras conforme projeto (comprimentos, transpasses, arranques)",
+      "verificacao": "Conferência dimensional",
+      "tolerancia": "Conforme projeto",
+      "midia": "foto_corte.jpg"
+    },
+    {
+      "passo": "Dobras (L/ganchos) sem curvaturas acentuadas",
+      "verificacao": "Visual",
+      "tolerancia": "Raio conforme projeto/boa prática",
+      "midia": "foto_dobra.jpg"
+    },
+    {
+      "passo": "Organizar kits identificados por peça (laje/pilar/viga)",
+      "verificacao": "Visual",
+      "tolerancia": "100% identificado",
+      "midia": "foto_kits.jpg"
+    },
+    {
+      "passo": "Montagem pilar/viga (barras long., estribos; conferir espaçamentos e quantidades)",
+      "verificacao": "Contagem + régua",
+      "tolerancia": "100% de acordo",
+      "midia": "foto_montagem_pv.jpg"
+    },
+    {
+      "passo": "Instalar armadura negativa (laje) e reforços em furos/aberturas",
+      "verificacao": "Visual",
+      "tolerancia": "Conforme projeto",
+      "midia": "foto_negativa_reforcos.jpg"
+    },
+    {
+      "passo": "Garantir cobrimento com espaçadores (~5 pç/m² de laje)",
+      "verificacao": "Visual",
+      "tolerancia": "Sem contato com a forma",
+      "midia": "foto_espacadores.jpg"
+    },
+    {
+      "passo": "Limpeza final (retirar pontas de arame/carepas/óleo)",
+      "verificacao": "Visual/ímã/jato d’água",
+      "tolerancia": "Sem contaminantes",
+      "midia": "foto_limpeza.jpg"
+    }
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Amarração/posicionamento/limpeza",
+      "metodo": "Visual + contagem por projeto",
+      "tolerancia": "Conforme projeto"
+    },
+    {
+      "item": "Armadura negativa e reforços",
+      "metodo": "Visual após montagem",
+      "tolerancia": "Posição correta"
+    },
+    {
+      "item": "Rotina de verificação periódica",
+      "metodo": "No início do dia/mudança de equipe/1x semana",
+      "tolerancia": "Checklist aplicado"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Kits identificados",
+    "Amarração",
+    "Negativa/Ref. furos",
+    "Espaçadores/cobrimento"
+  ],
+  "bloqueios_pcc": [
+    "Armadura tocando forma (sem cobrimento)",
+    "Negativa/Ref. ausentes",
+    "Quantidades divergentes do projeto"
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "codigo": "PE01301/FS01503",
+  "atividade": "Alvenaria de Vedação – Edifício",
+  "ifs_tags": [
+    "ifs:vedacoes",
+    "ifs:alvenaria_vedacao"
+  ],
+  "pre_condicoes": [
+    "Laje pronta para carga; eixos principais e RN transferidos ao pavimento (nível a laser/mangueira)",
+    "Piso limpo; chapisco prévio nas áreas de concreto (≥3 dias de antecedência)",
+    "Materiais (blocos, argamassa) e ferramentas disponíveis; vãos de portas previstos no projeto"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "Marcar alvenaria com 1ª fiada (periferia → ambientes)",
+      "verificacao": "Trena + linha",
+      "tolerancia": "Modulação adequada"
+    },
+    {
+      "passo": "Assentar fiadas acompanhando linha de náilon (alinhamento/nivelamento)",
+      "verificacao": "Linha + nível",
+      "tolerancia": "Fiadas alinhadas"
+    },
+    {
+      "passo": "Controlar vãos de portas/janelas conforme projeto",
+      "verificacao": "Trena",
+      "tolerancia": "Largura/altura dentro de 5 mm"
+    },
+    {
+      "passo": "Ancorar em pilares (ferro-cabelo em U ou telas galvanizadas) a cada ~2 fiadas ou conforme projeto",
+      "verificacao": "Visual",
+      "tolerancia": "Ancoragens instaladas"
+    },
+    {
+      "passo": "Deixar folga 1,5–3,5 cm sob vigas/lajes para posterior preenchimento",
+      "verificacao": "Trena",
+      "tolerancia": "Faixa atendida"
+    },
+    {
+      "passo": "Vergas/contravergas conforme projeto",
+      "verificacao": "Visual",
+      "tolerancia": "Elementos executados"
+    }
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Nivelamento/alinhamento da fiada de marcação",
+      "metodo": "Nível mangueira/laser + linha",
+      "tolerancia": "2 cm em 5 m"
+    },
+    {
+      "item": "Planeza e prumo (pano interno)",
+      "metodo": "Prumo + régua 2 m",
+      "tolerancia": "3 mm"
+    },
+    {
+      "item": "Largura/altura/alinhamento dos vãos",
+      "metodo": "Trena (pós-elevação)",
+      "tolerancia": "5 mm"
+    },
+    {
+      "item": "Aspecto final e fixação (cobertura da argamassa)",
+      "metodo": "Visual",
+      "tolerancia": "OK/Não OK"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Fiada de marcação (nível/linha)",
+    "Ancoragem em pilar (ferro-cabelo/tela)",
+    "Vãos medidos",
+    "Planicidade/prumo (régua 2 m)",
+    "Vergas/contravergas"
+  ],
+  "bloqueios_pcc": [
+    "Fiada de marcação fora de nível/alinhamento",
+    "Ausência de ancoragens",
+    "Vãos fora de tolerância",
+    "Folga sob vigas/lajes não prevista"
+  ]
+}

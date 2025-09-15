@@ -1,0 +1,101 @@
+{
+  "codigo": "PE03501/FS04103",
+  "atividade": "Pintura Esmalte (Madeira e Metais)",
+  "ifs_tags": [
+    "ifs:acabamentos",
+    "ifs:pintura",
+    "ifs:esmalte"
+  ],
+  "pre_condicoes": [
+    "Superfície seca e limpa (sem contaminantes)",
+    "Madeira não verde; proteção de pisos/esquadrias (lonas/fita)"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "MADEIRA – Lixar (grana ~220), limpar com pano levemente úmido; aguardar secagem",
+      "verificacao": "Visual",
+      "tolerancia": "Base limpa e seca",
+      "midia": "foto_lixa_madeira.jpg"
+    },
+    {
+      "passo": "MADEIRA – Aplicar seladora; secagem ≥18 h; lixar e limpar",
+      "verificacao": "Registro + visual",
+      "tolerancia": "Tempo mínimo atendido",
+      "midia": "foto_seladora_madeira.jpg"
+    },
+    {
+      "passo": "MADEIRA – Se necessário, massa a óleo em camadas finas; secagem ~20 h; lixar; nova seladora (≥18 h)",
+      "verificacao": "Registro + visual",
+      "tolerancia": "Ciclos concluídos",
+      "midia": "foto_massa_oleo.jpg"
+    },
+    {
+      "passo": "MADEIRA – Aplicar 2–3 demãos de esmalte; 8 h entre demãos",
+      "verificacao": "Registro + visual",
+      "tolerancia": "Sem falhas/escorrimentos",
+      "midia": "foto_demao_madeira.jpg"
+    },
+    {
+      "passo": "METAIS – Lixar (grana ~280) e limpar com solvente; aguardar secagem",
+      "verificacao": "Visual",
+      "tolerancia": "Base limpa e seca",
+      "midia": "foto_lixa_metal.jpg"
+    },
+    {
+      "passo": "METAIS FERROSOS – Aplicar 1–2 demãos de fundo anticorrosivo; secagem 24 h; lixar e limpar",
+      "verificacao": "Registro + visual",
+      "tolerancia": "Tempo mínimo atendido",
+      "midia": "foto_fundo_anticorrosivo.jpg"
+    },
+    {
+      "passo": "GALVANIZADO/ALUM/ZINCADO – Lixar (grana ~200); aplicar 1 demão de fundo branco p/ galvanizado",
+      "verificacao": "Visual",
+      "tolerancia": "Aderência garantida",
+      "midia": "foto_fundo_galvanizado.jpg"
+    },
+    {
+      "passo": "METAIS – Aplicar 2–3 demãos de esmalte; 10 h entre demãos",
+      "verificacao": "Registro + visual",
+      "tolerancia": "Sem falhas/escorrimentos",
+      "midia": "foto_demao_metal.jpg"
+    },
+    {
+      "passo": "Repintura – Lixar até perder brilho; remover partes soltas/oxidadas; executar sistema conforme substrato",
+      "verificacao": "Visual",
+      "tolerancia": "Preparação adequada",
+      "midia": "foto_repintura.jpg"
+    }
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Preparação da base",
+      "metodo": "Visual",
+      "tolerancia": "OK/Não OK"
+    },
+    {
+      "item": "Aplicação do selador/fundos (quando aplicável)",
+      "metodo": "Visual (cobrimento e uniformidade)",
+      "tolerancia": "OK/Não OK"
+    },
+    {
+      "item": "Aspecto final",
+      "metodo": "Visual (uniforme; sem falhas/escorrimentos)",
+      "tolerancia": "OK/Não OK"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Base preparada",
+    "Seladora/fundos aplicados",
+    "Acabamento final (uniforme)"
+  ],
+  "bloqueios_pcc": [
+    "Madeira verde/úmida; metal sem preparo ou com oxidação ativa",
+    "Seladora/fundo anticorrosivo ausente quando necessário",
+    "Intervalos mínimos não respeitados (18/20/24/8/10 h)",
+    "Aspecto final com falhas/escorrimentos"
+  ],
+  "observacoes": [
+    "Limpeza da superfície pintada somente após ~2 semanas; evitar abrasivos",
+    "Em assoalhos com esmalte, evitar trânsito direto por ~10 dias"
+  ]
+}

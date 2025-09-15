@@ -1,0 +1,80 @@
+{
+  "codigo": "PE02701/FS02903",
+  "atividade": "Fixação de Bancada de Pedra Natural (com mão francesa/frontão)",
+  "ifs_tags": [
+    "ifs:sistemas_prediais",
+    "ifs:bancadas",
+    "ifs:pedra_natural"
+  ],
+  "pre_condicoes": [
+    "Revestimento de parede concluído (argamassa/cerâmico)",
+    "Instalações hidráulicas concluídas e protegidas",
+    "Percurso das tubulações conhecido para evitar furação em pontos críticos"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "Definir posições das mãos francesas: entre as extremidades e a cuba; ≥3 para bancadas >2,0 m",
+      "verificacao": "Trena + visual",
+      "tolerancia": "Distribuição uniforme",
+      "midia": "foto_mao_francesa_posicao.jpg"
+    },
+    {
+      "passo": "Nivelar/alinhação das mãos francesas pelo topo (linha de náilon); NÃO alinhar por furos",
+      "verificacao": "Nível + linha de náilon",
+      "tolerancia": "Prumo/nível corretos",
+      "midia": "foto_linha_nailon.jpg"
+    },
+    {
+      "passo": "Fixar mãos com bucha/parafuso; conferir prumo com prumo de face/nível",
+      "verificacao": "Visual + prumo/nível",
+      "tolerancia": "Prumo/nível atendidos",
+      "midia": "foto_fixacao_mao.jpg"
+    },
+    {
+      "passo": "Preparar contato: apicoar azulejo (se houver) e aplicar massa plástica nos apoios e na parede",
+      "verificacao": "Visual",
+      "tolerancia": "Aderência garantida",
+      "midia": "foto_preparo_superficie.jpg"
+    },
+    {
+      "passo": "Assentar bancada nivelada sobre as mãos francesas; aplicar massa no frontão e fixar",
+      "verificacao": "Nível + visual",
+      "tolerancia": "Nível em 1 mm/50 cm",
+      "midia": "foto_assentamento_bancada.jpg"
+    },
+    {
+      "passo": "Limpeza de excessos (pano/álcool)",
+      "verificacao": "Visual",
+      "tolerancia": "Sem resíduos",
+      "midia": "foto_limpeza.jpg"
+    }
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Prumo/nível/alinhamento das mãos francesas",
+      "metodo": "Linha de náilon + nível + prumo de face",
+      "tolerancia": "±1 mm em 50 cm"
+    },
+    {
+      "item": "Nível da bancada com frontão",
+      "metodo": "Nível de bolha",
+      "tolerancia": "±1 mm em 50 cm"
+    },
+    {
+      "item": "Aspecto final do conjunto (juntas/limpeza/rigidez)",
+      "metodo": "Visual",
+      "tolerancia": "OK/Não OK"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Mãos francesas alinhadas",
+    "Leitura de nível da bancada",
+    "Detalhe do frontão/junta",
+    "Vista geral"
+  ],
+  "bloqueios_pcc": [
+    "Mãos francesas fora de prumo/nível",
+    "Nível da bancada fora de ±1 mm/50 cm",
+    "Aderência insuficiente (sem preparo/massa)"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "codigo": "FS01903",
+  "atividade": "Piso Cerâmico (avaliação de assentamento)",
+  "ifs_tags": [
+    "ifs:vedacoes_horizontais",
+    "ifs:piso_ceramico"
+  ],
+  "pre_condicoes": [
+    "Ambiente liberado e limpo para inspeção pós-assentamento"
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Aspecto geral do revestimento",
+      "metodo": "Visual (nivelamento entre peças, planicidade, variação das juntas, dentes/saliências)",
+      "tolerancia": "Sem defeitos visuais"
+    },
+    {
+      "item": "Rejuntamento e limpeza",
+      "metodo": "Visual (preenchimento uniforme; ausência de falhas/excesso)",
+      "tolerancia": "OK/Não OK"
+    },
+    {
+      "item": "Caimento em áreas molhadas",
+      "metodo": "Ensaio com água após conclusão",
+      "tolerancia": "Esvaziamento adequado para os ralos"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Detalhe do rejuntamento",
+    "Vista geral do pano",
+    "Teste de água em área molhada"
+  ],
+  "bloqueios_pcc": [
+    "Falhas no rejuntamento/limpeza",
+    "Dentes/saliências entre peças",
+    "Caimento inadequado nas áreas molhadas"
+  ]
+}

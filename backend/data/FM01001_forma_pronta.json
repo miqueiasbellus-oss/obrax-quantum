@@ -1,0 +1,38 @@
+{
+  "versao_schema": "1.0",
+  "tipo": "FVM",
+  "codigo": "FM01001",
+  "titulo": "Fôrma pronta",
+  "normas": [],
+  "campos_a_capturar": [],
+  "inspecoes": [
+    {
+      "id": 1,
+      "nome": "Quantidade",
+      "inspecao": "Conferir quantidade entregue"
+    },
+    {
+      "id": 2,
+      "nome": "Aspecto",
+      "inspecao": "Superfície encerada sem defeitos; peça estruturada/plana; identificação correta",
+      "criterios_aceite": "Segregar defeituosas/sem identificação"
+    },
+    {
+      "id": 3,
+      "nome": "Emendas",
+      "inspecao": "Verificar fixação de pregos/talas",
+      "criterios_aceite": "Segregar defeituosas"
+    },
+    {
+      "id": 4,
+      "nome": "Dimensões",
+      "inspecao": "Medir conforme projeto",
+      "equipamento": "Trena",
+      "criterios_aceite": "±2mm"
+    }
+  ],
+  "fotos_obrigatorias": [],
+  "bloqueios_pcc": [],
+  "amostragem_aceitacao": null,
+  "observacoes": []
+}

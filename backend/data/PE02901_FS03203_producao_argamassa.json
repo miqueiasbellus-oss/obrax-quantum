@@ -1,0 +1,73 @@
+{
+  "codigo": "PE02901/FS03203",
+  "atividade": "Produção de Argamassa (obra)",
+  "ifs_tags": [
+    "ifs:producao",
+    "ifs:argamassa"
+  ],
+  "pre_condicoes": [
+    "Finalidade e traço definidos (revestimento, massa única, assentamento etc.)",
+    "Materiais conferidos: areia (granulometria conforme), cimento, cal hidratada, água",
+    "Equipamentos: betoneira/enxadas, padiolas/carrinho, latas/baldes",
+    "Pontos de inspeção e registro preparados (FVS)"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "Definir traço (laboratório recomendado) ou traço prático; executar mistura piloto para validar",
+      "verificacao": "Registro + mistura experimental",
+      "tolerancia": "Traço validado"
+    },
+    {
+      "passo": "Sequência de mistura (em betoneira): areia + cimento (+ adições); adicionar água gradualmente até trabalhabilidade adequada",
+      "verificacao": "Visual/trabalhabilidade",
+      "tolerancia": "Mistura homogênea"
+    },
+    {
+      "passo": "Produção em local de aplicação (quando aplicável): homogeneizar em superfície plana e impermeável com enxada",
+      "verificacao": "Visual",
+      "tolerancia": "Sem contaminação"
+    },
+    {
+      "passo": "Argamassa intermediária (areia+cal+água): repouso ~48 h antes de adicionar cimento e água para uso",
+      "verificacao": "Registro",
+      "tolerancia": "Tempo observado"
+    },
+    {
+      "passo": "Identificar padiolas (dimensões/volume) para controle de dosagem",
+      "verificacao": "Visual",
+      "tolerancia": "Padiolas identificadas"
+    },
+    {
+      "passo": "Tempo de uso: até 2 h 30 após adição de água (não re-amassar após esse prazo)",
+      "verificacao": "Registro",
+      "tolerancia": "≤ 2 h 30"
+    }
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Traço (mistura piloto)",
+      "metodo": "Rodar traço e aplicar 1ª mistura experimental",
+      "tolerancia": "Validado"
+    },
+    {
+      "item": "Homogeneidade e trabalhabilidade",
+      "metodo": "Visual 1×/semana, preferencialmente no início do dia",
+      "tolerancia": "OK/Não OK"
+    },
+    {
+      "item": "Uso correto de padiolas/baldes (dosagem)",
+      "metodo": "Visual 1×/semana, preferencialmente no início do dia",
+      "tolerancia": "OK/Não OK"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Mistura piloto",
+    "Identificação das padiolas",
+    "Aspecto da argamassa (trabalhabilidade)"
+  ],
+  "bloqueios_pcc": [
+    "Traço não validado",
+    "Padiolas sem identificação ou dosagem irregular",
+    "Tempo de uso > 2h30 após água"
+  ]
+}

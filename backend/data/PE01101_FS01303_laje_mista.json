@@ -1,0 +1,100 @@
+{
+  "codigo": "PE01101/FS01303",
+  "atividade": "Laje Mista (vigota + lajota + capa)",
+  "ifs_tags": [
+    "ifs:estrutura",
+    "ifs:laje_mista"
+  ],
+  "pre_condicoes": [
+    "Alvenaria concluída e respaldos executados",
+    "Escoramento transversal a cada ~1,5 m conforme projeto",
+    "Vãos >2 m: prever contraflecha ~0,5% (ou conforme projeto)",
+    "Instalações elétricas/hidráulicas posicionadas",
+    "Formas de borda montadas e niveladas"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "Montar vigotas usando lajotas nas extremidades como gabarito (espaçamento)",
+      "verificacao": "Trena",
+      "tolerancia": "Espaçamento conforme projeto",
+      "midia": "foto_gabarito_lajota.jpg"
+    },
+    {
+      "passo": "Garantir sobreposição mínima de 5 cm das vigotas sobre as paredes",
+      "verificacao": "Trena",
+      "tolerancia": "≥ 5 cm",
+      "midia": "foto_sobreposicao.jpg"
+    },
+    {
+      "passo": "Dispor armadura de distribuição transversal (≥5 mm a cada 30 cm, CA-50 ou por projeto)",
+      "verificacao": "Visual/contagem",
+      "tolerancia": "100% instalada",
+      "midia": "foto_arm_disp.jpg"
+    },
+    {
+      "passo": "Nivelar topo das formas de borda (guia do sarrafeamento)",
+      "verificacao": "Nível laser/mangueira",
+      "tolerancia": "±5 mm em 5 m",
+      "midia": "foto_forma_borda.jpg"
+    },
+    {
+      "passo": "Molhar vigas e lajotas antes do lançamento",
+      "verificacao": "Visual",
+      "tolerancia": "Superfície úmida",
+      "midia": "foto_molhar.jpg"
+    },
+    {
+      "passo": "Usar tábuas como caminhos; evitar tráfego sobre lajotas",
+      "verificacao": "Visual",
+      "tolerancia": "Sem pisoteio nas lajotas",
+      "midia": "foto_caminhos.jpg"
+    },
+    {
+      "passo": "Lançar, espalhar e sarrafear até o nível do topo das formas",
+      "verificacao": "Régua/visual",
+      "tolerancia": "Nível atendido",
+      "midia": "video_sarrafeamento.mp4"
+    },
+    {
+      "passo": "Acabamento com desempenadeira de madeira",
+      "verificacao": "Visual",
+      "tolerancia": "Superfície homogênea",
+      "midia": "foto_acabamento.jpg"
+    },
+    {
+      "passo": "Proteger em caso de chuva intensa (lona)",
+      "verificacao": "Visual",
+      "tolerancia": "Proteção instalada quando necessário",
+      "midia": "foto_lona.jpg"
+    },
+    {
+      "passo": "Iniciar cura úmida (retentores saturados/lona)",
+      "verificacao": "Registro + visual",
+      "tolerancia": "Cura contínua",
+      "midia": "foto_cura_umida.jpg"
+    }
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Acabamento e nível do topo das formas de borda",
+      "metodo": "Nível laser/mangueira após nivelamento",
+      "tolerancia": "±5 mm em 5 m"
+    },
+    {
+      "item": "Acabamento da superfície da laje",
+      "metodo": "Visual após conclusão",
+      "tolerancia": "Superfície uniforme"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Sobreposição de 5 cm",
+    "Armadura de distribuição",
+    "Leitura de nível (formas de borda)",
+    "Superfície acabada"
+  ],
+  "bloqueios_pcc": [
+    "Alvenaria/respaldos não concluídos",
+    "Sem armadura de distribuição",
+    "Nível de borda fora de ±5 mm/5 m"
+  ]
+}

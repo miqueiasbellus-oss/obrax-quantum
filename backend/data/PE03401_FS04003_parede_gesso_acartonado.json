@@ -1,0 +1,79 @@
+{
+  "codigo": "PE03401/FS04003",
+  "atividade": "Parede de Gesso Acartonado (Drywall)",
+  "ifs_tags": [
+    "ifs:vedacoes",
+    "ifs:drywall"
+  ],
+  "pre_condicoes": [
+    "Eixos transferidos; piso concluído e limpo",
+    "Projetos disponíveis (arquitetura/MEP) com reforços para cargas pesadas previstos",
+    "Materiais e ferramentas: chapas ST/RU/RF, guias/montantes, parafusos/buchas, prumo, trena, estilete/serrote, espátula/desempenadeira, tesoura de perfis, chalk-line, furadeira, fita e massa de juntas"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "Traçar e fixar guias (≤60 cm)",
+      "verificacao": "Prumo + trena",
+      "tolerancia": "Coincidência piso/teto"
+    },
+    {
+      "passo": "Montantes PD-5 mm, espaçamento 60/40 cm",
+      "verificacao": "Trena",
+      "tolerancia": "Conforme projeto"
+    },
+    {
+      "passo": "Instalar embutidos/reforços/lã (quando previsto)",
+      "verificacao": "Visual",
+      "tolerancia": "100% antes do fechamento"
+    },
+    {
+      "passo": "Cortar painéis PD-1 cm; parafusar (≤30 cm; ≥1 cm da borda)",
+      "verificacao": "Trena + visual",
+      "tolerancia": "Conforme procedimento"
+    },
+    {
+      "passo": "Tratamento de juntas e cantos (fita/cantoneira)",
+      "verificacao": "Visual",
+      "tolerancia": "Contínuo e alinhado"
+    },
+    {
+      "passo": "Áreas úmidas: usar placas RU e proteger base",
+      "verificacao": "Visual",
+      "tolerancia": "Conforme projeto"
+    }
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Embutidos e reforços",
+      "metodo": "Visual",
+      "tolerancia": "OK/Não OK"
+    },
+    {
+      "item": "Prumo/planeza",
+      "metodo": "Prumo + régua 2 m",
+      "tolerancia": "≤ 3 mm"
+    },
+    {
+      "item": "Vãos (L/H/alinhamento)",
+      "metodo": "Linha + trena",
+      "tolerancia": "≤ 3 mm"
+    },
+    {
+      "item": "Aspecto final",
+      "metodo": "Visual",
+      "tolerancia": "Sem desníveis/incrustações"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Embutidos antes do fechamento",
+    "Régua 2 m",
+    "Leitura de prumo",
+    "Vãos medidos",
+    "Juntas/parafusos"
+  ],
+  "bloqueios_pcc": [
+    "Embutidos ausentes",
+    "Prumo/planeza >3 mm",
+    "Vãos fora de 3 mm"
+  ]
+}

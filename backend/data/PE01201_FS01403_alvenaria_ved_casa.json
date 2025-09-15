@@ -1,0 +1,76 @@
+{
+  "codigo": "PE01201/FS01403",
+  "atividade": "Alvenaria de Vedação – Casa",
+  "ifs_tags": [
+    "ifs:vedacoes",
+    "ifs:alvenaria_vedacao",
+    "ifs:residencial_unifamiliar"
+  ],
+  "pre_condicoes": [
+    "Fundações concluídas (baldrame/embasamento/radier) e/ou laje pronta; nível transferido (laser/mangueira)",
+    "Locação marcada (cantos externos), vãos de portas definidos",
+    "Argamassa aditivada (hidrofugante) prevista para 3 primeiras fiadas quando térreo"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "Assentar blocos de canto; marcar cruzamentos e vãos",
+      "verificacao": "Prumo + trena",
+      "tolerancia": "Cantos aprumados"
+    },
+    {
+      "passo": "Distribuir blocos na 1ª fiada para modulação e menor quebra",
+      "verificacao": "Visual + linha",
+      "tolerancia": "Modulação ajustada"
+    },
+    {
+      "passo": "Assentar fiadas conferindo prumo/nivelamento a cada fiada",
+      "verificacao": "Prumo + nível",
+      "tolerancia": "Fiadas alinhadas"
+    },
+    {
+      "passo": "Executar vergas/contravergas; prever coroamento no respaldo",
+      "verificacao": "Visual",
+      "tolerancia": "Conforme projeto"
+    },
+    {
+      "passo": "Prever barras de ancoragem do telhado (quando aplicável)",
+      "verificacao": "Visual",
+      "tolerancia": "Elementos instalados"
+    }
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Nivelamento/alinhamento da fiada de marcação",
+      "metodo": "Mangueira/laser + linha",
+      "tolerancia": "2 cm em 5 m"
+    },
+    {
+      "item": "Planeza e prumo (interno)",
+      "metodo": "Prumo + régua 2 m",
+      "tolerancia": "3 mm"
+    },
+    {
+      "item": "Largura/altura dos vãos",
+      "metodo": "Trena (pós-elevação)",
+      "tolerancia": "5 mm"
+    },
+    {
+      "item": "Aspecto final e coroamento/respaldo",
+      "metodo": "Visual",
+      "tolerancia": "OK/Não OK"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "1ª fiada/modulação",
+    "Vãos medidos",
+    "Planicidade/prumo (régua/prumo)",
+    "Vergas/contravergas",
+    "Coroamento/respaldo"
+  ],
+  "bloqueios_pcc": [
+    "Fiada de marcação fora de nível/alinhamento",
+    "Ausência de vergas/contravergas",
+    "Vãos fora de tolerância",
+    "Coroamento/respaldo ausente"
+  ]
+}

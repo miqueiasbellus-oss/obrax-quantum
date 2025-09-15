@@ -1,0 +1,55 @@
+{
+  "versao_schema": "1.0",
+  "tipo": "FVM",
+  "codigo": "FM00601",
+  "titulo": "Madeira (pontaletes, sarrafos, tábuas, vigas)",
+  "normas": [],
+  "campos_a_capturar": [
+    "tipo",
+    "encanoamento_mm",
+    "encurvamento_mm",
+    "arqueamento_mm",
+    "desbitolamento_mm"
+  ],
+  "inspecoes": [
+    {
+      "id": 1,
+      "nome": "Quantidade",
+      "inspecao": "Conferir quantidade entregue"
+    },
+    {
+      "id": 2,
+      "nome": "Aspecto geral",
+      "inspecao": "Nós soltos, podridão, furos de insetos, tratamento superficial",
+      "criterios_aceite": "Segregar peças defeituosas. Madeira 3ª classe: rejeitar só se inutilizável"
+    },
+    {
+      "id": 3,
+      "nome": "Encanoamento",
+      "inspecao": "Medir encanoamento",
+      "criterios_aceite": "≤5 mm"
+    },
+    {
+      "id": 4,
+      "nome": "Encurvamento",
+      "inspecao": "Medir encurvamento",
+      "criterios_aceite": "≤20 mm ou 1,5% do comprimento"
+    },
+    {
+      "id": 5,
+      "nome": "Arqueamento",
+      "inspecao": "Medir arqueamento",
+      "criterios_aceite": "≤40 mm ou 1,5% do comprimento"
+    },
+    {
+      "id": 6,
+      "nome": "Desbitolamento",
+      "inspecao": "Medir espessura/largura",
+      "criterios_aceite": "≤3 mm"
+    }
+  ],
+  "fotos_obrigatorias": [],
+  "bloqueios_pcc": [],
+  "amostragem_aceitacao": null,
+  "observacoes": []
+}

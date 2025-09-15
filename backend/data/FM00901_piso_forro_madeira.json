@@ -1,0 +1,34 @@
+{
+  "versao_schema": "1.0",
+  "tipo": "FVM",
+  "codigo": "FM00901",
+  "titulo": "Piso e forro de madeira",
+  "normas": [],
+  "campos_a_capturar": [
+    "tipo",
+    "umidade"
+  ],
+  "inspecoes": [
+    {
+      "id": 1,
+      "nome": "Quantidade",
+      "inspecao": "Conferir quantidade entregue"
+    },
+    {
+      "id": 2,
+      "nome": "Aspecto",
+      "inspecao": "Defeitos em face de uso: furos,nós,manchas,quebras,rachaduras,fibras arrancadas; conferir espécie e acabamento; medir umidade",
+      "criterios_aceite": "Segregar peças defeituosas ou com umidade elevada"
+    },
+    {
+      "id": 3,
+      "nome": "Acabamento bordas",
+      "inspecao": "Face de uso e laterais planas/alisadas",
+      "criterios_aceite": "Segregar peças com defeito"
+    }
+  ],
+  "fotos_obrigatorias": [],
+  "bloqueios_pcc": [],
+  "amostragem_aceitacao": null,
+  "observacoes": []
+}

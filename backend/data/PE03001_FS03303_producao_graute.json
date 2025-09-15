@@ -1,0 +1,67 @@
+{
+  "codigo": "PE03001/FS03303",
+  "atividade": "Produção de Graute (obra)",
+  "ifs_tags": [
+    "ifs:producao",
+    "ifs:graute"
+  ],
+  "pre_condicoes": [
+    "Local de aplicação definido e traço especificado (laboratório recomendado)",
+    "Materiais conferidos: areia/pedrisco (Dmáx conforme), brita (se graute grosso), cimento, cal hidratada (quando aplicável), água",
+    "Equipamentos: betoneira, padiolas/carrinho, latas/baldes, cone e haste para slump"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "Definir traço (laboratório recomendado) ou traço prático; executar mistura piloto",
+      "verificacao": "Registro + mistura experimental",
+      "tolerancia": "Traço validado"
+    },
+    {
+      "passo": "Sequência na betoneira: pedrisco (+ aditivo em pó) → 90% água → cimento → areia → 10% água (+ aditivo líquido)",
+      "verificacao": "Visual",
+      "tolerancia": "Mistura homogênea"
+    },
+    {
+      "passo": "Slump test – 1ª amassada do dia; troca de operador; interrupção ≥2 h; quando moldar CPs",
+      "verificacao": "Ensaio de abatimento (tronco de cone)",
+      "tolerancia": "20 ± 3 cm"
+    },
+    {
+      "passo": "Ajuste de consistência conforme resultado do slump (areia/brita ↔ pasta cimento+água)",
+      "verificacao": "Registro",
+      "tolerancia": "Dentro do alvo 20 ± 3 cm"
+    },
+    {
+      "passo": "Tempo de uso: até 2 h 30 após adição de água",
+      "verificacao": "Registro",
+      "tolerancia": "≤ 2 h 30"
+    }
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Traço (mistura piloto)",
+      "metodo": "Rodar traço e aplicar 1ª mistura experimental",
+      "tolerancia": "Validado"
+    },
+    {
+      "item": "Homogeneidade e abatimento (slump)",
+      "metodo": "Visual + ensaio nas mesmas ocasiões do PE",
+      "tolerancia": "20 ± 3 cm"
+    },
+    {
+      "item": "Uso correto de padiolas/baldes (dosagem)",
+      "metodo": "Visual nas mesmas ocasiões do slump",
+      "tolerancia": "OK/Não OK"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Sequência de lançamento na betoneira",
+    "Leitura do slump",
+    "Padiolas identificadas"
+  ],
+  "bloqueios_pcc": [
+    "Traço não validado",
+    "Slump fora de 20 ± 3 cm",
+    "Tempo de uso > 2h30 após água"
+  ]
+}

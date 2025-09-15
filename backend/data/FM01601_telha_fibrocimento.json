@@ -1,0 +1,43 @@
+{
+  "versao_schema": "1.0",
+  "tipo": "FVM",
+  "codigo": "FM01601",
+  "titulo": "Telha fibrocimento",
+  "normas": [],
+  "campos_a_capturar": [
+    "largura",
+    "comprimento",
+    "espessura"
+  ],
+  "inspecoes": [
+    {
+      "id": 1,
+      "nome": "Quantidade",
+      "inspecao": "Conferir quantidade entregue"
+    },
+    {
+      "id": 2,
+      "nome": "Aspecto geral",
+      "inspecao": "Trincas, quebras, caroços, emendas, deformações; marca fabricante",
+      "criterios_aceite": "Segregar peças defeituosas"
+    },
+    {
+      "id": 3,
+      "nome": "Dimensões",
+      "inspecao": "Medir L e C médios em 3 pontos",
+      "criterios_aceite": "±10 mm"
+    },
+    {
+      "id": 4,
+      "nome": "Espessura",
+      "inspecao": "Medir em 6 pontos",
+      "criterios_aceite": "5 mm ±0,4; 6 mm ±0,5; 8 mm ±0,7"
+    }
+  ],
+  "fotos_obrigatorias": [],
+  "bloqueios_pcc": [],
+  "amostragem_aceitacao": {
+    "regra": "2–150: 5 peças (até 1 defeituosa). 151–500: 8 peças (até 2). 501–3200: 13 peças (até 3)."
+  },
+  "observacoes": []
+}

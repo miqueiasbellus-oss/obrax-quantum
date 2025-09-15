@@ -1,0 +1,41 @@
+{
+  "versao_schema": "1.0",
+  "tipo": "FVM",
+  "codigo": "FM00301",
+  "titulo": "Ensacados (cimento, cal, argamassa, rejunte, gesso)",
+  "normas": [],
+  "campos_a_capturar": [
+    "tipo",
+    "validade",
+    "selo"
+  ],
+  "inspecoes": [
+    {
+      "id": 1,
+      "nome": "Quantidade",
+      "inspecao": "Conferir quantidade entregue"
+    },
+    {
+      "id": 2,
+      "nome": "Aspecto geral",
+      "inspecao": "Sacos rasgados, molhados, manchados, produto empedrado. Gesso: cor deve ser clara",
+      "criterios_aceite": "Segregar sacos defeituosos. Gesso escuro: rejeitar"
+    },
+    {
+      "id": 3,
+      "nome": "Validade",
+      "inspecao": "Conferir validade na embalagem",
+      "criterios_aceite": "Rejeitar vencido"
+    },
+    {
+      "id": 4,
+      "nome": "Selo de qualidade (cimento/cal)",
+      "inspecao": "Verificar selo ABCP ou ABPC",
+      "criterios_aceite": "Aceitar apenas com selo"
+    }
+  ],
+  "fotos_obrigatorias": [],
+  "bloqueios_pcc": [],
+  "amostragem_aceitacao": null,
+  "observacoes": []
+}

@@ -1,0 +1,50 @@
+{
+  "codigo": "FS00103",
+  "atividade": "Compactação de Aterro",
+  "ifs_tags": [
+    "ifs:compactacao",
+    "ifs:servicos_preliminares"
+  ],
+  "pre_condicoes": [
+    "Demarcações topográficas conferidas",
+    "Clima favorável (sem chuva)",
+    "Laboratório disponível para ensaios (quando contratado)",
+    "Materiais e equipamentos prontos: compactador/rolo, régua, trena"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "Conferir demarcações das cotas",
+      "verificacao": "Visual",
+      "tolerancia": "Obr. antes dos serviços",
+      "midia": "foto_cotas.jpg"
+    },
+    {
+      "passo": "Verificar clima",
+      "verificacao": "Visual",
+      "tolerancia": "Não iniciar se chovendo",
+      "midia": "foto_clima.jpg"
+    },
+    {
+      "passo": "Executar camadas de até 20 cm",
+      "verificacao": "Visual, medir camada",
+      "tolerancia": "≤20 cm",
+      "midia": "video_compactacao.mp4"
+    },
+    {
+      "passo": "Acabamento final",
+      "verificacao": "Visual",
+      "tolerancia": "Inclinação de taludes correta e terreno uniforme",
+      "midia": "foto_acabamento.jpg"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Foto da camada compactada",
+    "Foto do equipamento em uso",
+    "Foto do acabamento final"
+  ],
+  "bloqueios_pcc": [
+    "Camadas >20 cm",
+    "Trabalho sob chuva",
+    "Sem controle tecnológico (quando exigido)"
+  ]
+}

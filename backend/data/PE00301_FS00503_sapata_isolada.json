@@ -1,0 +1,75 @@
+{
+  "codigo": "PE00301/FS00503",
+  "atividade": "Sapata Isolada",
+  "ifs_tags": [
+    "ifs:fundacao",
+    "ifs:sapata_isolada"
+  ],
+  "pre_condicoes": [
+    "Projetos de fundação disponíveis e peças locadas",
+    "Terreno limpo; vala escavada até cota de apoio",
+    "RN (nível de referência) definida e acessível",
+    "Equipamentos disponíveis: nível de mangueira/laser, soquete/compactador, trena, esquadro"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "Escavar vala 20 cm além da largura da sapata",
+      "verificacao": "Trena + visual",
+      "tolerancia": "+20 cm na largura (faixa operacional)",
+      "midia": "foto_vala.jpg"
+    },
+    {
+      "passo": "Nivelar e compactar fundo da vala",
+      "verificacao": "Nível (laser/mangueira) e compactação mecânica ('sapo')",
+      "tolerancia": "Regularizar até 5 cm abaixo da cota de apoio",
+      "midia": "video_compactacao.mp4"
+    },
+    {
+      "passo": "Executar lastro de concreto simples 5 cm",
+      "verificacao": "Visual + régua",
+      "tolerancia": "Espessura 5 cm ± 1 cm",
+      "midia": "foto_lastro.jpg"
+    },
+    {
+      "passo": "Montar fôrmas de borda e conferir nível/alinhamento/esquadro",
+      "verificacao": "Linha de náilon, nível, trena e esquadro metálico",
+      "tolerancia": "Alinhamento e dimensões dentro de ±5 mm; inclinação conforme projeto",
+      "midia": "foto_formas.jpg"
+    },
+    {
+      "passo": "Armar e concretar a peça",
+      "verificacao": "Visual + registros de concretagem (abatimento/tempo)",
+      "tolerancia": "Conforme projeto estrutural",
+      "midia": "foto_concretagem.jpg"
+    }
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Cota do fundo da vala",
+      "metodo": "Nivelamento a partir da RN (laser/mangueira)",
+      "tolerancia": "±20 mm"
+    },
+    {
+      "item": "Formas de borda (alinhamento/largura/altura/inclinação)",
+      "metodo": "Linha de náilon + trena",
+      "tolerancia": "±5 mm"
+    },
+    {
+      "item": "Aspecto final de vala, fôrmas e lastro",
+      "metodo": "Visual (sem resíduos de terra no lastro)",
+      "tolerancia": "Sem não-conformidades visuais"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Vala escavada e nivelada",
+    "Lastro executado",
+    "Formas conferidas",
+    "Concretagem"
+  ],
+  "bloqueios_pcc": [
+    "Projetos não disponíveis/locação não liberada",
+    "Fundo de vala sem nivelamento/compactação",
+    "Ausência de lastro",
+    "Formas fora de tolerância (±5 mm)"
+  ]
+}

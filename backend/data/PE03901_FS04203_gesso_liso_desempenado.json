@@ -1,0 +1,69 @@
+{
+  "codigo": "PE03901/FS04203",
+  "atividade": "Gesso Liso Desempenado",
+  "ifs_tags": [
+    "ifs:vedacoes",
+    "ifs:gesso_liso"
+  ],
+  "pre_condicoes": [
+    "Alvenaria concluída; superfícies limpas/sem contaminantes",
+    "Base cimentícia com ≥30 dias",
+    "Instalações/Esquadrias protegidas; umidades resolvidas"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "Aplicação em teto e depois paredes; camadas 1–3 mm (até 4)",
+      "verificacao": "Visual",
+      "tolerancia": "Faixas sobrepostas regularmente"
+    },
+    {
+      "passo": "Sarrafeamento antes da pega avançar",
+      "verificacao": "Régua + visual",
+      "tolerancia": "Excessos removidos"
+    },
+    {
+      "passo": "Correções com pasta em pega",
+      "verificacao": "Visual",
+      "tolerancia": "Sem ondulações"
+    },
+    {
+      "passo": "Acabamento final (pasta líquida 1–10 mm com pressão)",
+      "verificacao": "Visual",
+      "tolerancia": "Acabamento liso"
+    },
+    {
+      "passo": "Cantoneiras metálicas nas quinas; secagem 1–2 semanas",
+      "verificacao": "Visual/registro",
+      "tolerancia": "Proteção instalada / tempo atendido"
+    }
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Preparação da base/proteções",
+      "metodo": "Visual",
+      "tolerancia": "OK/Não OK"
+    },
+    {
+      "item": "Planicidade",
+      "metodo": "Régua diagonal",
+      "tolerancia": "± 3 mm"
+    },
+    {
+      "item": "Aspecto final",
+      "metodo": "Visual",
+      "tolerancia": "Acabamento correto"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Aplicação no teto",
+    "Sarrafeamento",
+    "Planicidade",
+    "Quinas/cantoneiras",
+    "Estado final"
+  ],
+  "bloqueios_pcc": [
+    "Base sem preparo",
+    "Planicidade fora de ±3 mm",
+    "Sem cantoneiras nas quinas"
+  ]
+}

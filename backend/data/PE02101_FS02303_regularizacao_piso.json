@@ -1,0 +1,90 @@
+{
+  "codigo": "PE02101/FS02303",
+  "atividade": "Regularização de Piso",
+  "ifs_tags": [
+    "ifs:vedacoes_horizontais",
+    "ifs:regularizacao_piso"
+  ],
+  "pre_condicoes": [
+    "Batentes chumbados ou vãos referenciados; marcação/alvenaria concluídas",
+    "Base curada com rugosidade adequada; superfície limpa (sem entulho, argamassa, óleo)",
+    "Juntas de movimentação da base previstas e transferidas para a regularização"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "Definir espessura (10–30 mm por camada); para >30 mm, aplicar em duas ou mais camadas",
+      "verificacao": "Trena/visual",
+      "tolerancia": "10–30 mm por camada",
+      "midia": "foto_espessura.jpg"
+    },
+    {
+      "passo": "Assentar taliscas cerâmicas nos cantos e junto a ralos/grelhas (máx. 2,5 m entre taliscas)",
+      "verificacao": "Trena",
+      "tolerancia": "≤2,5 m",
+      "midia": "foto_taliscas.jpg"
+    },
+    {
+      "passo": "Definir cotas de arrasamento das taliscas (laser/mangueira/nível)",
+      "verificacao": "Nível",
+      "tolerancia": "≤5 mm",
+      "midia": "foto_cota_taliscas.jpg"
+    },
+    {
+      "passo": "Executar mestras na sequência do lançamento; retirar taliscas em seguida",
+      "verificacao": "Visual",
+      "tolerancia": "Sequência atendida",
+      "midia": "foto_mestras.jpg"
+    },
+    {
+      "passo": "Prever caimento mínimo de 1% em áreas molhadas",
+      "verificacao": "Nível + água",
+      "tolerancia": "≥1 cm/m",
+      "midia": "foto_caimento.jpg"
+    },
+    {
+      "passo": "Arredondar cantos/arestas (~8 cm de raio) quando o piso receber impermeabilização",
+      "verificacao": "Visual",
+      "tolerancia": "Raio ≈8 cm",
+      "midia": "foto_cantos_arredondados.jpg"
+    },
+    {
+      "passo": "Quando houver membrana: desempenar/alisar para acabamento liso",
+      "verificacao": "Visual",
+      "tolerancia": "Superfície lisa",
+      "midia": "foto_acabamento_liso.jpg"
+    }
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Preparação da base",
+      "metodo": "Visual",
+      "tolerancia": "OK/Não OK"
+    },
+    {
+      "item": "Nível das taliscas",
+      "metodo": "Laser/mangueira",
+      "tolerancia": "≤ 5 mm"
+    },
+    {
+      "item": "Caimento em áreas molhadas",
+      "metodo": "Ensaio com água",
+      "tolerancia": "≥ 1%"
+    },
+    {
+      "item": "Acabamento superficial",
+      "metodo": "Visual",
+      "tolerancia": "Regular"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Base preparada",
+    "Taliscas/mestras",
+    "Teste de água (áreas molhadas)",
+    "Acabamento final"
+  ],
+  "bloqueios_pcc": [
+    "Base sem preparo",
+    "Nível das taliscas fora de tolerância",
+    "Caimento <1% em áreas molhadas"
+  ]
+}

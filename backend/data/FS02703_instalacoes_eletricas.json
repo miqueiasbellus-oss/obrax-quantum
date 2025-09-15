@@ -1,0 +1,47 @@
+{
+  "codigo": "FS02703",
+  "atividade": "Instalações Elétricas – Conferência Geral",
+  "ifs_tags": [
+    "ifs:sistemas_prediais",
+    "ifs:eletrico"
+  ],
+  "pre_condicoes": [
+    "Projeto elétrico atualizado disponível no local",
+    "Materiais inspecionados (eletrodutos, caixas, condutores)",
+    "Frentes de serviço limpas e seguras"
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Locação de furos/eletrodutos/caixas sobre a laje (pré-concretagem)",
+      "metodo": "Trena metálica + verificação de diâmetros",
+      "tolerancia": "±10 mm"
+    },
+    {
+      "item": "Passagem de eletrodutos e caixas embutidos nas paredes (pré-fechamento)",
+      "metodo": "Visual",
+      "tolerancia": "Conforme projeto"
+    },
+    {
+      "item": "Quadros elétricos (fixação/montagem)",
+      "metodo": "Visual após montagem",
+      "tolerancia": "Conforme projeto"
+    },
+    {
+      "item": "Tomadas/pontos/interruptores (funcional)",
+      "metodo": "Lâmpada de teste e acionamento manual",
+      "tolerancia": "Operantes"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Laje com furos/eletrodutos/caixas",
+    "Rasgos nas paredes (antes do fechamento)",
+    "Quadro montado",
+    "Teste de tomadas/luz"
+  ],
+  "bloqueios_pcc": [
+    "Furos/eletrodutos fora da locação",
+    "Rasgos fechados sem inspeção",
+    "Quadros sem fixação adequada",
+    "Tomadas/pontos sem funcionamento"
+  ]
+}

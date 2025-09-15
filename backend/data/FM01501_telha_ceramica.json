@@ -1,0 +1,54 @@
+{
+  "versao_schema": "1.0",
+  "tipo": "FVM",
+  "codigo": "FM01501",
+  "titulo": "Telha cerâmica",
+  "normas": [],
+  "campos_a_capturar": [
+    "comprimento_mm",
+    "largura_mm",
+    "galga_mm",
+    "espessura_mm",
+    "som_queima"
+  ],
+  "inspecoes": [
+    {
+      "id": 1,
+      "nome": "Quantidade",
+      "inspecao": "Conferir quantidade entregue",
+      "criterios_aceite": "Aceitar, diferenças → reposição/desconto"
+    },
+    {
+      "id": 2,
+      "nome": "Aspecto geral",
+      "inspecao": "Trincas, quebras, empenamento, cor; marca fabricante",
+      "criterios_aceite": "Segregar peças defeituosas"
+    },
+    {
+      "id": 3,
+      "nome": "Dimensões",
+      "inspecao": "Medir comprimento, largura, galga",
+      "equipamento": "Trena",
+      "criterios_aceite": "Comprimento ±9 mm; Largura ±2%; Galga ±8 mm"
+    },
+    {
+      "id": 4,
+      "nome": "Espessura",
+      "inspecao": "Medir espessura média em vários pontos",
+      "equipamento": "Paquímetro",
+      "criterios_aceite": "Desvio máximo ±2 mm"
+    },
+    {
+      "id": 5,
+      "nome": "Queima",
+      "inspecao": "Suspender e bater com peça metálica",
+      "criterios_aceite": "Som forte e vibrante"
+    }
+  ],
+  "fotos_obrigatorias": [],
+  "bloqueios_pcc": [],
+  "amostragem_aceitacao": {
+    "regra": "2–150: 5 peças (aceita até 1 defeituosa). 151–500: 8 peças (até 2). 501–3200: 13 peças (até 3)."
+  },
+  "observacoes": []
+}

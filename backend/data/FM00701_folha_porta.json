@@ -1,0 +1,61 @@
+{
+  "versao_schema": "1.0",
+  "tipo": "FVM",
+  "codigo": "FM00701",
+  "titulo": "Folha de porta",
+  "normas": [],
+  "campos_a_capturar": [
+    "espessura_mm",
+    "largura_mm",
+    "altura_mm",
+    "esquadro_mm",
+    "empenamento_mm"
+  ],
+  "inspecoes": [
+    {
+      "id": 1,
+      "nome": "Quantidade",
+      "inspecao": "Conferir quantidade entregue"
+    },
+    {
+      "id": 2,
+      "nome": "Aspecto",
+      "inspecao": "Superfície sem nós excessivos, bolsas resina, furos",
+      "criterios_aceite": "Segregar defeituosos"
+    },
+    {
+      "id": 3,
+      "nome": "Espessura",
+      "inspecao": "Média de 6 pontos",
+      "equipamento": "Paquímetro",
+      "criterios_aceite": "+0,5/-1,5mm"
+    },
+    {
+      "id": 4,
+      "nome": "Largura/Altura",
+      "inspecao": "Média de 3 pontos",
+      "equipamento": "Trena",
+      "criterios_aceite": "±3mm"
+    },
+    {
+      "id": 5,
+      "nome": "Esquadro",
+      "inspecao": "Medir nos 4 cantos",
+      "equipamento": "Esquadro metálico",
+      "criterios_aceite": "±2mm"
+    },
+    {
+      "id": 6,
+      "nome": "Empenamento",
+      "inspecao": "Medir diagonais",
+      "equipamento": "Régua metálica",
+      "criterios_aceite": "≤3mm em 2m"
+    }
+  ],
+  "fotos_obrigatorias": [],
+  "bloqueios_pcc": [],
+  "amostragem_aceitacao": {
+    "regra": "Rejeitar lote se ≥2 defeituosas por tipo"
+  },
+  "observacoes": []
+}

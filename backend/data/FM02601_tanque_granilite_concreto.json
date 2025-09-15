@@ -1,0 +1,52 @@
+{
+  "versao_schema": "1.0",
+  "tipo": "FVM",
+  "codigo": "FM02601",
+  "titulo": "Tanque de granilite ou concreto",
+  "normas": [],
+  "campos_a_capturar": [
+    "espessura_face_mm",
+    "dimensoes_principais_mm"
+  ],
+  "inspecoes": [
+    {
+      "id": 1,
+      "nome": "Diferença de quantidade",
+      "amostragem": "Toda a carga",
+      "inspecao": "Conferir a quantidade entregue.",
+      "equipamento": null,
+      "criterios_aceite": "Aceitar; diferenças: reposição/desconto.",
+      "acao_nao_conforme": "Negociar reposição/desconto."
+    },
+    {
+      "id": 2,
+      "nome": "Aspecto geral",
+      "amostragem": "Toda a carga",
+      "inspecao": "Verificar trincas, quebras, furos, bolhas, imperfeições de superfície, rebarbas, arestas cortantes, armadura exposta, emendas. Verificar furo do fundo (desobstruído) e planeza das faces.",
+      "equipamento": null,
+      "criterios_aceite": "Sem falhas.",
+      "acao_nao_conforme": "Segregar e solicitar reposição."
+    },
+    {
+      "id": 3,
+      "nome": "Dimensões e espessura",
+      "amostragem": "5 peças",
+      "inspecao": "Conferir dimensões e espessura das faces (mín. 15 mm).",
+      "equipamento": "Trena metálica",
+      "criterios_aceite": "Desvio ±5 mm; espessura ≥ 15 mm. Rejeitar se 2+ defeitos na amostra.",
+      "acao_nao_conforme": "Rejeitar lote conforme regra."
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Foto geral",
+    "Close em bordas e superfícies",
+    "Medição de espessura e dimensões"
+  ],
+  "bloqueios_pcc": [
+    "Espessura < 15 mm",
+    "Trincas/armadura exposta"
+  ],
+  "amostragem_aceitacao": null,
+  "observacoes": [],
+  "lote": "Cada entrega; amostragem 5 peças"
+}

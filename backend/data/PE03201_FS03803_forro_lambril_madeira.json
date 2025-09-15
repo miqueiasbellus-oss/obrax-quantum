@@ -1,0 +1,74 @@
+{
+  "codigo": "PE03201/FS03803",
+  "atividade": "Forro em Lambril de Madeira",
+  "ifs_tags": [
+    "ifs:vedacoes_horizontais",
+    "ifs:forro",
+    "ifs:lambril_madeira"
+  ],
+  "pre_condicoes": [
+    "Revestimentos de parede concluídos",
+    "RN (nível de referência) disponível",
+    "Materiais e ferramentas em obra (sarrafos, réguas, fixadores, prumo, nível, cordão de nylon)"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "Marcar nível do forro com nível de mangueira/laser (chalk-line nas paredes)",
+      "verificacao": "Nível mangueira/laser",
+      "tolerancia": "Marcações coincidentes",
+      "midia": "foto_marcacao_nivel.jpg"
+    },
+    {
+      "passo": "Montar estrutura de suporte com sarrafos formando quadriculado 50×50 cm; fixar nos tirantes quando houver",
+      "verificacao": "Visual + trena",
+      "tolerancia": "Quadriculado 50×50 cm",
+      "midia": "foto_quadriculado.jpg"
+    },
+    {
+      "passo": "Posicionar réguas perpendicularmente aos sarrafos; iniciar fixação pelo canto junto à alvenaria",
+      "verificacao": "Visual",
+      "tolerancia": "Encontros firmes, sem folgas",
+      "midia": "foto_sequencia_montagem.jpg"
+    },
+    {
+      "passo": "Fixar cordão de acabamento em todo perímetro",
+      "verificacao": "Visual",
+      "tolerancia": "Cordão contínuo",
+      "midia": "foto_acabamento.jpg"
+    },
+    {
+      "passo": "Limpar superfície/área de trabalho",
+      "verificacao": "Visual",
+      "tolerancia": "Sem resíduos",
+      "midia": "foto_limpeza.jpg"
+    }
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Marcação do nível do forro",
+      "metodo": "Mangueira/laser a partir da RN",
+      "tolerancia": "≤ 5 mm em 4 m"
+    },
+    {
+      "item": "Planicidade do forro",
+      "metodo": "Régua de alumínio 2 m",
+      "tolerancia": "≤ 3 mm"
+    },
+    {
+      "item": "Aspecto geral (pregos/parafusos, cordões e alinhamento das juntas das réguas)",
+      "metodo": "Visual",
+      "tolerancia": "OK/Não OK"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Leitura de nível no perímetro",
+    "Régua 2 m (planicidade)",
+    "Detalhe de fixadores/cordão",
+    "Vista geral do forro"
+  ],
+  "bloqueios_pcc": [
+    "Nível >5 mm em 4 m",
+    "Planicidade >3 mm em 2 m",
+    "Cordões ausentes ou fixadores salientes"
+  ]
+}

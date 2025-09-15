@@ -1,0 +1,53 @@
+{
+  "versao_schema": "1.0",
+  "tipo": "FVM",
+  "codigo": "FM01201",
+  "titulo": "Bloco cerâmico",
+  "normas": [],
+  "campos_a_capturar": [
+    "comprimento_mm",
+    "largura_mm",
+    "altura_mm",
+    "espessura_parede_mm",
+    "planeza_esquadro_mm"
+  ],
+  "inspecoes": [
+    {
+      "id": 1,
+      "nome": "Quantidade",
+      "inspecao": "Conferir quantidade de blocos entregue",
+      "criterios_aceite": "Aceitar; diferenças → reposição/desconto"
+    },
+    {
+      "id": 2,
+      "nome": "Aspecto",
+      "inspecao": "Uniformidade de cor, trincas, empenamento, marca fabricante",
+      "criterios_aceite": "Segregar peças defeituosas"
+    },
+    {
+      "id": 3,
+      "nome": "Dimensões médias",
+      "inspecao": "Medir C,L,H médios",
+      "equipamento": "Trena",
+      "criterios_aceite": "±3 mm"
+    },
+    {
+      "id": 4,
+      "nome": "Espessura de parede",
+      "inspecao": "Medir espessura das paredes",
+      "criterios_aceite": ">7 mm"
+    },
+    {
+      "id": 5,
+      "nome": "Planeza/esquadro",
+      "inspecao": "Verificar desvio",
+      "criterios_aceite": "≤3 mm"
+    }
+  ],
+  "fotos_obrigatorias": [],
+  "bloqueios_pcc": [],
+  "amostragem_aceitacao": {
+    "regra": "Até 2 defeitos: aceitar. 3-4: medir +10 peças. >4 defeitos: rejeitar. Na segunda, >6 defeitos: rejeitar."
+  },
+  "observacoes": []
+}

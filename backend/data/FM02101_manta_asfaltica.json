@@ -1,0 +1,71 @@
+{
+  "versao_schema": "1.0",
+  "tipo": "FVM",
+  "codigo": "FM02101",
+  "titulo": "Manta asfáltica",
+  "normas": [],
+  "campos_a_capturar": [
+    "fabricante",
+    "produto_comercial",
+    "tipo_manta",
+    "composicao",
+    "espessura_nominal_mm",
+    "espessura_media_mm",
+    "numero_lote",
+    "data_fabricacao"
+  ],
+  "inspecoes": [
+    {
+      "id": 1,
+      "nome": "Diferença de quantidade",
+      "amostragem": "Toda a carga",
+      "inspecao": "Conferir quantidade entregue.",
+      "equipamento": null,
+      "criterios_aceite": "Aceitar o lote; diferenças: reposição/desconto.",
+      "acao_nao_conforme": "Negociar reposição/desconto."
+    },
+    {
+      "id": 2,
+      "nome": "Identificação",
+      "amostragem": "Toda a carga",
+      "inspecao": "Verificar nome do fabricante, nome comercial, composição (tipo de asfalto e armadura), dimensões do rolo (m), tipo, espessura, nº de lote, data de fabricação.",
+      "equipamento": null,
+      "criterios_aceite": "Segregar peças sem identificação adequada.",
+      "acao_nao_conforme": "Segregar e solicitar reposição."
+    },
+    {
+      "id": 3,
+      "nome": "Espessura",
+      "amostragem": "Conforme tabela; medir 3 pontos por bobina (desprezar 5 cm das bordas)",
+      "inspecao": "Medir espessura média da manta.",
+      "equipamento": "Paquímetro",
+      "criterios_aceite": "Tolerâncias na média: 3 mm → -0,2 mm; 4 mm → -0,2 mm; 5 mm → -0,3 mm.",
+      "acao_nao_conforme": "Rejeitar o lote conforme critérios de amostragem."
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Etiqueta de identificação completa",
+    "Foto da medição de espessura"
+  ],
+  "bloqueios_pcc": [
+    "Sem identificação",
+    "Espessura fora da tolerância"
+  ],
+  "amostragem_aceitacao": {
+    "linhas": [
+      {
+        "tamanho_lote": "2–100 bobinas",
+        "amostra": "1 bobina",
+        "defeituosas_max_aceitar": 0
+      },
+      {
+        "tamanho_lote": "100–500 bobinas",
+        "amostra": "2 bobinas",
+        "defeituosas_max_aceitar": 0
+      }
+    ],
+    "regra": "Se houver ≥1 peça defeituosa na amostra, rejeitar o lote."
+  },
+  "observacoes": [],
+  "lote": "Toda a carga; amostragem conforme tabela (2–100: 1 bobina; 100–500: 2 bobinas)"
+}

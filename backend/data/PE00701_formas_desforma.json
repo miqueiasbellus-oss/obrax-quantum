@@ -1,0 +1,68 @@
+{
+  "codigo": "PE00701",
+  "atividade": "Fôrmas – Desforma e Reescoramento",
+  "ifs_tags": [
+    "ifs:estrutura",
+    "ifs:formas",
+    "ifs:desforma"
+  ],
+  "pre_condicoes": [
+    "Elementos liberados para desforma pelo projetista",
+    "Plano de reescoramento definido",
+    "Equipe com EPIs e ferramentas (cunhas, cordas, desformador, escoras)"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "Desformar pilares (soltar tensores, retirar painéis com desformador/cunhas)",
+      "verificacao": "Visual",
+      "tolerancia": "Sem danos às peças",
+      "midia": "foto_desforma_pilar.jpg"
+    },
+    {
+      "passo": "Preservar painéis grandes (amarrar com cordas)",
+      "verificacao": "Visual",
+      "tolerancia": "Sem quedas/choques",
+      "midia": "foto_amarro_paineis.jpg"
+    },
+    {
+      "passo": "Retirar chupetas/mangueiras para reaproveitamento",
+      "verificacao": "Visual",
+      "tolerancia": "Reaproveitamento registrado",
+      "midia": "foto_chupetas.jpg"
+    },
+    {
+      "passo": "Posicionar reescoras conforme projeto antes de retirar escoras",
+      "verificacao": "Visual",
+      "tolerancia": "Reescoras instaladas",
+      "midia": "foto_reescoramento.jpg"
+    },
+    {
+      "passo": "Desformar vigas (laterais e fundo) e depois lajes",
+      "verificacao": "Visual",
+      "tolerancia": "Sequência correta",
+      "midia": "foto_sequencia.jpg"
+    },
+    {
+      "passo": "Em balanços: desformar da borda livre ao apoio",
+      "verificacao": "Visual",
+      "tolerancia": "Sequência atendida",
+      "midia": "foto_balanco.jpg"
+    },
+    {
+      "passo": "Usar rede/cordas/cavaletes para amortecer impactos",
+      "verificacao": "Visual",
+      "tolerancia": "Sem danos às fôrmas",
+      "midia": "foto_rede_protecao.jpg"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Reescoramento instalado",
+    "Retirada de painéis",
+    "Desforma de balanço"
+  ],
+  "bloqueios_pcc": [
+    "Sem liberação do projetista",
+    "Sem reescoramento previsto",
+    "Tentativa de desforma sem proteção contra quedas"
+  ]
+}

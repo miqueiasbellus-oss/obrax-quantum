@@ -1,0 +1,73 @@
+{
+  "codigo": "FS01003",
+  "atividade": "Montagem de Armadura (corte, dobra, posicionamento)",
+  "ifs_tags": [
+    "ifs:estrutura",
+    "ifs:armadura",
+    "ifs:corte_dobra"
+  ],
+  "pre_condicoes": [
+    "Projeto estrutural vigente disponível no local",
+    "Barras cortadas/dobradas conforme lista, quando aplicável",
+    "Formas limpas; espaçadores para cobrimento disponíveis",
+    "Equipe orientada sobre pontos de armadura negativa"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "Posicionar barras e amarrar (sem contato com forma)",
+      "verificacao": "Visual",
+      "tolerancia": "Cobrimento conforme projeto",
+      "midia": "foto_amarração.jpg"
+    },
+    {
+      "passo": "Instalar armadura negativa (quando houver)",
+      "verificacao": "Visual + régua de altura",
+      "tolerancia": "Altura e posição conforme projeto",
+      "midia": "foto_negativa.jpg"
+    },
+    {
+      "passo": "Conferir quantidade de barras por peça",
+      "verificacao": "Contagem vs projeto",
+      "tolerancia": "100% de acordo",
+      "midia": "foto_contagem.jpg"
+    },
+    {
+      "passo": "Limpeza geral (sem carepas/óleo)",
+      "verificacao": "Visual",
+      "tolerancia": "Sem contaminantes",
+      "midia": "foto_limpeza.jpg"
+    },
+    {
+      "passo": "Rotina de verificação periódica",
+      "verificacao": "No início do dia/troca de equipe/1x semana",
+      "tolerancia": "Checklist aplicado",
+      "midia": "foto_check_periodico.jpg"
+    }
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Amarração/posicionamento/limpeza",
+      "metodo": "Visual + contagem por projeto",
+      "tolerancia": "Conforme projeto"
+    },
+    {
+      "item": "Armadura negativa",
+      "metodo": "Visual após montagem",
+      "tolerancia": "Posição correta"
+    },
+    {
+      "item": "Corte/dobra/montagem",
+      "metodo": "Verificação periódica (início do dia/mudança de equipe/1x semana)",
+      "tolerancia": "Conforme projeto"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Amarração",
+    "Negativa",
+    "Espaçadores/cobrimento"
+  ],
+  "bloqueios_pcc": [
+    "Armadura tocando forma",
+    "Negativa ausente/fora de posição"
+  ]
+}

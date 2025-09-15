@@ -1,0 +1,84 @@
+{
+  "codigo": "PE01401/FS01603",
+  "atividade": "Revestimento em Argamassa (interno/externo)",
+  "ifs_tags": [
+    "ifs:vedacoes",
+    "ifs:revest_argamassa"
+  ],
+  "pre_condicoes": [
+    "Alvenaria concluída e fixada/respaldada; esquadrias/contramarcos chumbados ou vãos referenciados",
+    "Base limpa (sem óleo/desmoldante/pregos/fios), chapisco executado e curado (≈3 dias)",
+    "Para fachadas: arames de fachada locados/afixados; taliscas definidas a partir dos arames"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "Preparar base: remover contaminantes e reparar furos/rasgos/depressões",
+      "verificacao": "Visual",
+      "tolerancia": "Base pronta para chapisco e revestimento"
+    },
+    {
+      "passo": "Executar chapisco e aguardar cura (~3 dias)",
+      "verificacao": "Registro + visual",
+      "tolerancia": "Tempo mínimo atendido"
+    },
+    {
+      "passo": "Assentar taliscas nos pontos de menor espessura (muro interno) e por arames (fachada)",
+      "verificacao": "Prumo + nível",
+      "tolerancia": "Taliscas planas/aprumadas"
+    },
+    {
+      "passo": "Chumbar cantoneiras metálicas em cantos vivos",
+      "verificacao": "Visual",
+      "tolerancia": "Cantoneiras contínuas"
+    },
+    {
+      "passo": "Executar mestras entre taliscas e aplicar argamassa em chapadas",
+      "verificacao": "Visual",
+      "tolerancia": "Preenchimento homogêneo"
+    },
+    {
+      "passo": "Sarrafear com régua de alumínio apoiada nas mestras",
+      "verificacao": "Régua 2 m",
+      "tolerancia": "Planicidade conforme"
+    },
+    {
+      "passo": "Desempenar conforme acabamento (grosso/fino/feltrado)",
+      "verificacao": "Visual",
+      "tolerancia": "Superfície regular"
+    },
+    {
+      "passo": "Executar juntas de trabalho (nivelamento e corte com frisador)",
+      "verificacao": "Nível + visual",
+      "tolerancia": "Juntas marcadas e limpas"
+    }
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Preparação da base/chapisco",
+      "metodo": "Visual",
+      "tolerancia": "OK/Não OK"
+    },
+    {
+      "item": "Planicidade e prumo das taliscas",
+      "metodo": "Régua 2 m, prumo/linha",
+      "tolerancia": "± 3 mm"
+    },
+    {
+      "item": "Aspecto final + execução de juntas",
+      "metodo": "Visual",
+      "tolerancia": "Acabamento regular"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Base limpa + chapisco",
+    "Taliscas/mestras",
+    "Régua 2 m (planicidade)",
+    "Cantos com cantoneira",
+    "Acabamento final/juntas"
+  ],
+  "bloqueios_pcc": [
+    "Chapisco não executado/sem cura",
+    "Taliscas sem prumo/planicidade",
+    "Ausência de cantoneiras em cantos vivos"
+  ]
+}

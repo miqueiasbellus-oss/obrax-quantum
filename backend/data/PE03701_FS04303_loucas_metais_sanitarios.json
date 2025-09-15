@@ -1,0 +1,86 @@
+{
+  "codigo": "PE03701/FS04303",
+  "atividade": "Instalação de Louças e Metais Sanitários",
+  "ifs_tags": [
+    "ifs:sistemas_prediais",
+    "ifs:hidrosanitario",
+    "ifs:loucas_metais"
+  ],
+  "pre_condicoes": [
+    "Revestimentos internos e instalações hidráulicas concluídos",
+    "Pontos de água e esgoto desprotegidos (remover proteções)",
+    "Ferramentas/materiais: buchas, parafusos, massa de vedação, massa plástica, chaves, nível, furadeira, rejunte"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "Fixar metais: montar válvulas/tubos de ligação garantindo espaçamentos; massa de vedação em bicas e válvulas de escoamento",
+      "verificacao": "Visual + funcional",
+      "tolerancia": "Sem vazamentos e com guarnições",
+      "midia": "foto_fixacao_metais.jpg"
+    },
+    {
+      "passo": "Lavatórios/tanques: marcar pontos (altura 80 cm ou projeto); furar com vídea; fixar com buchas/parafusos; ligar água/esgoto; rejuntar",
+      "verificacao": "Trena + nível + funcional",
+      "tolerancia": "Altura conforme; sem vazamentos",
+      "midia": "foto_lavatorio.jpg"
+    },
+    {
+      "passo": "Cubas de sobrepor: checar recorte/tombo; aplicar massa de calafetar; ligar água/esgoto",
+      "verificacao": "Visual + funcional",
+      "tolerancia": "Assentamento estanque",
+      "midia": "foto_cuba_sobrepor.jpg"
+    },
+    {
+      "passo": "Cubas de embutir: fixar com massa plástica; respeitar tempo de cura",
+      "verificacao": "Registro + visual",
+      "tolerancia": "Cura atendida",
+      "midia": "foto_cuba_embutir.jpg"
+    },
+    {
+      "passo": "Bacias: marcar, furar, buchas; bolsa cônica plástica no esgoto; passar massa de vedação; assentar e nivelar; ligar água; rejuntar",
+      "verificacao": "Nível + funcional",
+      "tolerancia": "Sem vazamentos; nivelada",
+      "midia": "foto_bacia.jpg"
+    },
+    {
+      "passo": "Caixa acoplada: montar arruelas/vedações; fixar alternado; ligar abastecimento; testar",
+      "verificacao": "Funcional",
+      "tolerancia": "Sem vazamento/funcionamento pleno",
+      "midia": "foto_caixa_acoplada.jpg"
+    },
+    {
+      "passo": "Bidês/mictórios: marcar, furar, fixar, ligar; rejuntar",
+      "verificacao": "Funcional + visual",
+      "tolerancia": "Sem vazamentos",
+      "midia": "foto_bid_mict.jpg"
+    }
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Fixação de louças/metais",
+      "metodo": "Movimentar/checar fixação",
+      "tolerancia": "Estáveis/firmes"
+    },
+    {
+      "item": "Teste de funcionamento (água)",
+      "metodo": "Abrir registros antes do rejunte",
+      "tolerancia": "Sem vazamentos"
+    },
+    {
+      "item": "Aparência final (metais/louças/rejuntes)",
+      "metodo": "Visual",
+      "tolerancia": "Sem riscos/trincas/defeitos"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Fixação de metais",
+    "Bacia/caixa acoplada",
+    "Ligações água/esgoto",
+    "Acabamento/rejuntes"
+  ],
+  "bloqueios_pcc": [
+    "Vazamentos nos testes",
+    "Fixações instáveis",
+    "Acabamentos com defeitos visuais significativos"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "versao_schema": "1.0",
+  "tipo": "FVM",
+  "codigo": "FM02001",
+  "titulo": "Pedra natural (granito/mármore/ardósia)",
+  "normas": [],
+  "campos_a_capturar": [
+    "espessura_mm",
+    "largura_mm",
+    "comprimento_mm"
+  ],
+  "inspecoes": [
+    {
+      "id": 1,
+      "nome": "Quantidade",
+      "inspecao": "Conferir quantidade entregue"
+    },
+    {
+      "id": 2,
+      "nome": "Aspecto",
+      "inspecao": "Variações de tonalidade, trincas, fissuras, variações dimensionais/esquadro; conferir marcação conforme projeto",
+      "criterios_aceite": "Segregar peças defeituosas"
+    },
+    {
+      "id": 3,
+      "nome": "Dimensões",
+      "inspecao": "Medir espessura, largura, comprimento",
+      "equipamento": "Trena",
+      "criterios_aceite": "±2mm"
+    }
+  ],
+  "fotos_obrigatorias": [],
+  "bloqueios_pcc": [],
+  "amostragem_aceitacao": null,
+  "observacoes": []
+}

@@ -1,0 +1,47 @@
+{
+  "versao_schema": "1.0",
+  "tipo": "FVM",
+  "codigo": "FM00501",
+  "titulo": "Chapa compensada",
+  "normas": [],
+  "campos_a_capturar": [
+    "espessura_mm",
+    "comprimento_mm",
+    "largura_mm",
+    "n_laminas"
+  ],
+  "inspecoes": [
+    {
+      "id": 1,
+      "nome": "Quantidade",
+      "inspecao": "Conferir quantidade entregue"
+    },
+    {
+      "id": 2,
+      "nome": "Aspecto geral",
+      "inspecao": "Superfície lisa, sem falhas. Borda selada. Marca fabricante",
+      "criterios_aceite": "Segregar peças defeituosas"
+    },
+    {
+      "id": 3,
+      "nome": "Emendas",
+      "inspecao": "Verificar emendas",
+      "criterios_aceite": "Aceitar até 2 (resinada), 1 (plastificada)"
+    },
+    {
+      "id": 4,
+      "nome": "Número de lâminas",
+      "inspecao": "Conferir nº conforme espessura (6mm=3, 9-12=5, 15-18=7, 21=9)"
+    },
+    {
+      "id": 5,
+      "nome": "Dimensões",
+      "inspecao": "Medir",
+      "criterios_aceite": "Espessura ±1 mm, L/C ±2 mm"
+    }
+  ],
+  "fotos_obrigatorias": [],
+  "bloqueios_pcc": [],
+  "amostragem_aceitacao": null,
+  "observacoes": []
+}

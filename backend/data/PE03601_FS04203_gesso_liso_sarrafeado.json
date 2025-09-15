@@ -1,0 +1,68 @@
+{
+  "codigo": "PE03601/FS04203",
+  "atividade": "Gesso Liso Sarrafeado",
+  "ifs_tags": [
+    "ifs:vedacoes",
+    "ifs:gesso_liso"
+  ],
+  "pre_condicoes": [
+    "Alvenaria concluída/verificada; superfícies limpas",
+    "Instalações fixas e esquadrias protegidas",
+    "Taliscas e mestras previstas"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "Taliscas (mín. 5 mm) a ≤1,8 m; aguardar 1 dia",
+      "verificacao": "Prumo + trena",
+      "tolerancia": "Conforme procedimento"
+    },
+    {
+      "passo": "Executar mestras (≥2 m) com martelo borracha; aguardar 1 dia",
+      "verificacao": "Visual",
+      "tolerancia": "Mestras firmes/planas"
+    },
+    {
+      "passo": "Aplicar pasta até mestras; sarrafear com régua H",
+      "verificacao": "Régua H",
+      "tolerancia": "Preenchimento homogêneo"
+    },
+    {
+      "passo": "Acabamento (facão) e preenchimento de poros",
+      "verificacao": "Visual",
+      "tolerancia": "Superfície contínua"
+    },
+    {
+      "passo": "Queima/acabamento final com pasta mais líquida",
+      "verificacao": "Visual",
+      "tolerancia": "Superfície lisa"
+    }
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Preparação da base",
+      "metodo": "Visual",
+      "tolerancia": "OK/Não OK"
+    },
+    {
+      "item": "Planicidade",
+      "metodo": "Régua diagonal",
+      "tolerancia": "± 3 mm"
+    },
+    {
+      "item": "Aspecto final",
+      "metodo": "Visual",
+      "tolerancia": "Acabamento correto"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Taliscas/mestras",
+    "Sarrafeamento",
+    "Planicidade",
+    "Acabamento final"
+  ],
+  "bloqueios_pcc": [
+    "Base sem preparo",
+    "Planicidade fora de ±3 mm",
+    "Sem taliscas/mestras"
+  ]
+}

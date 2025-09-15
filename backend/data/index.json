@@ -1,0 +1,52 @@
+[
+  {
+    "file": "FM00201_concreto_central.json",
+    "codigo": "FM00201",
+    "titulo": "Concreto dosado em central"
+  },
+  {
+    "file": "FM02101_manta_asfaltica.json",
+    "codigo": "FM02101",
+    "titulo": "Manta asfáltica"
+  },
+  {
+    "file": "FM02201_placa_gesso.json",
+    "codigo": "FM02201",
+    "titulo": "Placa de gesso acartonado"
+  },
+  {
+    "file": "FM02401_tubos_conexoes_pvc.json",
+    "codigo": "FM02401",
+    "titulo": "Tubos e conexões de PVC"
+  },
+  {
+    "file": "FM02601_tanque_granilite_concreto.json",
+    "codigo": "FM02601",
+    "titulo": "Tanque de granilite ou concreto"
+  },
+  {
+    "file": "FM02801_aparelhos_sanitarios.json",
+    "codigo": "FM02801",
+    "titulo": "Aparelhos sanitários"
+  },
+  {
+    "file": "FM02901_metais_sanitarios.json",
+    "codigo": "FM02901",
+    "titulo": "Metais sanitários"
+  },
+  {
+    "file": "FM03001_vidros.json",
+    "codigo": "FM03001",
+    "titulo": "Vidros"
+  },
+  {
+    "file": "FM03101_esquadria_metal_pvc.json",
+    "codigo": "FM03101",
+    "titulo": "Esquadria metálica e PVC"
+  },
+  {
+    "file": "FM03201_tinta.json",
+    "codigo": "FM03201",
+    "titulo": "Tinta"
+  }
+]

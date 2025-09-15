@@ -1,0 +1,80 @@
+{
+  "codigo": "PE03801/FS04403",
+  "atividade": "Forro em Placas de Gesso Acartonado",
+  "ifs_tags": [
+    "ifs:vedacoes_horizontais",
+    "ifs:forro",
+    "ifs:gesso_acartonado"
+  ],
+  "pre_condicoes": [
+    "Revestimentos de parede concluídos",
+    "RN (nível de referência) disponível",
+    "Materiais/ferramentas: placas, perfis, tirantes, parafusos, fita/massa, cantoneiras, serra copo, parafusadeira"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "Marcar nível e pontos dos tirantes (≤60 cm em um sentido; ≤1,20 m no outro, ou projeto)",
+      "verificacao": "Laser/mangueira",
+      "tolerancia": "Conforme limites/projeto",
+      "midia": "foto_tirantes_malha.jpg"
+    },
+    {
+      "passo": "Fixar tirantes e presilhas; montar estrutura metálica (perfis a cada 60 cm)",
+      "verificacao": "Visual + trena",
+      "tolerancia": "Passo 60 cm",
+      "midia": "foto_estrutura_60.jpg"
+    },
+    {
+      "passo": "Fixar cantoneiras no perímetro (a cada 60 cm)",
+      "verificacao": "Trena",
+      "tolerancia": "Passo 60 cm",
+      "midia": "foto_cantoneiras.jpg"
+    },
+    {
+      "passo": "Cortar e fixar placas perpendiculares aos perfis (parafusos a 1 cm da borda e a cada 30 cm)",
+      "verificacao": "Trena + visual",
+      "tolerancia": "1 cm / 30 cm",
+      "midia": "foto_fixacao_placas.jpg"
+    },
+    {
+      "passo": "Aplicar massa + fita nas juntas e sobre parafusos; proteger ângulos com cantoneiras/fitas armadas",
+      "verificacao": "Visual",
+      "tolerancia": "Camadas sucessivas sem excesso",
+      "midia": "foto_tratamento_juntas.jpg"
+    },
+    {
+      "passo": "Lixar somente as áreas com massa; limpar superfície e entorno",
+      "verificacao": "Visual",
+      "tolerancia": "Superfície homogênea",
+      "midia": "foto_acabamento_limpeza.jpg"
+    }
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Marcação do nível do forro",
+      "metodo": "Laser/mangueira",
+      "tolerancia": "≤ 5 mm em 4 m"
+    },
+    {
+      "item": "Planicidade do forro",
+      "metodo": "Régua 2 m",
+      "tolerancia": "≤ 3 mm"
+    },
+    {
+      "item": "Aspecto final (juntas, parafusos, calafetação)",
+      "metodo": "Visual",
+      "tolerancia": "OK/Não OK"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Leitura de nível",
+    "Régua 2 m",
+    "Tratamento de juntas/parafusos",
+    "Vista geral do forro"
+  ],
+  "bloqueios_pcc": [
+    "Nível >5 mm em 4 m",
+    "Planicidade >3 mm em 2 m",
+    "Juntas/parafusos sem tratamento"
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "versao_schema": "1.0",
+  "tipo": "FVM",
+  "codigo": "FM02801",
+  "titulo": "Aparelhos sanitários",
+  "normas": [],
+  "campos_a_capturar": [
+    "fabricante",
+    "dimensoes_embalagem_informadas",
+    "consumo_agua_bacia_litros",
+    "qtde_furos_para_metais"
+  ],
+  "inspecoes": [
+    {
+      "id": 1,
+      "nome": "Diferença de quantidade",
+      "amostragem": "Toda a carga",
+      "inspecao": "Conferir a quantidade entregue.",
+      "equipamento": null,
+      "criterios_aceite": "Aceitar; diferenças: reposição/desconto.",
+      "acao_nao_conforme": "Negociar reposição/desconto."
+    },
+    {
+      "id": 2,
+      "nome": "Aspecto geral e integridade",
+      "amostragem": "Toda a carga",
+      "inspecao": "Verificar embalagens rasgadas, furos, riscos, bolhas, pequenas fissuras, desprendimento de esmalte, rebarbas/arestas cortantes.",
+      "equipamento": null,
+      "criterios_aceite": "Sem falhas. Separar peças defeituosas.",
+      "acao_nao_conforme": "Segregar e solicitar reposição."
+    },
+    {
+      "id": 3,
+      "nome": "Identificação e dados",
+      "amostragem": "10% da carga",
+      "inspecao": "Conferir dimensões (lavatórios/tanques), consumo de água das bacias, instruções de instalação (em embalagem ou documento). Verificar nome do fabricante na peça e quantidade de furos para metais.",
+      "equipamento": null,
+      "criterios_aceite": "Informações presentes e corretas.",
+      "acao_nao_conforme": "Verificar toda a carga e segregar defeitos."
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Foto da peça e da embalagem",
+    "Close em marcação/fabricante",
+    "Registros de consumo/medidas"
+  ],
+  "bloqueios_pcc": [
+    "Informações obrigatórias ausentes",
+    "Fissuras/desprendimento de esmalte"
+  ],
+  "amostragem_aceitacao": null,
+  "observacoes": [],
+  "lote": "Cada entrega (cada tipo)"
+}

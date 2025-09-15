@@ -1,0 +1,61 @@
+{
+  "versao_schema": "1.0",
+  "tipo": "FVM",
+  "codigo": "FM03101",
+  "titulo": "Esquadria metálica e PVC",
+  "normas": [],
+  "campos_a_capturar": [
+    "tipo (metálica/PVC)",
+    "funcionamento_ok (sim/nao)"
+  ],
+  "inspecoes": [
+    {
+      "id": 1,
+      "nome": "Diferença de quantidade",
+      "amostragem": "Toda a carga",
+      "inspecao": "Conferir a quantidade entregue.",
+      "equipamento": null,
+      "criterios_aceite": "Aceitar; diferenças: reposição/desconto.",
+      "acao_nao_conforme": "Negociar reposição/desconto."
+    },
+    {
+      "id": 2,
+      "nome": "Aspecto geral e funcionamento",
+      "amostragem": "Toda a carga",
+      "inspecao": "Verificar quebramento, empenamento, tratamento/pintura, integridade da embalagem, acessórios (dobradiças, linguote etc.), pontos de fixação, integridade dos vidros, sentido de abertura. Testar funcionamento.",
+      "equipamento": null,
+      "criterios_aceite": "Em conformidade com especificações.",
+      "acao_nao_conforme": "Segregar peças defeituosas."
+    },
+    {
+      "id": 3,
+      "nome": "Acessórios (porta pronta)",
+      "amostragem": "Somente porta pronta",
+      "inspecao": "Verificar quantidade/integridade dos acessórios e travamento da porta.",
+      "equipamento": null,
+      "criterios_aceite": "Completo e íntegro.",
+      "acao_nao_conforme": "Segregar."
+    },
+    {
+      "id": 4,
+      "nome": "Dimensões",
+      "amostragem": "13 peças por tipo",
+      "inspecao": "Conferir dimensões de batentes, portas e janelas conforme tabela.",
+      "equipamento": "Trena metálica e paquímetro",
+      "criterios_aceite": "Tolerâncias:\n- Batentes: requadro (B) ±2 mm; altura (H) e largura (L) ±5 mm; perfil (d) ±2 mm.\n- Portas: requadro (B) e altura (H) ±5 mm; largura (L) ±2 mm.\n- Janelas: requadro (B) ±2 mm; altura (H) e largura (L) ±5 mm.\nCritério: 0 defeitos → aceitar; 2+ defeitos → rejeitar; 1 defeito → inspecionar todo o lote e devolver peças defeituosas."
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Foto de conjunto (embalagem)",
+    "Detalhe dobradiça/linguote",
+    "Foto do funcionamento/fechamento",
+    "Medições com trena/paquímetro"
+  ],
+  "bloqueios_pcc": [
+    "Dimensões fora da tolerância",
+    "Funcionamento inadequado"
+  ],
+  "amostragem_aceitacao": null,
+  "observacoes": [],
+  "lote": "Cada entrega (caminhão); amostragem de 13 peças por tipo para dimensões"
+}

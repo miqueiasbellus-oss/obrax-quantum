@@ -1,0 +1,53 @@
+{
+  "versao_schema": "1.0",
+  "tipo": "FVM",
+  "codigo": "FM02901",
+  "titulo": "Metais sanitários",
+  "normas": [],
+  "campos_a_capturar": [
+    "fabricante",
+    "diametro_entrada_pol",
+    "diametro_saida_pol"
+  ],
+  "inspecoes": [
+    {
+      "id": 1,
+      "nome": "Diferença de quantidade",
+      "amostragem": "Toda a carga",
+      "inspecao": "Conferir a quantidade entregue.",
+      "equipamento": null,
+      "criterios_aceite": "Aceitar; diferenças: reposição/desconto.",
+      "acao_nao_conforme": "Negociar reposição/desconto."
+    },
+    {
+      "id": 2,
+      "nome": "Aspecto geral e integridade",
+      "amostragem": "Toda a carga",
+      "inspecao": "Verificar embalagens rasgadas, acabamento danificado, riscos, furos, falhas, cromação com desprendimento, rebarbas. Checar instruções de instalação e diâmetros. Conferir se a peça está completa.",
+      "equipamento": null,
+      "criterios_aceite": "Sem falhas. Separar peças com defeitos.",
+      "acao_nao_conforme": "Segregar e solicitar reposição."
+    },
+    {
+      "id": 3,
+      "nome": "Identificação",
+      "amostragem": "10% da carga",
+      "inspecao": "Conferir nome do fabricante impresso. Em registros, verificar marcação do diâmetro de entrada/saída em polegadas.",
+      "equipamento": null,
+      "criterios_aceite": "Identificação presente e correta.",
+      "acao_nao_conforme": "Verificar toda a carga e segregar defeitos."
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Foto da embalagem",
+    "Close no acabamento/cromação",
+    "Marcação de diâmetro"
+  ],
+  "bloqueios_pcc": [
+    "Sem identificação",
+    "Acabamento/cromação com defeito"
+  ],
+  "amostragem_aceitacao": null,
+  "observacoes": [],
+  "lote": "Cada entrega (cada tipo)"
+}

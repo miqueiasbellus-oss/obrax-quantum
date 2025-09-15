@@ -1,0 +1,42 @@
+{
+  "codigo": "FS03503",
+  "atividade": "Estaca tipo Franki",
+  "ifs_tags": [
+    "ifs:fundacao_profunda",
+    "ifs:estaca_franki"
+  ],
+  "pre_condicoes": [
+    "Superfície limpa e eixos liberados",
+    "Plano de segurança e controle de vibrações/ruído",
+    "Equipamentos aferidos"
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Excentricidade e diâmetro",
+      "metodo": "Trena metálica",
+      "tolerancia": "≤ 10% do diâmetro"
+    },
+    {
+      "item": "Cota final (nega/projeto/sondagem)",
+      "metodo": "Registro e conferência",
+      "tolerancia": "Conforme projeto"
+    },
+    {
+      "item": "Alargamento da base (bulbo)",
+      "metodo": "Conferir volume/quantidade de concreto",
+      "tolerancia": "Suficiente ao bulbo de projeto"
+    }
+  ],
+  "observacoes": [
+    "Lançar no projeto as cotas e excentricidades; coletar relatórios do equipamento"
+  ],
+  "fotos_obrigatorias": [
+    "Equipamento em operação",
+    "Registro de concretagem",
+    "Base alargada"
+  ],
+  "bloqueios_pcc": [
+    "Excentricidade >10%",
+    "Volume de concreto para bulbo insuficiente"
+  ]
+}

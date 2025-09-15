@@ -1,0 +1,73 @@
+{
+  "codigo": "PE00201/FS00303",
+  "atividade": "Execução de Radier",
+  "ifs_tags": [
+    "ifs:fundacao",
+    "ifs:radier"
+  ],
+  "pre_condicoes": [
+    "Terreno limpo, cantos locados e nivelados",
+    "Instalações de água/esgoto/energia posicionadas",
+    "Formas de borda disponíveis e conferidas"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "Montar formas de borda e ajustar nível",
+      "verificacao": "Nível a laser/mangueira",
+      "tolerancia": "±5 mm em 5 m",
+      "midia": "foto_forma_borda.jpg"
+    },
+    {
+      "passo": "Regularizar subleito e executar lastro de brita",
+      "verificacao": "Visual + espessura prevista",
+      "tolerancia": "Conforme projeto",
+      "midia": "foto_subleito_brita.jpg"
+    },
+    {
+      "passo": "Montar armaduras (tela/barras) inclusive valas de borda",
+      "verificacao": "Visual + cobrimento",
+      "tolerancia": "Conforme projeto",
+      "midia": "foto_armacao.jpg"
+    },
+    {
+      "passo": "Lançar, sarrafear e dar acabamento",
+      "verificacao": "Régua/linha + inspeção visual",
+      "tolerancia": "Nível conforme bordas; acabamento homogêneo",
+      "midia": "video_acabamento.mp4"
+    },
+    {
+      "passo": "Cura úmida / proteção (lona)",
+      "verificacao": "Visual",
+      "tolerancia": "Iniciar tão logo possível; manter conforme clima",
+      "midia": "foto_cura.jpg"
+    }
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Nível das formas de borda",
+      "metodo": "Nível a laser/mangueira",
+      "tolerancia": "±5 mm em 5 m"
+    },
+    {
+      "item": "Acabamento da superfície",
+      "metodo": "Visual após conclusão",
+      "tolerancia": "Sem defeitos aparentes"
+    },
+    {
+      "item": "Largura e caimento nas calçadas de borda",
+      "metodo": "Visual (pode usar água)",
+      "tolerancia": "Conforme projeto"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Formas niveladas",
+    "Armadura",
+    "Superfície acabada",
+    "Cura/proteção"
+  ],
+  "bloqueios_pcc": [
+    "Formas fora de nível",
+    "Instalações não posicionadas",
+    "Ausência de plano de cura/proteção"
+  ]
+}

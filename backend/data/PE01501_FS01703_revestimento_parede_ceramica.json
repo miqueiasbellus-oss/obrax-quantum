@@ -1,0 +1,69 @@
+{
+  "codigo": "PE01501/FS01703",
+  "atividade": "Revestimento de Parede com Peças Cerâmicas",
+  "ifs_tags": [
+    "ifs:vedacoes",
+    "ifs:revest_ceramico"
+  ],
+  "pre_condicoes": [
+    "Base acabada e limpa; contramarcos/batentes chumbados ou referenciados",
+    "Projetos de arquitetura/esquadrias/instalações/impermeabilização disponíveis",
+    "Ferramentas e materiais prontos (argamassa colante, cortadores, desempenadeira dentada, nível/laser)"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "Definir/transportar fiada mestra (~1,0 m)",
+      "verificacao": "Laser/mangueira + linha",
+      "tolerancia": "Nível transportado"
+    },
+    {
+      "passo": "Assentar acima da fiada mestra; depois parte inferior",
+      "verificacao": "Visual",
+      "tolerancia": "Sequência ok"
+    },
+    {
+      "passo": "Aplicar argamassa colante; pressionar peça com juntas constantes",
+      "verificacao": "Desempenadeira dentada",
+      "tolerancia": "Junta uniforme"
+    },
+    {
+      "passo": "Instalar cantoneiras quando previsto; cortes/arremates pré-feitos",
+      "verificacao": "Visual",
+      "tolerancia": "Acabamento correto"
+    },
+    {
+      "passo": "Aguardar ≥24 h; rejuntar conforme fabricante; limpeza final",
+      "verificacao": "Registro + visual",
+      "tolerancia": "Tempo mínimo atendido"
+    }
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Planicidade (antes do rejunte)",
+      "metodo": "Régua 2 m",
+      "tolerancia": "± 2 mm"
+    },
+    {
+      "item": "Espessura das juntas (uniformidade)",
+      "metodo": "Visual",
+      "tolerancia": "Uniforme"
+    },
+    {
+      "item": "Aspecto final (juntas/cantos/cortes)",
+      "metodo": "Visual",
+      "tolerancia": "Acabamento regular"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Fiada mestra/nível",
+    "Assentamento com junta",
+    "Cantos/cantoneiras",
+    "Planicidade (régua)",
+    "Acabamento final"
+  ],
+  "bloqueios_pcc": [
+    "Sem fiada mestra",
+    "Juntas irregulares",
+    "Planicidade fora de ±2 mm/2 m"
+  ]
+}

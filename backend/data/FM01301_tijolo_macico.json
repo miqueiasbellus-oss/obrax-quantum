@@ -1,0 +1,49 @@
+{
+  "versao_schema": "1.0",
+  "tipo": "FVM",
+  "codigo": "FM01301",
+  "titulo": "Tijolo maciço cerâmico",
+  "normas": [],
+  "campos_a_capturar": [
+    "comprimento_mm",
+    "largura_mm",
+    "espessura_mm",
+    "queima_som"
+  ],
+  "inspecoes": [
+    {
+      "id": 1,
+      "nome": "Quantidade",
+      "inspecao": "Conferir quantidade entregue"
+    },
+    {
+      "id": 2,
+      "nome": "Aspecto",
+      "inspecao": "Trincas, quebras, superfícies irregulares, deformações, cor",
+      "criterios_aceite": "Segregar defeituosos"
+    },
+    {
+      "id": 3,
+      "nome": "Identificação",
+      "inspecao": "Marca em baixo relevo",
+      "criterios_aceite": "Segregar se incorreta"
+    },
+    {
+      "id": 4,
+      "nome": "Dimensões",
+      "inspecao": "Enfileirar 24 tijolos, medir conjunto e dividir",
+      "equipamento": "Trena",
+      "criterios_aceite": "±3mm"
+    },
+    {
+      "id": 5,
+      "nome": "Queima",
+      "inspecao": "Som metálico ao bater",
+      "criterios_aceite": "Som forte=boa queima; abafado=rejeitar"
+    }
+  ],
+  "fotos_obrigatorias": [],
+  "bloqueios_pcc": [],
+  "amostragem_aceitacao": null,
+  "observacoes": []
+}

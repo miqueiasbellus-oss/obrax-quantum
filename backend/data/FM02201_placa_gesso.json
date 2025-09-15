@@ -1,0 +1,70 @@
+{
+  "versao_schema": "1.0",
+  "tipo": "FVM",
+  "codigo": "FM02201",
+  "titulo": "Placa de gesso acartonado",
+  "normas": [],
+  "campos_a_capturar": [
+    "fabricante",
+    "lote_fabricante",
+    "tipo_placa (ST/RU/RF)",
+    "espessura_mm",
+    "largura_mm",
+    "comprimento_mm",
+    "empenamento_mm"
+  ],
+  "inspecoes": [
+    {
+      "id": 1,
+      "nome": "Diferença de quantidade",
+      "amostragem": "Toda a carga",
+      "inspecao": "Conferir a quantidade entregue (NF × recebido).",
+      "equipamento": null,
+      "criterios_aceite": "Aceitar o lote; diferenças devem ser informadas ao fornecedor para reposição ou desconto.",
+      "acao_nao_conforme": "Negociar reposição/desconto com fornecedor."
+    },
+    {
+      "id": 2,
+      "nome": "Aspecto geral e identificação",
+      "amostragem": "Toda a carga",
+      "inspecao": "Verificar placas quebradas/molhadas, ondulações/manchas no cartão e aderência do cartão ao gesso. Conferir marca do fabricante, número do lote e tipo da placa (normal/RU/RF).",
+      "equipamento": null,
+      "criterios_aceite": "Segregar peças não conformes para reposição/desconto.",
+      "acao_nao_conforme": "Segregar e solicitar reposição/desconto."
+    },
+    {
+      "id": 3,
+      "nome": "Dimensões",
+      "amostragem": "6 chapas; se 1 fora, medir mais 6 chapas",
+      "inspecao": "Medir espessura média (6 pontos) com paquímetro; medir largura e comprimento (3 pontos) com trena.",
+      "equipamento": "Paquímetro e trena metálica",
+      "criterios_aceite": "Espessura: ±0,5 mm. Largura: +0 / -4 mm. Comprimento: +0 / -5 mm. Se as 6 adicionais atenderem, aceitar; caso contrário, rejeitar o lote.",
+      "acao_nao_conforme": "Rejeitar o lote se amostra extendida não atender."
+    },
+    {
+      "id": 4,
+      "nome": "Planicidade",
+      "amostragem": "Por amostragem representativa",
+      "inspecao": "Encostar régua de alumínio nas duas diagonais da placa.",
+      "equipamento": "Régua de alumínio",
+      "criterios_aceite": "Empenamento/ondulação ≤ 2 mm.",
+      "acao_nao_conforme": "Rejeitar o lote."
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Etiqueta com fabricante/lote",
+    "Vista geral da carga",
+    "Medição de espessura (paquímetro)",
+    "Medição de largura/comprimento (trena)",
+    "Régua nas diagonais"
+  ],
+  "bloqueios_pcc": [
+    "Sem marca/lote",
+    "Tipo de placa divergente (ST/RU/RF)",
+    "Espessura fora da tolerância",
+    "Planicidade > 2 mm"
+  ],
+  "amostragem_aceitacao": null,
+  "observacoes": [],
+  "lote": "1000 chapas (cada tipo); amostra: toda a carga para (1)-(2); 6 chapas para (3)"
+}

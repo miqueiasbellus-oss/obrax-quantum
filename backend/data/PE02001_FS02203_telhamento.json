@@ -1,0 +1,76 @@
+{
+  "codigo": "PE02001/FS02203",
+  "atividade": "Telhamento (telha cerâmica)",
+  "ifs_tags": [
+    "ifs:vedacoes_horizontais",
+    "ifs:telhado",
+    "ifs:telhamento"
+  ],
+  "pre_condicoes": [
+    "Estrutura de madeira do telhado concluída e liberada",
+    "Acesso/segurança para trabalho em altura",
+    "Materiais no local: telhas cerâmicas, peças complementares (cumeeiras/espigões/arremates), argamassa para emboçamento",
+    "Ferramentas: linha de náilon, martelo, escada; régua/caibro para alinhamento"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "Distribuir pilhas de telhas sobre a trama, nos cruzamentos de caibros com ripas",
+      "verificacao": "Visual",
+      "tolerancia": "Sem sobrecarga localizada; distribuição uniforme"
+    },
+    {
+      "passo": "Iniciar colocação da 1ª fiada pelos cantos, referenciando ripa/tabeira",
+      "verificacao": "Visual + linha",
+      "tolerancia": "Alinhamento de partida correto"
+    },
+    {
+      "passo": "Usar régua/caibro como guia para alinhamento vertical",
+      "verificacao": "Visual",
+      "tolerancia": "Prumo/alinhamento atendidos"
+    },
+    {
+      "passo": "Amarrar telhas do beiral quando não houver forro do beiral",
+      "verificacao": "Visual",
+      "tolerancia": "Amarração presente"
+    },
+    {
+      "passo": "Posicionar simultaneamente em todas as águas para distribuir peso",
+      "verificacao": "Visual",
+      "tolerancia": "Distribuição uniforme"
+    },
+    {
+      "passo": "Executar emboçamento das telhas e peças complementares (cumeeiras/espigões/arremates)",
+      "verificacao": "Visual + linha de náilon para cumeeira",
+      "tolerancia": "Arremates alinhados e íntegros"
+    }
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Sentido de telhamento (horizontal e vertical)",
+      "metodo": "Visual durante o telhamento",
+      "tolerancia": "Conforme procedimento/projeto"
+    },
+    {
+      "item": "Folgas para emboçamento (cumeeira e beirais)",
+      "metodo": "Visual após conclusão",
+      "tolerancia": "Adequadas ao emboçamento"
+    },
+    {
+      "item": "Alinhamento e acabamento das telhas (cumeeira e beirais)",
+      "metodo": "Visual após o emboçamento",
+      "tolerancia": "Alinhado e contínuo"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Partida pelos cantos",
+    "Alinhamento com régua/linha",
+    "Cumeeira alinhada",
+    "Detalhe de emboçamento"
+  ],
+  "bloqueios_pcc": [
+    "Estrutura do telhado não concluída",
+    "Alinhamento irregular da primeira fiada",
+    "Folgas/emboçamento inadequados",
+    "Acabamento de cumeeira/beirais fora de padrão"
+  ]
+}

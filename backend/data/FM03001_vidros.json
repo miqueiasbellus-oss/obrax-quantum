@@ -1,0 +1,63 @@
+{
+  "versao_schema": "1.0",
+  "tipo": "FVM",
+  "codigo": "FM03001",
+  "titulo": "Vidros",
+  "normas": [],
+  "campos_a_capturar": [
+    "espessura_mm",
+    "largura_mm",
+    "comprimento_mm",
+    "tipo_vidro (float/recozido/laminado/temperado)"
+  ],
+  "inspecoes": [
+    {
+      "id": 1,
+      "nome": "Diferença de quantidade",
+      "amostragem": "Toda a carga",
+      "inspecao": "Conferir a quantidade entregue.",
+      "equipamento": null,
+      "criterios_aceite": "Aceitar; diferenças: reposição/desconto.",
+      "acao_nao_conforme": "Negociar reposição/desconto."
+    },
+    {
+      "id": 2,
+      "nome": "Aspecto geral",
+      "amostragem": "13 peças",
+      "inspecao": "Verificar ondulações, manchas, não-uniformidade de cor, bolhas, riscos, trincas, irregularidades de superfície.",
+      "equipamento": null,
+      "criterios_aceite": "Sem defeitos. Rejeitar o lote se 3+ peças defeituosas.",
+      "acao_nao_conforme": "Rejeitar/segregar."
+    },
+    {
+      "id": 3,
+      "nome": "Espessura",
+      "amostragem": "13 peças",
+      "inspecao": "Medir espessura com paquímetro.",
+      "equipamento": "Paquímetro",
+      "criterios_aceite": "Desvio ±1 mm. Rejeitar lote se 3+ defeitos.",
+      "acao_nao_conforme": "Rejeitar conforme regra."
+    },
+    {
+      "id": 4,
+      "nome": "Largura e comprimento",
+      "amostragem": "13 peças",
+      "inspecao": "Medir largura e comprimento.",
+      "equipamento": "Trena metálica",
+      "criterios_aceite": "Laminados/recozidos/float: ±3 mm; Temperados: ±2 mm. Rejeitar lote se 3+ defeitos.",
+      "acao_nao_conforme": "Rejeitar conforme regra."
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Foto de cada face (iluminação rasante)",
+    "Close em bordas",
+    "Medição de espessura e dimensões"
+  ],
+  "bloqueios_pcc": [
+    "Trincas/bolhas/ondulações",
+    "Dimensões fora da tolerância"
+  ],
+  "amostragem_aceitacao": null,
+  "observacoes": [],
+  "lote": "Cada entrega; amostragem de 13 peças"
+}

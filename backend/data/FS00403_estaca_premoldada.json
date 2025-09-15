@@ -1,0 +1,39 @@
+{
+  "codigo": "FS00403",
+  "atividade": "Estaca Pré-Moldada (cravação)",
+  "ifs_tags": [
+    "ifs:fundacao_profunda",
+    "ifs:estaca_premoldada"
+  ],
+  "pre_condicoes": [
+    "Dimensões/diâmetro conferidos antes das cravações",
+    "Relatório de integridade do conjunto de cravação",
+    "Área isolada e gabaritada"
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Dimensões da estaca (seção/diâmetro)",
+      "metodo": "Medição antes da cravação",
+      "tolerancia": "≥ dimensões de projeto"
+    },
+    {
+      "item": "Cota de arrasamento e integridade",
+      "metodo": "Visual após cravação",
+      "tolerancia": "Conforme projeto/relatório"
+    },
+    {
+      "item": "Desvios/excentricidades",
+      "metodo": "Registrar em projeto; coletar relatório de comprimento cravado",
+      "tolerancia": "Conforme limites do projeto"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Medição da seção",
+    "Topo após cravação",
+    "Painel do equipamento (parâmetros)"
+  ],
+  "bloqueios_pcc": [
+    "Seção inferior ao projeto",
+    "Relatórios ausentes"
+  ]
+}

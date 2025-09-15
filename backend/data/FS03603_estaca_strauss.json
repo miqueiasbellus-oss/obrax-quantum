@@ -1,0 +1,42 @@
+{
+  "codigo": "FS03603",
+  "atividade": "Estaca tipo Strauss",
+  "ifs_tags": [
+    "ifs:fundacao_profunda",
+    "ifs:estaca_strauss"
+  ],
+  "pre_condicoes": [
+    "Superfície limpa e eixos liberados",
+    "Plano de segurança e controle de lama",
+    "Equipamentos aferidos"
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Excentricidade e diâmetro do fuste",
+      "metodo": "Trena metálica",
+      "tolerancia": "≤ 10% do diâmetro"
+    },
+    {
+      "item": "Cota final (nega/projeto/sondagem)",
+      "metodo": "Registro e conferência",
+      "tolerancia": "Conforme projeto"
+    },
+    {
+      "item": "Limpeza da base",
+      "metodo": "Verificação antes da concretagem",
+      "tolerancia": "Sem lama e sem água"
+    }
+  ],
+  "observacoes": [
+    "Lançar no projeto as cotas e excentricidades para análise do projetista"
+  ],
+  "fotos_obrigatorias": [
+    "Fuste",
+    "Base limpa",
+    "Concretagem"
+  ],
+  "bloqueios_pcc": [
+    "Excentricidade >10%",
+    "Base com lama/água"
+  ]
+}

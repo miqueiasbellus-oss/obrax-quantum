@@ -1,0 +1,30 @@
+{
+  "codigo": "PE00101",
+  "atividade": "Locação de Obra (Procedimento Executivo)",
+  "documentos_referencia": [
+    "Projeto de prefeitura",
+    "Levantamento plani-altimétrico",
+    "Projeto de locação (quando houver)"
+  ],
+  "materiais_equipamentos": [
+    "Pontaletes e sarrafos",
+    "Arame recozido e pregos",
+    "Teodolito",
+    "Nível de mangueira/bolha/laser",
+    "Pá, enxada, cavadeira",
+    "Prumo de centro",
+    "Trena metálica",
+    "Martelo"
+  ],
+  "metodo_executivo": [
+    "Limpar terreno e escavar até cotas de fundação",
+    "Definir RN (referência de nível)",
+    "Marcar primeira face do gabarito a 1 m da edificação",
+    "Cravar pontaletes alinhados e aprumados, a cada 2 m",
+    "Nivelar topos dos pontaletes e fixar tábuas (tabeira)",
+    "Travar com mãos-francesas; pintar de branco",
+    "Marcar eixos X/Y e elementos estruturais na tabeira",
+    "Esticar arame nos eixos e usar prumo para definir posições",
+    "Locar formas e gastalhos conforme projeto"
+  ]
+}

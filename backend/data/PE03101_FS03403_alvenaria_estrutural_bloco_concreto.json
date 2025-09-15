@@ -1,0 +1,90 @@
+{
+  "codigo": "PE03101/FS03403",
+  "atividade": "Alvenaria Estrutural em Blocos de Concreto",
+  "ifs_tags": [
+    "ifs:vedacoes",
+    "ifs:alvenaria_estrutural"
+  ],
+  "pre_condicoes": [
+    "Laje/piso limpos; eixos e gabaritos definidos",
+    "Projetos de arquitetura/alvenaria estrutural/instalações disponíveis",
+    "Materiais e ferramentas conforme procedimento (argamassa aditivada em primeiras fiadas)"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "Marcar e nivelar alvenaria",
+      "verificacao": "Nível laser/mangueira",
+      "tolerancia": "Ponto crítico identificado"
+    },
+    {
+      "passo": "Fiada de marcação com argamassa aditivada; cantos (escadas)",
+      "verificacao": "Visual + prumo",
+      "tolerancia": "Cantos aprumados"
+    },
+    {
+      "passo": "Assentar fiadas com linha; juntas verticais conforme projeto",
+      "verificacao": "Visual + linha",
+      "tolerancia": "Alinhamento pela linha"
+    },
+    {
+      "passo": "Telas em 'T' a cada 3 fiadas; amarração em cantos",
+      "verificacao": "Visual",
+      "tolerancia": "Instaladas"
+    },
+    {
+      "passo": "Janelas de visita 7,5×10 cm; graute em camadas (~40 cm, ≤1,6 m)",
+      "verificacao": "Trena + visual",
+      "tolerancia": "Dimensão/fluxo atendidos"
+    },
+    {
+      "passo": "Vergas/contravergas/respaldos (canaletas) e junta de dilatação no topo",
+      "verificacao": "Visual",
+      "tolerancia": "Conforme projeto"
+    }
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Nivelamento/alinhamento (marcação)",
+      "metodo": "Régua+nível/linha",
+      "tolerancia": "≤ 2 cm em 5 m"
+    },
+    {
+      "item": "Vãos (marcação)",
+      "metodo": "Trena",
+      "tolerancia": "≤ 5 mm"
+    },
+    {
+      "item": "Esquadro ambientes (30×40×50)",
+      "metodo": "Esquadro",
+      "tolerancia": "≤ 2 mm no maior lado"
+    },
+    {
+      "item": "Planeza/prumo (elevação)",
+      "metodo": "Prumo + régua 2 m",
+      "tolerancia": "≤ 3 mm"
+    },
+    {
+      "item": "Vãos (elevação)",
+      "metodo": "Trena",
+      "tolerancia": "≤ 5 mm"
+    },
+    {
+      "item": "Cota do respaldo",
+      "metodo": "Trena + nível",
+      "tolerancia": "≤ 5 mm"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Escadas de canto",
+    "Telas em T",
+    "Janela de visita",
+    "Vergas/contravergas",
+    "Leituras de nível/prumo"
+  ],
+  "bloqueios_pcc": [
+    "Marcação sem nível",
+    "Sem telas/amarração",
+    "Janelas de visita fora do padrão",
+    "Respaldo fora de tolerância"
+  ]
+}

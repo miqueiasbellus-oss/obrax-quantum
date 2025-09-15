@@ -1,0 +1,127 @@
+{
+  "version": "1.2",
+  "sources": {
+    "spreadsheets": [
+      {
+        "name": "medicao_indicadores",
+        "path": "/mnt/data/Medição de Indicadores.xls"
+      },
+      {
+        "name": "tabela_objetivos",
+        "path": "/mnt/data/Tabela de Objetivos.xls"
+      }
+    ],
+    "system_events": [
+      "PCC",
+      "FVS",
+      "FVM",
+      "FPM",
+      "Mediacoes",
+      "PedidosMateriais",
+      "Compras",
+      "NC",
+      "Atas"
+    ]
+  },
+  "governance_ref": {
+    "po11": true,
+    "po14": true,
+    "mq": true
+  },
+  "kpis": [
+    {
+      "id": "pcc_confirm_rate",
+      "name": "% Confirmação de PCC",
+      "formula": "count(PCC.confirmados)/count(PCC.solicitados)",
+      "periodicity": "daily",
+      "owner": "Engenharia",
+      "dimensions": [
+        "obra",
+        "frente",
+        "equipe",
+        "atividade"
+      ],
+      "event_source": "PCC"
+    },
+    {
+      "id": "fvs_pass_rate",
+      "name": "% FVS Aprovadas de 1ª",
+      "formula": "count(FVS.status==PASS && rework_count==0)/count(FVS)",
+      "periodicity": "weekly",
+      "owner": "Qualidade",
+      "dimensions": [
+        "obra",
+        "servico",
+        "executor"
+      ],
+      "event_source": "FVS"
+    },
+    {
+      "id": "material_approval_rate",
+      "name": "% Lotes de Material Aprovados",
+      "formula": "count(FVM.status==APROVADO)/count(FVM)",
+      "periodicity": "weekly",
+      "owner": "Suprimentos",
+      "dimensions": [
+        "obra",
+        "fornecedor",
+        "material"
+      ],
+      "event_source": "FVM"
+    },
+    {
+      "id": "partial_closure_share",
+      "name": "% Tarefas em FPM",
+      "formula": "count(Tarefa.status==PARTIAL_CLOSED)/count(Tarefa)",
+      "periodicity": "weekly",
+      "owner": "Planejamento",
+      "dimensions": [
+        "obra",
+        "disciplina",
+        "frente"
+      ],
+      "event_source": "FPM"
+    },
+    {
+      "id": "lead_time_execucao",
+      "name": "Lead Time de Execução (dias)",
+      "formula": "avg(Tarefa.dt_close - Tarefa.dt_start)",
+      "periodicity": "weekly",
+      "owner": "Planejamento",
+      "dimensions": [
+        "obra",
+        "atividade"
+      ],
+      "event_source": "TAREFA"
+    },
+    {
+      "id": "fvms_lab_nonconformity",
+      "name": "Índice de NC em Ensaios de Materiais",
+      "formula": "count(Laudo.status==REPROVADO)/count(Laudo)",
+      "periodicity": "monthly",
+      "owner": "Qualidade",
+      "dimensions": [
+        "obra",
+        "material",
+        "fornecedor"
+      ],
+      "event_source": "NC"
+    },
+    {
+      "id": "supplier_service_level",
+      "name": "Nível de Serviço do Fornecedor",
+      "formula": "0.5*OTD + 0.5*Qualidade",
+      "definition": {
+        "OTD": "entregas_no_prazo/entregas_totais",
+        "Qualidade": "1 - (FVM_reprovadas/entregas_totais)"
+      },
+      "periodicity": "monthly",
+      "owner": "Suprimentos",
+      "dimensions": [
+        "fornecedor",
+        "material"
+      ],
+      "event_source": "FVM"
+    }
+  ]
+}

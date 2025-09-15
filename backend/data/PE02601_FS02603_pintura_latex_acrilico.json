@@ -1,0 +1,92 @@
+{
+  "codigo": "PE02601/FS02603",
+  "atividade": "Pintura Látex Acrílico (exteriores/interiores úmidos)",
+  "ifs_tags": [
+    "ifs:acabamentos",
+    "ifs:pintura",
+    "ifs:latex_acrilico"
+  ],
+  "pre_condicoes": [
+    "Revestimentos externos concluídos há ≥30 dias",
+    "Batentes/caixilhos instalados (arremates/guarnições podem ficar para depois)",
+    "Ambiente protegido contra poeira/umidade durante a aplicação e cura"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "Preparar base (limpeza e remoção de partes soltas)",
+      "verificacao": "Visual",
+      "tolerancia": "Base limpa/íntegra",
+      "midia": "foto_preparacao_base.jpg"
+    },
+    {
+      "passo": "Corrigir imperfeições profundas (argamassa/gesso); pontuais com massa acrílica",
+      "verificacao": "Visual",
+      "tolerancia": "Correções niveladas",
+      "midia": "foto_correcoes.jpg"
+    },
+    {
+      "passo": "Selar pontos localizados (seladora acrílica/fundo preparador) antes da massa",
+      "verificacao": "Visual",
+      "tolerancia": "Selagem aplicada",
+      "midia": "foto_selagem.jpg"
+    },
+    {
+      "passo": "Lixar base (grana ~100); preparar selador/fundo conforme fabricante",
+      "verificacao": "Visual",
+      "tolerancia": "Sem pó residual",
+      "midia": "foto_lixa100.jpg"
+    },
+    {
+      "passo": "Aplicar selador acrílico ou fundo preparador; lixar (grana ~150) após secar",
+      "verificacao": "Visual",
+      "tolerancia": "Cobertura uniforme",
+      "midia": "foto_selador.jpg"
+    },
+    {
+      "passo": "Para acabamento liso: massa corrida acrílica em camadas finas; secar (~4 h) e lixar (grana ~180)",
+      "verificacao": "Visual",
+      "tolerancia": "Superfície lisa",
+      "midia": "foto_massa_acrilica.jpg"
+    },
+    {
+      "passo": "Aplicar 2–3 demãos de látex acrílico; intervalo mínimo 4 h entre demãos",
+      "verificacao": "Registro + visual",
+      "tolerancia": "Cobertura sem falhas/escorrimentos",
+      "midia": "foto_demao_acrilico.jpg"
+    },
+    {
+      "passo": "Recortes com pincel em cantos/molduras",
+      "verificacao": "Visual",
+      "tolerancia": "Acabamento limpo",
+      "midia": "foto_recortes.jpg"
+    }
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Preparação da base",
+      "metodo": "Visual",
+      "tolerancia": "OK/Não OK"
+    },
+    {
+      "item": "Aplicação do selador",
+      "metodo": "Visual (cobrimento e uniformidade)",
+      "tolerancia": "OK/Não OK"
+    },
+    {
+      "item": "Aspecto final",
+      "metodo": "Visual (uniforme; sem falhas/escorrimentos)",
+      "tolerancia": "OK/Não OK"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Base limpa",
+    "Selador aplicado",
+    "Acabamento final (uniforme)"
+  ],
+  "bloqueios_pcc": [
+    "Substrato contaminado/úmido",
+    "Selador/fundo não aplicado",
+    "Intervalo entre demãos <4 h",
+    "Aspecto final com falhas/escorrimentos"
+  ]
+}

@@ -1,0 +1,162 @@
+[
+  {
+    "codigo": "FM02201",
+    "titulo": "Placa de gesso acartonado",
+    "arquivo": "FM02201_placa_gesso.json"
+  },
+  {
+    "codigo": "FM02101",
+    "titulo": "Manta asfáltica",
+    "arquivo": "FM02101_manta_asfaltica.json"
+  },
+  {
+    "codigo": "FM00201",
+    "titulo": "Concreto dosado em central",
+    "arquivo": "FM00201_concreto_central.json"
+  },
+  {
+    "codigo": "FM03201",
+    "titulo": "Tinta",
+    "arquivo": "FM03201_tinta.json"
+  },
+  {
+    "codigo": "FM03101",
+    "titulo": "Esquadria metálica e PVC",
+    "arquivo": "FM03101_esquadria_metal_pvc.json"
+  },
+  {
+    "codigo": "FM03001",
+    "titulo": "Vidros",
+    "arquivo": "FM03001_vidros.json"
+  },
+  {
+    "codigo": "FM02901",
+    "titulo": "Metais sanitários",
+    "arquivo": "FM02901_metais_sanitarios.json"
+  },
+  {
+    "codigo": "FM02801",
+    "titulo": "Aparelhos sanitários",
+    "arquivo": "FM02801_aparelhos_sanitarios.json"
+  },
+  {
+    "codigo": "FM02601",
+    "titulo": "Tanque de granilite ou concreto",
+    "arquivo": "FM02601_tanque_granilite_concreto.json"
+  },
+  {
+    "codigo": "FM02401",
+    "titulo": "Tubos e conexões de PVC",
+    "arquivo": "FM02401_tubos_conexoes_pvc.json"
+  },
+  {
+    "codigo": "FM01501",
+    "titulo": "Telha cerâmica",
+    "arquivo": "FM01501_telha_ceramica.json"
+  },
+  {
+    "codigo": "FM01401",
+    "titulo": "Laje pré-moldada",
+    "arquivo": "FM01401_laje_premoldada.json"
+  },
+  {
+    "codigo": "FM01201",
+    "titulo": "Bloco cerâmico",
+    "arquivo": "FM01201_bloco_ceramico.json"
+  },
+  {
+    "codigo": "FM00601",
+    "titulo": "Madeira (pontaletes, sarrafos, tábuas, vigas)",
+    "arquivo": "FM00601_madeira.json"
+  },
+  {
+    "codigo": "FM00501",
+    "titulo": "Chapa compensada",
+    "arquivo": "FM00501_chapas_compensada.json"
+  },
+  {
+    "codigo": "FM00301",
+    "titulo": "Ensacados (cimento, cal, argamassa, rejunte, gesso)",
+    "arquivo": "FM00301_ensacados.json"
+  },
+  {
+    "codigo": "FM00101",
+    "titulo": "Agregados (areia, brita)",
+    "arquivo": "FM00101_agregados.json"
+  },
+  {
+    "codigo": "FM01901",
+    "titulo": "Piso cerâmico e azulejo",
+    "arquivo": "FM01901_piso_ceramico_azulejo.json"
+  },
+  {
+    "codigo": "FM01801",
+    "titulo": "Forro de PVC",
+    "arquivo": "FM01801_forro_pvc.json"
+  },
+  {
+    "codigo": "FM01601",
+    "titulo": "Telha fibrocimento",
+    "arquivo": "FM01601_telha_fibrocimento.json"
+  },
+  {
+    "codigo": "FM00801",
+    "titulo": "Batente de madeira",
+    "arquivo": "FM00801_batente_madeira.json"
+  },
+  {
+    "codigo": "FM00701",
+    "titulo": "Folha de porta",
+    "arquivo": "FM00701_folha_porta.json"
+  },
+  {
+    "codigo": "FM00901",
+    "titulo": "Piso e forro de madeira",
+    "arquivo": "FM00901_piso_forro_madeira.json"
+  },
+  {
+    "codigo": "FM01301",
+    "titulo": "Tijolo maciço cerâmico",
+    "arquivo": "FM01301_tijolo_macico.json"
+  },
+  {
+    "codigo": "FM02701",
+    "titulo": "Bancada de pedra natural",
+    "arquivo": "FM02701_bancada_pedra.json"
+  },
+  {
+    "codigo": "FM02501",
+    "titulo": "Sifão de PVC",
+    "arquivo": "FM02501_sifao_pvc.json"
+  },
+  {
+    "codigo": "FM02301",
+    "titulo": "Elétricos: disjuntor, interruptor, tomada, fios/cabos, eletroduto",
+    "arquivo": "FM02301_eletricos.json"
+  },
+  {
+    "codigo": "FM02001",
+    "titulo": "Pedra natural (granito/mármore/ardósia)",
+    "arquivo": "FM02001_pedra_natural.json"
+  },
+  {
+    "codigo": "FM01701",
+    "titulo": "Placa de gesso para forro",
+    "arquivo": "FM01701_placa_gesso_forro.json"
+  },
+  {
+    "codigo": "FM01001",
+    "titulo": "Fôrma pronta",
+    "arquivo": "FM01001_forma_pronta.json"
+  },
+  {
+    "codigo": "FM01101",
+    "titulo": "Bloco de concreto",
+    "arquivo": "FM01101_bloco_concreto.json"
+  },
+  {
+    "codigo": "FM00401",
+    "titulo": "Armadura (barras, aço pronto, tela)",
+    "arquivo": "FM00401_armadura.json"
+  }
+]

@@ -1,0 +1,43 @@
+{
+  "codigo": "FS03703",
+  "atividade": "Tubulão e Broca",
+  "ifs_tags": [
+    "ifs:fundacao_profunda",
+    "ifs:tubulao_broca"
+  ],
+  "pre_condicoes": [
+    "Superfície limpa e eixos liberados",
+    "Equipe apta e EPIs específicos",
+    "Plano de segurança para trabalhos em profundidade"
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Excentricidade e diâmetro do fuste",
+      "metodo": "Trena metálica após escavação",
+      "tolerancia": "≤ 10% do diâmetro"
+    },
+    {
+      "item": "Cota de apoio",
+      "metodo": "Verificação conforme projeto/sondagem",
+      "tolerancia": "Conforme projeto"
+    },
+    {
+      "item": "Dimensões da base (tubulão)",
+      "metodo": "Medição após alargamento",
+      "tolerancia": "±5 cm"
+    }
+  ],
+  "observacoes": [
+    "Registrar no projeto as cotas e excentricidades de cada unidade para análise do projetista"
+  ],
+  "fotos_obrigatorias": [
+    "Fuste escavado",
+    "Base alargada (tubulão)",
+    "Registro da cota de apoio"
+  ],
+  "bloqueios_pcc": [
+    "Eixos não liberados",
+    "Excentricidade fora do limite",
+    "Base fora de tolerância"
+  ]
+}

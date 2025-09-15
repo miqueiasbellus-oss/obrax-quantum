@@ -1,0 +1,98 @@
+{
+  "codigo": "PE01001/FS01203",
+  "atividade": "Laje Maciça de Concreto",
+  "ifs_tags": [
+    "ifs:estrutura",
+    "ifs:laje_macica"
+  ],
+  "pre_condicoes": [
+    "Formas montadas com desmoldante aplicado",
+    "Armadura concluída e conferida",
+    "Instalações posicionadas (gabaritos/rebaixos) e gastalhos previstos",
+    "Taliscas distribuídas e niveladas"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "Nivelar formas de borda e taliscas conforme projeto",
+      "verificacao": "Nível laser/mangueira",
+      "tolerancia": "±5 mm em 5 m",
+      "midia": "foto_nivel_taliscas.jpg"
+    },
+    {
+      "passo": "Posicionar rebaixos/gabaritos",
+      "verificacao": "Visual",
+      "tolerancia": "Conforme projeto",
+      "midia": "foto_rebaixos.jpg"
+    },
+    {
+      "passo": "Executar mestras entre taliscas com o próprio concreto",
+      "verificacao": "Visual",
+      "tolerancia": "Mestras estáveis",
+      "midia": "foto_mestras.jpg"
+    },
+    {
+      "passo": "Lançar concreto nos vazios entre mestras; sarrafear até o nível",
+      "verificacao": "Régua/visual",
+      "tolerancia": "Nível atendido",
+      "midia": "video_sarrafeamento.mp4"
+    },
+    {
+      "passo": "Acabamento inicial com desempenadeira de madeira",
+      "verificacao": "Visual",
+      "tolerancia": "Superfície homogênea",
+      "midia": "foto_acab_inicial.jpg"
+    },
+    {
+      "passo": "Após a pega (~2–3 h): acabamento final com rodo-float/helicóptero; retirar gabaritos metálicos de rebaixo",
+      "verificacao": "Visual/registro",
+      "tolerancia": "Acabamento final uniforme",
+      "midia": "video_helicoptero.mp4"
+    },
+    {
+      "passo": "Locar e fixar gastalhos",
+      "verificacao": "Visual",
+      "tolerancia": "Conforme projeto",
+      "midia": "foto_gastalhos.jpg"
+    },
+    {
+      "passo": "Tratar juntas frias sob orientação do projetista",
+      "verificacao": "Registro",
+      "tolerancia": "Conforme diretriz do projetista",
+      "midia": "foto_junta_fria.jpg"
+    },
+    {
+      "passo": "Proteger em caso de chuva; iniciar cura úmida",
+      "verificacao": "Registro + visual",
+      "tolerancia": "Cura contínua",
+      "midia": "foto_cura_lona.jpg"
+    }
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Nível das taliscas",
+      "metodo": "Nível laser/mangueira após nivelamento",
+      "tolerancia": "±5 mm em 5 m"
+    },
+    {
+      "item": "Acabamento da superfície",
+      "metodo": "Visual após conclusão",
+      "tolerancia": "Superfície uniforme"
+    },
+    {
+      "item": "Locação dos gastalhos",
+      "metodo": "Visual após conclusão",
+      "tolerancia": "Conforme projeto"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Leitura de nível (taliscas)",
+    "Superfície acabada",
+    "Gastalhos posicionados",
+    "Cura/proteção"
+  ],
+  "bloqueios_pcc": [
+    "Taliscas sem nível",
+    "Ausência de plano de cura",
+    "Gastalhos/rebaixos não posicionados"
+  ]
+}

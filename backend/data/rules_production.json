@@ -1,0 +1,149 @@
+{
+  "version": "1.0",
+  "source": {
+    "po": "PO.011",
+    "doc_title": "Controle de produção"
+  },
+  "roles": {
+    "MESTRE_OBRA": {
+      "can": [
+        "orientar_execucao",
+        "inspecionar_fvs",
+        "liberar_etapa",
+        "registrar_nc",
+        "reinspecionar"
+      ]
+    },
+    "ENGENHEIRO_OBRA": {
+      "can": [
+        "aprovar_pes",
+        "orientar_disposicao_nc",
+        "aprovar_fpm",
+        "aprovar_mediacao"
+      ]
+    },
+    "EQUIPE_PRODUCAO": {
+      "can": [
+        "executar_servico",
+        "enviar_midias",
+        "confirmar_recebimento_instrucao"
+      ]
+    }
+  },
+  "states": [
+    "PLANNED",
+    "PCC_REQUIRED",
+    "PCC_CONFIRMED",
+    "READY",
+    "IN_EXECUTION",
+    "INSPECTION_PENDING",
+    "INSPECTED_PASS",
+    "INSPECTED_FAIL",
+    "PARTIAL_CLOSED",
+    "CLOSED",
+    "REWORK",
+    "BLOCKED"
+  ],
+  "transitions": [
+    {
+      "from": "PLANNED",
+      "to": "PCC_REQUIRED",
+      "when": "servico_controlado && possui_PES"
+    },
+    {
+      "from": "PCC_REQUIRED",
+      "to": "PCC_CONFIRMED",
+      "guard": "PCC.confirmado_por_mestre && evidencias_ok"
+    },
+    {
+      "from": "PCC_CONFIRMED",
+      "to": "READY",
+      "when": "pre_condicoes_atendidas"
+    },
+    {
+      "from": "READY",
+      "to": "IN_EXECUTION",
+      "event": "inicio_execucao"
+    },
+    {
+      "from": "IN_EXECUTION",
+      "to": "INSPECTION_PENDING",
+      "event": "solicitar_inspecao_fvs"
+    },
+    {
+      "from": "INSPECTION_PENDING",
+      "to": "INSPECTED_PASS",
+      "guard": "FVS.todos_itens_OK"
+    },
+    {
+      "from": "INSPECTION_PENDING",
+      "to": "INSPECTED_FAIL",
+      "guard": "FVS.algum_item_NOK"
+    },
+    {
+      "from": "INSPECTED_FAIL",
+      "to": "REWORK",
+      "event": "registrar_nc_PO04"
+    },
+    {
+      "from": "REWORK",
+      "to": "INSPECTION_PENDING",
+      "event": "reinspecao"
+    },
+    {
+      "from": "INSPECTED_PASS",
+      "to": "PARTIAL_CLOSED",
+      "guard": "execucao_parcial && FPM.emitida"
+    },
+    {
+      "from": "PARTIAL_CLOSED",
+      "to": "IN_EXECUTION",
+      "when": "dependencia_liberada || retorno_frente"
+    },
+    {
+      "from": "INSPECTED_PASS",
+      "to": "CLOSED",
+      "guard": "100pct_concluido && entrega_liberada"
+    },
+    {
+      "from": "ANY",
+      "to": "BLOCKED",
+      "when": "risco_critico || falta_material || pendencia_pcc"
+    },
+    {
+      "from": "BLOCKED",
+      "to": "PCC_CONFIRMED",
+      "when": "risco_resolvido && pcc_reconfirmado"
+    }
+  ],
+  "records_required": {
+    "PES": {
+      "when": "servico_controlado",
+      "by": "ENGENHEIRO_OBRA"
+    },
+    "FVS": {
+      "when": "pos_execucao_etapa",
+      "by": "MESTRE_OBRA"
+    },
+    "NC": {
+      "when": "FVS_reprovada",
+      "by": "MESTRE_OBRA"
+    },
+    "FPM": {
+      "when": "conclusao_parcial",
+      "by": "MESTRE_OBRA"
+    }
+  },
+  "evidence": [
+    "fotos",
+    "videos",
+    "checklists_visuais",
+    "assinaturas_digitais",
+    "geolocalizacao",
+    "timestamps"
+  ],
+  "automation": {
+    "gate_next_task": "liberar_somente_quando FVS.status == PASS",
+    "auto_reopen_remainder": "quando FPM && saldo>0 && dependencia_for_liberada"
+  }
+}

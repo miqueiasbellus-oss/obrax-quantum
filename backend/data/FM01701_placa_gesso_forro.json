@@ -1,0 +1,31 @@
+{
+  "versao_schema": "1.0",
+  "tipo": "FVM",
+  "codigo": "FM01701",
+  "titulo": "Placa de gesso para forro",
+  "normas": [],
+  "campos_a_capturar": [],
+  "inspecoes": [
+    {
+      "id": 1,
+      "nome": "Quantidade",
+      "inspecao": "Conferir quantidade entregue"
+    },
+    {
+      "id": 2,
+      "nome": "Aspecto",
+      "inspecao": "Trincas, rachaduras, encaixes danificados",
+      "criterios_aceite": "Segregar peças defeituosas"
+    },
+    {
+      "id": 3,
+      "nome": "Ondulações/empenamento",
+      "inspecao": "Encostar régua de alumínio nas diagonais",
+      "criterios_aceite": "≤2mm"
+    }
+  ],
+  "fotos_obrigatorias": [],
+  "bloqueios_pcc": [],
+  "amostragem_aceitacao": null,
+  "observacoes": []
+}

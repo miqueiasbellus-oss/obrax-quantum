@@ -1,0 +1,47 @@
+{
+  "codigo": "FS02803",
+  "atividade": "Instalações Hidro-sanitárias – Conferência Geral",
+  "ifs_tags": [
+    "ifs:sistemas_prediais",
+    "ifs:hidrosanitario"
+  ],
+  "pre_condicoes": [
+    "Projetos de instalações atualizados disponíveis no local",
+    "Tubulações, peças e conexões inspecionadas (sem danos/obstruções)",
+    "Frentes de serviço limpas e desobstruídas"
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Posicionamento de furos de passagem na laje",
+      "metodo": "Trena metálica antes da concretagem",
+      "tolerancia": "±5 mm"
+    },
+    {
+      "item": "Posicionamento/percurso das tubulações nas lajes",
+      "metodo": "Visual comparando com projeto (antes da concretagem)",
+      "tolerancia": "Conforme projeto"
+    },
+    {
+      "item": "Posicionamento de pontos de consumo/rápidos/registro em paredes",
+      "metodo": "Trena metálica antes do fechamento com argamassa",
+      "tolerancia": "±5 mm"
+    },
+    {
+      "item": "Pressurização de água fria/quente",
+      "metodo": "1,5× pressão estática da instalação",
+      "tolerancia": "Estanqueidade atendida"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Furos na laje",
+    "Percurso nas lajes",
+    "Pontos na parede",
+    "Teste de pressão"
+  ],
+  "bloqueios_pcc": [
+    "Furos fora de posição",
+    "Tubulações divergentes do projeto",
+    "Pontos fora de tolerância",
+    "Falha na pressurização"
+  ]
+}

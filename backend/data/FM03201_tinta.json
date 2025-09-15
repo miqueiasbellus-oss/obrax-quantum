@@ -1,0 +1,63 @@
+{
+  "versao_schema": "1.0",
+  "tipo": "FVM",
+  "codigo": "FM03201",
+  "titulo": "Tinta",
+  "normas": [],
+  "campos_a_capturar": [
+    "fabricante",
+    "tipo_tinta",
+    "codigo_fabricante",
+    "data_fabricacao",
+    "validade"
+  ],
+  "inspecoes": [
+    {
+      "id": 1,
+      "nome": "Diferença de quantidade",
+      "amostragem": "Toda a carga",
+      "inspecao": "Conferir a quantidade entregue.",
+      "equipamento": null,
+      "criterios_aceite": "Aceitar; diferenças: reposição/desconto.",
+      "acao_nao_conforme": "Negociar reposição/desconto."
+    },
+    {
+      "id": 2,
+      "nome": "Aspecto geral",
+      "amostragem": "Toda a carga",
+      "inspecao": "Verificar latas/galões amassados, furados, enferrujados, fechamentos indevidos.",
+      "equipamento": null,
+      "criterios_aceite": "Sem danos.",
+      "acao_nao_conforme": "Segregar para reposição/desconto."
+    },
+    {
+      "id": 3,
+      "nome": "Identificação",
+      "amostragem": "Toda a carga",
+      "inspecao": "Conferir fabricante, marca, tipo (tinta/textura/massa/selador), código do fabricante.",
+      "equipamento": null,
+      "criterios_aceite": "Em conformidade com especificado.",
+      "acao_nao_conforme": "Segregar."
+    },
+    {
+      "id": 4,
+      "nome": "Validade",
+      "amostragem": "Toda a carga",
+      "inspecao": "Verificar data de fabricação e validade.",
+      "equipamento": null,
+      "criterios_aceite": "Não aceitar validade vencida.",
+      "acao_nao_conforme": "Segregar."
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Foto da embalagem (frente/topo)",
+    "Foto do rótulo com datas"
+  ],
+  "bloqueios_pcc": [
+    "Validade vencida",
+    "Identificação divergente"
+  ],
+  "amostragem_aceitacao": null,
+  "observacoes": [],
+  "lote": "Cada entrega (cada tipo)"
+}

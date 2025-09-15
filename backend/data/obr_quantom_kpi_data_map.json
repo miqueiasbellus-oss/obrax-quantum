@@ -1,0 +1,293 @@
+{
+  "generated_at": "2025-08-27T12:33:21.383209+00:00Z",
+  "kpi_data_map": [
+    {
+      "id": "pcc_confirm_rate",
+      "name": "% Confirmação de PCC",
+      "owner": "Engenharia",
+      "periodicity": "daily",
+      "target": null,
+      "unit": null,
+      "dimensions": [],
+      "event_source": "PCC",
+      "grain": [
+        "obra_id",
+        "atividade_id",
+        "equipe_id",
+        "data"
+      ],
+      "events": {
+        "table": "events_pcc",
+        "fields": {
+          "obra_id": "obra_id",
+          "atividade_id": "atividade_id",
+          "equipe_id": "equipe_id",
+          "dt_solicitado": "requested_at",
+          "dt_confirmado": "confirmed_at",
+          "confirmado": "confirmed_flag"
+        }
+      },
+      "formula": "sum(confirmed_flag)/count(*)",
+      "filters": [
+        "requested_at between :start and :end"
+      ],
+      "validations": [
+        "confirmed_at is null or confirmed_at >= requested_at",
+        "confirmed_flag in (0,1)"
+      ],
+      "sql_example": "SELECT obra_id, atividade_id, equipe_id, DATE_TRUNC('day', requested_at) AS data, SUM(CASE WHEN confirmed_flag=1 THEN 1 ELSE 0 END)::float/COUNT(*) AS pcc_confirm_rate FROM events_pcc WHERE requested_at BETWEEN :start AND :end GROUP BY 1,2,3,4;"
+    },
+    {
+      "id": "fvs_pass_rate",
+      "name": "% FVS Aprovadas de 1ª",
+      "owner": "Qualidade",
+      "periodicity": "weekly",
+      "target": null,
+      "unit": null,
+      "dimensions": [],
+      "event_source": "FVS",
+      "grain": [
+        "obra_id",
+        "servico_id",
+        "executor_id",
+        "semana"
+      ],
+      "events": {
+        "table": "events_fvs",
+        "fields": {
+          "obra_id": "obra_id",
+          "servico_id": "service_id",
+          "executor_id": "executor_id",
+          "status": "status",
+          "rework_count": "rework_count",
+          "dt_inspecionada": "inspected_at"
+        }
+      },
+      "formula": "count(status='PASS' AND rework_count=0)/count(*)",
+      "filters": [
+        "inspected_at between :start and :end"
+      ],
+      "validations": [
+        "status in ('PASS','FAIL')",
+        "rework_count >= 0"
+      ],
+      "sql_example": "WITH base AS (SELECT obra_id, service_id AS servico_id, executor_id, DATE_TRUNC('week', inspected_at) AS semana, (status='PASS' AND COALESCE(rework_count,0)=0) AS pass_first FROM events_fvs WHERE inspected_at BETWEEN :start AND :end) SELECT obra_id, servico_id, executor_id, semana, SUM(pass_first)::float/COUNT(*) AS fvs_pass_rate FROM base GROUP BY 1,2,3,4;"
+    },
+    {
+      "id": "material_approval_rate",
+      "name": "% Lotes de Material Aprovados",
+      "owner": "Suprimentos",
+      "periodicity": "weekly",
+      "target": null,
+      "unit": null,
+      "dimensions": [],
+      "event_source": "FVM",
+      "grain": [
+        "obra_id",
+        "fornecedor_id",
+        "material_sku",
+        "semana"
+      ],
+      "events": {
+        "table": "events_fvm",
+        "fields": {
+          "obra_id": "obra_id",
+          "fornecedor_id": "supplier_id",
+          "material_sku": "material_sku",
+          "status": "status",
+          "dt_recebimento": "received_at"
+        }
+      },
+      "formula": "count(status='APROVADO')/count(*)",
+      "filters": [
+        "received_at between :start and :end"
+      ],
+      "validations": [
+        "status in ('APROVADO','REJEITADO','ACEITO_COM_RESTRICOES','EM_ANALISE')"
+      ],
+      "sql_example": "SELECT obra_id, supplier_id AS fornecedor_id, material_sku, DATE_TRUNC('week', received_at) AS semana, SUM(CASE WHEN status='APROVADO' THEN 1 ELSE 0 END)::float/COUNT(*) AS material_approval_rate FROM events_fvm WHERE received_at BETWEEN :start AND :end GROUP BY 1,2,3,4;"
+    },
+    {
+      "id": "partial_closure_share",
+      "name": "% Tarefas em FPM",
+      "owner": "Planejamento",
+      "periodicity": "weekly",
+      "target": null,
+      "unit": null,
+      "dimensions": [],
+      "event_source": "FPM",
+      "grain": [
+        "obra_id",
+        "disciplina",
+        "frente",
+        "semana"
+      ],
+      "events": {
+        "table": "tasks",
+        "fields": {
+          "obra_id": "obra_id",
+          "disciplina": "discipline",
+          "frente": "workfront",
+          "status": "status",
+          "dt_ref": "updated_at"
+        }
+      },
+      "formula": "count(status='PARTIAL_CLOSED')/count(*)",
+      "filters": [
+        "updated_at between :start and :end"
+      ],
+      "validations": [
+        "status in ('PLANNED','READY','IN_EXECUTION','INSPECTION_PENDING','PARTIAL_CLOSED','CLOSED','REWORK','BLOCKED')"
+      ],
+      "sql_example": "SELECT obra_id, discipline AS disciplina, workfront AS frente, DATE_TRUNC('week', updated_at) AS semana, SUM(CASE WHEN status='PARTIAL_CLOSED' THEN 1 ELSE 0 END)::float/COUNT(*) AS partial_closure_share FROM tasks WHERE updated_at BETWEEN :start AND :end GROUP BY 1,2,3,4;"
+    },
+    {
+      "id": "lead_time_execucao",
+      "name": "Lead Time de Execução (dias)",
+      "owner": "Planejamento",
+      "periodicity": "weekly",
+      "target": null,
+      "unit": null,
+      "dimensions": [],
+      "event_source": "TAREFA",
+      "grain": [
+        "obra_id",
+        "atividade_id",
+        "semana_close"
+      ],
+      "events": {
+        "table": "tasks",
+        "fields": {
+          "obra_id": "obra_id",
+          "atividade_id": "activity_id",
+          "dt_start": "started_at",
+          "dt_close": "closed_at"
+        }
+      },
+      "formula": "avg(closed_at - started_at) [dias]",
+      "filters": [
+        "closed_at between :start and :end"
+      ],
+      "validations": [
+        "closed_at >= started_at",
+        "started_at is not null and closed_at is not null"
+      ],
+      "sql_example": "SELECT obra_id, activity_id AS atividade_id, DATE_TRUNC('week', closed_at) AS semana_close, AVG(EXTRACT(EPOCH FROM (closed_at - started_at))/86400.0) AS lead_time_execucao_dias FROM tasks WHERE closed_at BETWEEN :start AND :end AND started_at IS NOT NULL GROUP BY 1,2,3;"
+    },
+    {
+      "id": "fvms_lab_nonconformity",
+      "name": "Índice de NC em Ensaios de Materiais",
+      "owner": "Qualidade",
+      "periodicity": "monthly",
+      "target": null,
+      "unit": null,
+      "dimensions": [],
+      "event_source": "FVM",
+      "grain": [
+        "obra_id",
+        "material_sku",
+        "fornecedor_id",
+        "mes"
+      ],
+      "events": {
+        "table": "lab_tests",
+        "fields": {
+          "obra_id": "obra_id",
+          "material_sku": "material_sku",
+          "fornecedor_id": "supplier_id",
+          "status": "status",
+          "dt_ensaio": "tested_at"
+        }
+      },
+      "formula": "count(status='REPROVADO')/count(*)",
+      "filters": [
+        "tested_at between :start and :end"
+      ],
+      "validations": [
+        "status in ('APROVADO','REPROVADO')"
+      ],
+      "sql_example": "SELECT obra_id, material_sku, supplier_id AS fornecedor_id, DATE_TRUNC('month', tested_at) AS mes, SUM(CASE WHEN status='REPROVADO' THEN 1 ELSE 0 END)::float/COUNT(*) AS fvms_lab_nonconformity FROM lab_tests WHERE tested_at BETWEEN :start AND :end GROUP BY 1,2,3,4;"
+    },
+    {
+      "id": "supplier_service_level",
+      "name": "Nível de Serviço do Fornecedor (OTD & Qualidade)",
+      "owner": "Suprimentos",
+      "periodicity": "monthly",
+      "target": null,
+      "unit": null,
+      "dimensions": [],
+      "event_source": "FVM",
+      "grain": [
+        "fornecedor_id",
+        "material_sku",
+        "mes"
+      ],
+      "events": {
+        "deliveries": {
+          "table": "deliveries",
+          "fields": {
+            "fornecedor_id": "supplier_id",
+            "material_sku": "material_sku",
+            "dt_prevista": "eta_at",
+            "dt_recebimento": "received_at"
+          }
+        },
+        "quality": {
+          "table": "events_fvm",
+          "fields": {
+            "fornecedor_id": "supplier_id",
+            "material_sku": "material_sku",
+            "status": "status",
+            "dt_recebimento": "received_at"
+          }
+        }
+      },
+      "formula": {
+        "OTD": "on_time_deliveries/total_deliveries",
+        "Qualidade": "1 - (fvm_reprovadas/entregas_totais)",
+        "NSF": "0.5*OTD + 0.5*Qualidade"
+      },
+      "filters": [
+        "received_at between :start and :end"
+      ],
+      "validations": [
+        "eta_at IS NOT NULL AND received_at IS NOT NULL",
+        "status in ('APROVADO','REJEITADO','ACEITO_COM_RESTRICOES','EM_ANALISE')"
+      ],
+      "sql_example": "WITH d AS (SELECT supplier_id, material_sku, DATE_TRUNC('month', received_at) AS mes, SUM(CASE WHEN received_at <= eta_at THEN 1 ELSE 0 END) AS on_time_deliveries, COUNT(*) AS total_deliveries FROM deliveries WHERE received_at BETWEEN :start AND :end GROUP BY 1,2,3), q AS (SELECT supplier_id, material_sku, DATE_TRUNC('month', received_at) AS mes, SUM(CASE WHEN status='REJEITADO' THEN 1 ELSE 0 END) AS reprovadas, COUNT(*) AS total_quality_events FROM events_fvm WHERE received_at BETWEEN :start AND :end GROUP BY 1,2,3) SELECT COALESCE(d.supplier_id,q.supplier_id) AS fornecedor_id, COALESCE(d.material_sku,q.material_sku) AS material_sku, COALESCE(d.mes,q.mes) AS mes, (on_time_deliveries::float/NULLIF(total_deliveries,0)) AS otd, (1 - (reprovadas::float/NULLIF(total_quality_events,0))) AS qualidade, 0.5*(on_time_deliveries::float/NULLIF(total_deliveries,0)) + 0.5*(1 - (reprovadas::float/NULLIF(total_quality_events,0))) AS supplier_service_level FROM d FULL OUTER JOIN q ON d.supplier_id=q.supplier_id AND d.material_sku=q.material_sku AND d.mes=q.mes;"
+    },
+    {
+      "id": "nc_rate",
+      "name": "Taxa de Não Conformidades (execução)",
+      "owner": "Qualidade",
+      "periodicity": "weekly",
+      "target": null,
+      "unit": null,
+      "dimensions": [],
+      "event_source": "NC",
+      "grain": [
+        "obra_id",
+        "servico_id",
+        "semana"
+      ],
+      "events": {
+        "table": "events_nc",
+        "fields": {
+          "obra_id": "obra_id",
+          "servico_id": "service_id",
+          "dt_registro": "created_at",
+          "origem": "origin",
+          "status": "status"
+        }
+      },
+      "formula": "(count(NC origem=FVS)/count(FVS))*100",
+      "filters": [
+        "created_at between :start and :end"
+      ],
+      "validations": [
+        "status in ('ABERTA','FECHADA')"
+      ],
+      "sql_example": "WITH nc AS (SELECT obra_id, service_id, DATE_TRUNC('week', created_at) AS semana, COUNT(*) AS nc_count FROM events_nc WHERE origin='FVS' AND created_at BETWEEN :start AND :end GROUP BY 1,2,3), fvs AS (SELECT obra_id, service_id, DATE_TRUNC('week', inspected_at) AS semana, COUNT(*) AS fvs_count FROM events_fvs WHERE inspected_at BETWEEN :start AND :end GROUP BY 1,2,3) SELECT COALESCE(nc.obra_id,fvs.obra_id) AS obra_id, COALESCE(nc.service_id,fvs.service_id) AS servico_id, COALESCE(nc.semana,fvs.semana) AS semana, (nc_count::float/NULLIF(fvs_count,0))*100 AS nc_por_100_fvs FROM nc FULL OUTER JOIN fvs ON nc.obra_id=fvs.obra_id AND nc.service_id=fvs.service_id AND nc.semana=fvs.semana;"
+    }
+  ]
+}

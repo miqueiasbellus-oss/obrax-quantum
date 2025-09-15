@@ -1,0 +1,80 @@
+{
+  "codigo": "PE02301/FS02403",
+  "atividade": "Colocação de Esquadria de Madeira (batente/folha/guarnição)",
+  "ifs_tags": [
+    "ifs:esquadrias",
+    "ifs:madeira"
+  ],
+  "pre_condicoes": [
+    "Alvenaria concluída; vãos com 10–15 mm de folga por lado; níveis finais do piso/parede definidos",
+    "Para fixação por parafuso: blocos preenchidos com argamassa nas alturas dos parafusos; para espuma PU: blocos chapiscados",
+    "Batentes montados/travados, com pré-furações quando aplicável"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "Posicionar batente no prumo; alinhar à régua entre taliscas do vão; ajustar folgas com cunhas",
+      "verificacao": "Prumo + nível",
+      "tolerancia": "Folgas simétricas; prumo/nível dentro da tolerância",
+      "midia": "foto_batente_prumo.jpg"
+    },
+    {
+      "passo": "Fixação por parafusos: furar, parafusar e cobrir furos com cavilhas coladas",
+      "verificacao": "Visual",
+      "tolerancia": "Cavilhas rentes",
+      "midia": "foto_cavilhas.jpg"
+    },
+    {
+      "passo": "Fixação com espuma PU: aplicar faixas de 25 cm em 3 pontos/ombreira (pé, meio, próximo à travessa); após 24 h, cortar excedente",
+      "verificacao": "Visual",
+      "tolerancia": "Aplicação por faixas",
+      "midia": "foto_espuma_pu.jpg"
+    },
+    {
+      "passo": "Ajustar folha com folga de 3 mm no batente e 8 mm ao piso acabado",
+      "verificacao": "Trena/esquadro",
+      "tolerancia": "3 mm/8 mm",
+      "midia": "foto_folgas_folha.jpg"
+    },
+    {
+      "passo": "Marcar/abrir locais de dobradiças e fechadura (broca/formão); instalar ferragens",
+      "verificacao": "Visual",
+      "tolerancia": "Assentadas corretamente",
+      "midia": "foto_dobradiças.jpg"
+    },
+    {
+      "passo": "Fixar guarnições em meia-esquadria com pregos sem cabeça",
+      "verificacao": "Visual",
+      "tolerancia": "Acabamento limpo",
+      "midia": "foto_guarnicao.jpg"
+    }
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Prumo das ombreiras e nível/alinhamento",
+      "metodo": "Prumo + nível/linha",
+      "tolerancia": "≤ 3 mm/m"
+    },
+    {
+      "item": "Folgas da folha (3 mm laterais/superior; 8 mm ao piso)",
+      "metodo": "Trena/esquadro",
+      "tolerancia": "Conforme procedimento"
+    },
+    {
+      "item": "Funcionamento (dobradiças/fechadura/folha)",
+      "metodo": "Visual/funcional",
+      "tolerancia": "OK/Não OK"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Prumo/nível",
+    "Fixação (parafuso/espuma PU)",
+    "Folgas da folha",
+    "Ferragens/guarnições"
+  ],
+  "bloqueios_pcc": [
+    "Vãos fora das folgas mínimas (10–15 mm por lado)",
+    "Prumo/nível/alinhamento fora de tolerância",
+    "Folgas da folha fora de 3 mm/8 mm",
+    "Funcionamento inadequado"
+  ]
+}

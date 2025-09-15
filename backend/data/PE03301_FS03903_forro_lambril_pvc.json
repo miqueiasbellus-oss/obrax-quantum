@@ -1,0 +1,86 @@
+{
+  "codigo": "PE03301/FS03903",
+  "atividade": "Forro em Lambril de PVC",
+  "ifs_tags": [
+    "ifs:vedacoes_horizontais",
+    "ifs:forro",
+    "ifs:lambril_pvc"
+  ],
+  "pre_condicoes": [
+    "Revestimentos de parede concluídos",
+    "RN (nível de referência) disponível",
+    "Planejamento de pendurais compatível com luminárias (não fixar luminárias nos perfis de PVC)"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "Marcar nível do forro e pontos de fixação dos tirantes",
+      "verificacao": "Laser/mangueira",
+      "tolerancia": "Conforme RN/projeto",
+      "midia": "foto_marcacao_tirantes.jpg"
+    },
+    {
+      "passo": "Fixar tirantes (pino de aço, bucha/parafuso ou grapas)",
+      "verificacao": "Visual",
+      "tolerancia": "Conforme fabricante/projeto",
+      "midia": "foto_tirantes.jpg"
+    },
+    {
+      "passo": "Encaixar perfis metálicos nas presilhas; espaçamento dos perfis 1,40 m",
+      "verificacao": "Trena",
+      "tolerancia": "1,40 m (interno)",
+      "midia": "foto_perf_is.jpg"
+    },
+    {
+      "passo": "Instalar longarinas perpendiculares aos perfis (70 cm interno / 50 cm externo)",
+      "verificacao": "Trena",
+      "tolerancia": "70 cm int / 50 cm ext",
+      "midia": "foto_longarinas.jpg"
+    },
+    {
+      "passo": "Posicionar perfis de PVC perpendicularmente às longarinas; fixar por rebites/presilhas (macho-fêmea)",
+      "verificacao": "Visual",
+      "tolerancia": "Encaixe correto",
+      "midia": "foto_macho_femea.jpg"
+    },
+    {
+      "passo": "Aplicar perfis de acabamento em U e perfis de união em H quando necessário",
+      "verificacao": "Visual",
+      "tolerancia": "Acabamento contínuo",
+      "midia": "foto_acabamento_U_H.jpg"
+    },
+    {
+      "passo": "Limpeza final (sem abrasivos)",
+      "verificacao": "Visual",
+      "tolerancia": "Superfície íntegra",
+      "midia": "foto_limpeza.jpg"
+    }
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Marcação do nível do forro",
+      "metodo": "Mangueira/laser a partir da RN",
+      "tolerancia": "≤ 5 mm em 4 m"
+    },
+    {
+      "item": "Planicidade do forro",
+      "metodo": "Régua 2 m",
+      "tolerancia": "≤ 3 mm"
+    },
+    {
+      "item": "Aspecto geral (juntas, encaixes, perfis de acabamento)",
+      "metodo": "Visual",
+      "tolerancia": "OK/Não OK"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Leitura de nível",
+    "Régua 2 m (planicidade)",
+    "Detalhe de encaixes/uniões",
+    "Vista geral do forro"
+  ],
+  "bloqueios_pcc": [
+    "Nível >5 mm em 4 m",
+    "Planicidade >3 mm em 2 m",
+    "Acabamentos ausentes/soltos"
+  ]
+}

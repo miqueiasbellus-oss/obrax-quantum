@@ -1,0 +1,73 @@
+{
+  "codigo": "PE00701/FS00903",
+  "atividade": "Fôrmas – Desforma e Reescoramento (consolidado)",
+  "ifs_tags": [
+    "ifs:estrutura",
+    "ifs:formas",
+    "ifs:desforma"
+  ],
+  "pre_condicoes": [
+    "Liberação do projetista/engenharia para desforma",
+    "Plano de reescoramento definido e materiais disponíveis",
+    "Equipe com EPIs e ferramentas adequadas"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "Desformar pilares (soltar tensores, retirar painéis com desformador/cunhas)",
+      "verificacao": "Visual",
+      "tolerancia": "Sem danos às peças",
+      "midia": "foto_desforma_pilar.jpg"
+    },
+    {
+      "passo": "Preservar painéis grandes (amarrar com cordas/rede)",
+      "verificacao": "Visual",
+      "tolerancia": "Sem quedas/choques",
+      "midia": "foto_preservacao_paineis.jpg"
+    },
+    {
+      "passo": "Retirar chupetas/mangueiras para reaproveitamento",
+      "verificacao": "Visual",
+      "tolerancia": "Reaproveitamento registrado",
+      "midia": "foto_reaproveitamento.jpg"
+    },
+    {
+      "passo": "Instalar reescoramento conforme projeto antes de remover escoras",
+      "verificacao": "Visual",
+      "tolerancia": "Reescoras instaladas",
+      "midia": "foto_reescoras.jpg"
+    },
+    {
+      "passo": "Desformar vigas (laterais/fundo) e depois lajes; em balanços: da borda livre ao apoio",
+      "verificacao": "Visual",
+      "tolerancia": "Sequência correta",
+      "midia": "foto_sequencia_desforma.jpg"
+    }
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Uso correto dos equipamentos",
+      "metodo": "Visual no início do serviço",
+      "tolerancia": "Adequado ao procedimento"
+    },
+    {
+      "item": "Manuseio das peças",
+      "metodo": "Visual no início do serviço",
+      "tolerancia": "Sem danos às fôrmas"
+    },
+    {
+      "item": "Posicionamento do reescoramento",
+      "metodo": "Visual ao final da desforma",
+      "tolerancia": "Conforme plano"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Reescoramento instalado",
+    "Retirada de painéis",
+    "Proteções contra queda/impacto"
+  ],
+  "bloqueios_pcc": [
+    "Sem liberação do projetista",
+    "Sem reescoramento previsto/instalado",
+    "Tentativa de desforma sem proteção adequada"
+  ]
+}

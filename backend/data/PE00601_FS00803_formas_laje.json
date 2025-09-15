@@ -1,0 +1,80 @@
+{
+  "codigo": "PE00601/FS00803",
+  "atividade": "Fôrmas – Laje (montagem e nivelamento)",
+  "ifs_tags": [
+    "ifs:estrutura",
+    "ifs:formas",
+    "ifs:laje"
+  ],
+  "pre_condicoes": [
+    "Formas de pilares e vigas montadas, alinhadas e niveladas",
+    "Quando apoiada em alvenaria: respaldos concluídos",
+    "Longarinas, escoras e painéis disponíveis",
+    "Ferramentas de medição (nível a mangueira/laser, prumo, esquadro) liberadas"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "Escorar longarinas (pontaletes sobre cunhas/escoras metálicas)",
+      "verificacao": "Visual",
+      "tolerancia": "Apoios e travamentos adequados",
+      "midia": "foto_longarinas.jpg"
+    },
+    {
+      "passo": "Apoiar extremidades das longarinas em sarrafos pregados nos garfos",
+      "verificacao": "Visual",
+      "tolerancia": "Encontro sem folgas",
+      "midia": "foto_apoios.jpg"
+    },
+    {
+      "passo": "Lançar e pregar assoalho da laje conforme identificação de projeto",
+      "verificacao": "Visual",
+      "tolerancia": "Encontro perfeito nas laterais das vigas",
+      "midia": "foto_assoalho.jpg"
+    },
+    {
+      "passo": "Nivelar panos de laje e verificar contraflecha (quando houver)",
+      "verificacao": "Nível laser/mangueira",
+      "tolerancia": "±5 mm em 5 m",
+      "midia": "foto_nivelamento.jpg"
+    },
+    {
+      "passo": "Verificar esquadro por diagonais",
+      "verificacao": "Trena",
+      "tolerancia": "Diagonais iguais",
+      "midia": "foto_esquadro.jpg"
+    },
+    {
+      "passo": "Aplicar desmoldante em toda a superfície",
+      "verificacao": "Visual",
+      "tolerancia": "Camada uniforme",
+      "midia": "foto_desmoldante.jpg"
+    }
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Travamento e encaixe dos painéis",
+      "metodo": "Visual após montagem",
+      "tolerancia": "Sem folgas anormais"
+    },
+    {
+      "item": "Nível dos painéis e do topo das formas de borda",
+      "metodo": "Nível a laser/mangueira",
+      "tolerancia": "±5 mm em 5 m"
+    },
+    {
+      "item": "Escoramento das longarinas",
+      "metodo": "Visual após montagem completa",
+      "tolerancia": "Adequado ao vão/projeto"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Encontro painel × viga sem folga",
+    "Leitura de nível (5 m)",
+    "Escoramento concluído"
+  ],
+  "bloqueios_pcc": [
+    "Pilares/vigas não nivelados",
+    "Nível do topo fora de ±5 mm/5 m",
+    "Sem escoramento adequado"
+  ]
+}

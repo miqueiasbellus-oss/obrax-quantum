@@ -1,0 +1,32 @@
+{
+  "versao_schema": "1.0",
+  "tipo": "FVM",
+  "codigo": "FM00101",
+  "titulo": "Agregados (areia, brita)",
+  "normas": [],
+  "campos_a_capturar": [
+    "tipo",
+    "volume_m3",
+    "granulometria",
+    "cor",
+    "cheiro"
+  ],
+  "inspecoes": [
+    {
+      "id": 1,
+      "nome": "Quantidade",
+      "inspecao": "Cubagem da carga (5 pontos de profundidade × C × L)",
+      "criterios_aceite": "Aceitar; diferenças → reposição/desconto"
+    },
+    {
+      "id": 2,
+      "nome": "Aspecto geral",
+      "inspecao": "Granulometria (areia fina/média/grossa, pedra 1/2/3), cor, cheiro, impurezas, torrões, matéria orgânica",
+      "criterios_aceite": "Material escuro/cheiro forte = matéria orgânica em excesso; consultar engenheiro"
+    }
+  ],
+  "fotos_obrigatorias": [],
+  "bloqueios_pcc": [],
+  "amostragem_aceitacao": null,
+  "observacoes": []
+}

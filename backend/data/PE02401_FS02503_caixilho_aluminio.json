@@ -1,0 +1,98 @@
+{
+  "codigo": "PE02401/FS02503",
+  "atividade": "Instalação de Caixilho de Alumínio (com contramarco)",
+  "ifs_tags": [
+    "ifs:esquadrias",
+    "ifs:aluminio",
+    "ifs:contramarco"
+  ],
+  "pre_condicoes": [
+    "Alvenaria concluída/fixada com folgas mínimas: 5 cm (contraverga) e 3 cm (demais faces)",
+    "Nível de referência marcado nos vãos (piso acabado)",
+    "Contramarcos, grapas e barras Ø 6,3 mm disponíveis; energia/ferramentas OK"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "Travamento inicial do contramarco com sarrafos/cunhas",
+      "verificacao": "Visual",
+      "tolerancia": "Travado sem deformar",
+      "midia": "foto_travamento.jpg"
+    },
+    {
+      "passo": "Perfuração do fundo de viga/laterais e inserção das barras Ø6,3 mm; amarrar contramarco com arame recozido",
+      "verificacao": "Visual",
+      "tolerancia": "Diâmetro e posição corretos",
+      "midia": "foto_barras_arame.jpg"
+    },
+    {
+      "passo": "Ajustar alinhamento com régua de alumínio e esquadro metálico",
+      "verificacao": "Régua + esquadro",
+      "tolerancia": "Sem folgas, faces coplanares",
+      "midia": "foto_alinhamento.jpg"
+    },
+    {
+      "passo": "Ajustar nível/prumo considerando referência do vão e prumo da fachada",
+      "verificacao": "Nível + prumo",
+      "tolerancia": "Nível e prumo dentro das tolerâncias",
+      "midia": "foto_nivel_prumo.jpg"
+    },
+    {
+      "passo": "Fixar grapas no contramarco e soldar às barras; chumbamento com argamassa",
+      "verificacao": "Visual",
+      "tolerancia": "Cordões íntegros; preenchimento total",
+      "midia": "foto_solda_chumba.jpg"
+    },
+    {
+      "passo": "Após ≥24 h, retirar travas e completar chumbamento e acabamento",
+      "verificacao": "Visual",
+      "tolerancia": "Sem vazios/excesso",
+      "midia": "foto_acabamento.jpg"
+    },
+    {
+      "passo": "Instalar caixilho após término do revestimento de fachada; conferir funcionamento",
+      "verificacao": "Visual/funcional",
+      "tolerancia": "Folhas e ferragens operantes",
+      "midia": "video_funcionamento.mp4"
+    },
+    {
+      "passo": "Instalar arremates internos antes da última demão de pintura",
+      "verificacao": "Visual",
+      "tolerancia": "Conforme sequência",
+      "midia": "foto_arremates.jpg"
+    }
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Nivelamento das travessas",
+      "metodo": "Nível de bolha",
+      "tolerancia": "Conforme FVS"
+    },
+    {
+      "item": "Prumo dos montantes do contramarco",
+      "metodo": "Prumo de face",
+      "tolerancia": "≤ 3 mm/m"
+    },
+    {
+      "item": "Esquadro do contramarco",
+      "metodo": "Esquadro de alumínio",
+      "tolerancia": "≤ 2 mm"
+    },
+    {
+      "item": "Funcionamento dos caixilhos",
+      "metodo": "Visual/funcional",
+      "tolerancia": "OK/Não OK"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Régua/nivel/prumo",
+    "Solda das grapas",
+    "Preenchimento do chumbamento",
+    "Teste de funcionamento"
+  ],
+  "bloqueios_pcc": [
+    "Folgas mínimas não atendidas (5 cm/3 cm)",
+    "Prumo >3 mm/m ou esquadro >2 mm",
+    "Travessas fora de nível",
+    "Caixilho sem funcionamento correto"
+  ]
+}

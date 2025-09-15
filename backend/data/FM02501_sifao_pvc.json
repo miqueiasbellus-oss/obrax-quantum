@@ -1,0 +1,34 @@
+{
+  "versao_schema": "1.0",
+  "tipo": "FVM",
+  "codigo": "FM02501",
+  "titulo": "Sifão de PVC",
+  "normas": [],
+  "campos_a_capturar": [
+    "dimensoes_nominais",
+    "acabamento"
+  ],
+  "inspecoes": [
+    {
+      "id": 1,
+      "nome": "Quantidade",
+      "inspecao": "Conferir quantidade entregue"
+    },
+    {
+      "id": 2,
+      "nome": "Aspecto externo",
+      "inspecao": "Trincas, rebarbas, falhas acabamento",
+      "criterios_aceite": "Segregar peças defeituosas"
+    },
+    {
+      "id": 3,
+      "nome": "Aspecto interno",
+      "inspecao": "Desmontar e verificar ranhuras, bolhas, rebarbas, encaixes",
+      "criterios_aceite": "Superfícies internas lisas, sem defeitos"
+    }
+  ],
+  "fotos_obrigatorias": [],
+  "bloqueios_pcc": [],
+  "amostragem_aceitacao": null,
+  "observacoes": []
+}

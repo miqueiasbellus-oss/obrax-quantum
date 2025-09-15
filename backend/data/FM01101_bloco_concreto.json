@@ -1,0 +1,45 @@
+{
+  "versao_schema": "1.0",
+  "tipo": "FVM",
+  "codigo": "FM01101",
+  "titulo": "Bloco de concreto",
+  "normas": [],
+  "campos_a_capturar": [
+    "comprimento_mm",
+    "largura_mm",
+    "altura_mm",
+    "espessura_parede_cm"
+  ],
+  "inspecoes": [
+    {
+      "id": 1,
+      "nome": "Quantidade",
+      "inspecao": "Conferir quantidade entregue",
+      "criterios_aceite": "Aceitar; diferenças → reposição/desconto"
+    },
+    {
+      "id": 2,
+      "nome": "Aspecto geral",
+      "inspecao": "Verificar trincas, quebras, lascas, imperfeições",
+      "criterios_aceite": "Segregar peças defeituosas"
+    },
+    {
+      "id": 3,
+      "nome": "Dimensões médias",
+      "inspecao": "Medir C,L,A médios em fila",
+      "equipamento": "Trena",
+      "criterios_aceite": "Comprimento/Altura ±3mm; Largura ±2mm"
+    },
+    {
+      "id": 4,
+      "nome": "Espessura de parede",
+      "inspecao": "Medir espessura parede",
+      "equipamento": "Trena",
+      "criterios_aceite": ">=2,5cm (estrutural), >=1,5cm (vedação)"
+    }
+  ],
+  "fotos_obrigatorias": [],
+  "bloqueios_pcc": [],
+  "amostragem_aceitacao": null,
+  "observacoes": []
+}

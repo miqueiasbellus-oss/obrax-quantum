@@ -1,0 +1,37 @@
+{
+  "versao_schema": "1.0",
+  "tipo": "FVM",
+  "codigo": "FM00801",
+  "titulo": "Batente de madeira",
+  "normas": [],
+  "campos_a_capturar": [
+    "g_mm",
+    "r_mm",
+    "l_mm",
+    "f_mm"
+  ],
+  "inspecoes": [
+    {
+      "id": 1,
+      "nome": "Quantidade",
+      "inspecao": "Conferir quantidade entregue"
+    },
+    {
+      "id": 2,
+      "nome": "Aspecto",
+      "inspecao": "Rachaduras em travessa/ombreiras, nós, falhas, cantos lascados, arqueamento/encurvamento, umidade",
+      "criterios_aceite": "Segregar peças defeituosas ou úmidas"
+    },
+    {
+      "id": 3,
+      "nome": "Dimensões",
+      "inspecao": "Medir dimensões g,r,l,f",
+      "equipamento": "Paquímetro",
+      "criterios_aceite": "g=35±2mm, r=37/47(-0/+2), l=espessura parede±2, f=12,5±1"
+    }
+  ],
+  "fotos_obrigatorias": [],
+  "bloqueios_pcc": [],
+  "amostragem_aceitacao": null,
+  "observacoes": []
+}

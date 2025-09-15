@@ -1,0 +1,37 @@
+{
+  "versao_schema": "1.0",
+  "tipo": "FVM",
+  "codigo": "FM00401",
+  "titulo": "Armadura (barras, aço pronto, tela)",
+  "normas": [],
+  "campos_a_capturar": [
+    "massa_total_kg",
+    "numero_barras",
+    "fabricante",
+    "etiqueta"
+  ],
+  "inspecoes": [
+    {
+      "id": 1,
+      "nome": "Quantidade",
+      "inspecao": "Pesar caminhão cheio e vazio em balança neutra ou contar barras pelo romaneio",
+      "criterios_aceite": "Aceitar; diferenças → reposição/desconto"
+    },
+    {
+      "id": 2,
+      "nome": "Aspecto geral",
+      "inspecao": "Material limpo, sem corrosão excessiva; barras e fios abertos; fabricante estampado para Ø>10mm",
+      "criterios_aceite": "Rejeitar se não conforme"
+    },
+    {
+      "id": 3,
+      "nome": "Identificação (aço pronto/tela)",
+      "inspecao": "Verificar etiquetas de identificação",
+      "criterios_aceite": "Rejeitar se ausentes"
+    }
+  ],
+  "fotos_obrigatorias": [],
+  "bloqueios_pcc": [],
+  "amostragem_aceitacao": null,
+  "observacoes": []
+}

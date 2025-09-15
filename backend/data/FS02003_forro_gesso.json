@@ -1,0 +1,45 @@
+{
+  "codigo": "FS02003",
+  "atividade": "Forro de Gesso (avaliar execução e entrega)",
+  "ifs_tags": [
+    "ifs:vedacoes_horizontais",
+    "ifs:forro_gesso"
+  ],
+  "pre_condicoes": [
+    "Nível de referência (RN) disponível para marcação do forro",
+    "Ambiente limpo para inspeção"
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Marcação do nível do forro",
+      "metodo": "Mangueira de nível a partir da RN",
+      "tolerancia": "≤ 5 mm em 4 m"
+    },
+    {
+      "item": "Aspecto geral",
+      "metodo": "Visual (homogeneidade, rejunte/calafetação, ausência de marcas de emendas em relevo)",
+      "tolerancia": "Sem não-conformidades aparentes"
+    },
+    {
+      "item": "Planicidade",
+      "metodo": "Régua de alumínio 2 m",
+      "tolerancia": "≤ 3 mm"
+    },
+    {
+      "item": "Limpeza do ambiente",
+      "metodo": "Visual (piso e azulejos)",
+      "tolerancia": "Limpo"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Leitura do nível no perímetro",
+    "Régua 2 m (planicidade)",
+    "Detalhe de juntas/calafetação",
+    "Vista geral do forro"
+  ],
+  "bloqueios_pcc": [
+    "Nível do forro >5 mm em 4 m",
+    "Planicidade >3 mm em 2 m",
+    "Juntas/calafetação com defeito"
+  ]
+}

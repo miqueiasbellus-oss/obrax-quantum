@@ -1,0 +1,87 @@
+{
+  "codigo": "PE00401/FS00603",
+  "atividade": "Fôrmas – Fabricação (central de carpintaria)",
+  "ifs_tags": [
+    "ifs:estrutura",
+    "ifs:formas",
+    "ifs:fabricacao_formas"
+  ],
+  "pre_condicoes": [
+    "Projetos de arquitetura/estrutura concluídos",
+    "Central de carpintaria montada e equipada",
+    "Materiais disponíveis (chapas, pontaletes, sarrafos, pregos)",
+    "Ferramentas inspecionadas e em bom estado"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "Dimensionar painéis (tamanho/peso) para facilitar montagem/transporte/desforma",
+      "verificacao": "Visual + conferência de listas",
+      "tolerancia": "Acessibilidade e ergonomia atendidas",
+      "midia": "foto_dimensionamento_paineis.jpg"
+    },
+    {
+      "passo": "Estruturar painéis e galgar peças",
+      "verificacao": "Visual na central",
+      "tolerancia": "Rigidez adequada para montagem",
+      "midia": "foto_estruturacao.jpg"
+    },
+    {
+      "passo": "Identificar painéis com numeração/código",
+      "verificacao": "Visual",
+      "tolerancia": "100% das peças identificadas",
+      "midia": "foto_identificacao.jpg"
+    },
+    {
+      "passo": "Executar furos sempre de dentro para fora",
+      "verificacao": "Visual",
+      "tolerancia": "Sem lascas na face interna",
+      "midia": "foto_furo.jpg"
+    },
+    {
+      "passo": "Marcar posições de cimbramento/apoios nas fôrmas",
+      "verificacao": "Visual",
+      "tolerancia": "Marcações presentes e legíveis",
+      "midia": "foto_marcacoes.jpg"
+    },
+    {
+      "passo": "Selar topos de chapas (tinta óleo/selante)",
+      "verificacao": "Visual",
+      "tolerancia": "Topo 100% selado",
+      "midia": "foto_selagem.jpg"
+    },
+    {
+      "passo": "Manter central limpa e organizada",
+      "verificacao": "Check diário",
+      "tolerancia": "Sem serragem excessiva e com ferramentas funcionais",
+      "midia": "foto_central_limpa.jpg"
+    }
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Manuseio/uso da madeira",
+      "metodo": "Inspeção semanal na central",
+      "tolerancia": "Aproveitamento adequado; sem danos excessivos"
+    },
+    {
+      "item": "Estruturação dos painéis",
+      "metodo": "Inspeção semanal na central",
+      "tolerancia": "Conforme boas práticas de rigidez"
+    },
+    {
+      "item": "Acabamento de bordas, furos e recortes",
+      "metodo": "Inspeção semanal na central",
+      "tolerancia": "Superfícies planas e lisas; sem serrilhas"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Painéis identificados",
+    "Topo selado",
+    "Marcações de cimbramento",
+    "Vista geral da central"
+  ],
+  "bloqueios_pcc": [
+    "Central não montada",
+    "Peças sem identificação",
+    "Topos sem selagem"
+  ]
+}

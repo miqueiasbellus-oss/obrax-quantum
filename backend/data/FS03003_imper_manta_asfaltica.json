@@ -1,0 +1,69 @@
+{
+  "codigo": "FS03003",
+  "atividade": "Impermeabilização com Manta Asfáltica",
+  "ifs_tags": [
+    "ifs:vedacoes_horizontais",
+    "ifs:impermeabilizacao",
+    "ifs:manta_asfaltica"
+  ],
+  "pre_condicoes": [
+    "Base sem material solto, rebarbas, pontas de aço; tubulações chumbadas",
+    "Juntas de dilatação identificadas e tratadas"
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Condições da base",
+      "metodo": "Visual",
+      "tolerancia": "OK/Não OK"
+    },
+    {
+      "item": "Regularização/caimentos/cantos arredondados",
+      "metodo": "Visual",
+      "tolerancia": "OK/Não OK"
+    },
+    {
+      "item": "Imprimação (primer) da base",
+      "metodo": "Visual durante aplicação",
+      "tolerancia": "Base totalmente seca e imprimada"
+    },
+    {
+      "item": "Solda das emendas (sobreposição)",
+      "metodo": "Visual durante aplicação",
+      "tolerancia": "≥ 10 cm"
+    },
+    {
+      "item": "Cantos e detalhes (subida em rodapés/tubos)",
+      "metodo": "Visual durante aplicação",
+      "tolerancia": "≥ 20 cm"
+    },
+    {
+      "item": "Reforços com tela metálica",
+      "metodo": "Visual durante aplicação",
+      "tolerancia": "Nos locais previstos"
+    },
+    {
+      "item": "Estanqueidade (teste de lâmina d’água)",
+      "metodo": "Prova com água a 10 cm por 72 h",
+      "tolerancia": "Sem vazamentos"
+    },
+    {
+      "item": "Proteção mecânica",
+      "metodo": "Visual",
+      "tolerancia": "Conforme projeto/local de uso"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Base pronta",
+    "Imprimação",
+    "Sobreposição de 10 cm",
+    "Subida de 20 cm",
+    "Teste de estanqueidade",
+    "Proteção mecânica"
+  ],
+  "bloqueios_pcc": [
+    "Base úmida/contaminada ou com rebarbas/pontas de aço",
+    "Sobreposição <10 cm",
+    "Sem teste de estanqueidade",
+    "Sem proteção mecânica onde necessário"
+  ]
+}

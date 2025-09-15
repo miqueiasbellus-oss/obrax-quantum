@@ -1,0 +1,44 @@
+{
+  "versao_schema": "1.0",
+  "tipo": "FVM",
+  "codigo": "FM01901",
+  "titulo": "Piso cerâmico e azulejo",
+  "normas": [
+    "NBR 13818"
+  ],
+  "campos_a_capturar": [
+    "fabricante",
+    "pais_origem",
+    "qualidade",
+    "grupo_classificacao",
+    "dim_nominal",
+    "dim_fabricacao",
+    "superficie",
+    "classe_abrasao",
+    "tonalidade",
+    "data_fabricacao",
+    "junta_recomendada"
+  ],
+  "inspecoes": [
+    {
+      "id": 1,
+      "nome": "Quantidade",
+      "inspecao": "Conferir quantidade entregue"
+    },
+    {
+      "id": 2,
+      "nome": "Aspecto geral",
+      "inspecao": "Conferir embalagens sem rasgos ou molhadas"
+    },
+    {
+      "id": 3,
+      "nome": "Identificação",
+      "inspecao": "Conferir características na embalagem: fabricante, NBR 13818, dimensões, GL/UGL, PEI, tonalidade, etc.",
+      "criterios_aceite": "Falha = segregar peça"
+    }
+  ],
+  "fotos_obrigatorias": [],
+  "bloqueios_pcc": [],
+  "amostragem_aceitacao": null,
+  "observacoes": []
+}

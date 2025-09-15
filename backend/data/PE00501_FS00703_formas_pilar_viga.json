@@ -1,0 +1,88 @@
+{
+  "codigo": "PE00501/FS00703",
+  "atividade": "Fôrmas – Pilar e Viga (montagem em obra)",
+  "ifs_tags": [
+    "ifs:estrutura",
+    "ifs:formas",
+    "ifs:pilar",
+    "ifs:viga"
+  ],
+  "pre_condicoes": [
+    "Eixos principais e RN transferidos/definidos na laje de trabalho",
+    "Gastalhos fixados",
+    "Painéis e escoras disponíveis; desmoldante na obra",
+    "Ferramentas de medição (nível, prumo, esquadro) liberadas"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "Apicoar base dos pilares (remover nata de cimento)",
+      "verificacao": "Visual",
+      "tolerancia": "Base limpa e rugosa",
+      "midia": "foto_apicoamento.jpg"
+    },
+    {
+      "passo": "Fixar pontaletes-guia e montar faces do pilar",
+      "verificacao": "Visual + esquadro",
+      "tolerancia": "Perpendicularidade garantida",
+      "midia": "foto_montagem_pilar.jpg"
+    },
+    {
+      "passo": "Aplicar desmoldante nas faces internas",
+      "verificacao": "Visual",
+      "tolerancia": "Camada uniforme",
+      "midia": "foto_desmoldante.jpg"
+    },
+    {
+      "passo": "Ajustar nível do topo das formas dos pilares",
+      "verificacao": "Nível a mangueira/laser",
+      "tolerancia": "±5 mm em 5 m",
+      "midia": "foto_nivel_topo.jpg"
+    },
+    {
+      "passo": "Ajustar prumo dos pilares com escoras",
+      "verificacao": "Prumo de face",
+      "tolerancia": "±2 mm em 2 m",
+      "midia": "foto_prumo.jpg"
+    },
+    {
+      "passo": "Prever janela de inspeção (>2,5 m)",
+      "verificacao": "Visual",
+      "tolerancia": "Janela existente",
+      "midia": "foto_janela.jpg"
+    },
+    {
+      "passo": "Montar formas de vigas (fundos, garfos, laterais)",
+      "verificacao": "Visual",
+      "tolerancia": "Apoios e travamentos adequados",
+      "midia": "foto_forma_viga.jpg"
+    }
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Travamento e encaixe dos painéis dos pilares",
+      "metodo": "Visual após montagem",
+      "tolerancia": "Sem folgas anormais"
+    },
+    {
+      "item": "Nível do topo das formas (pilares)",
+      "metodo": "Nível de mangueira/laser",
+      "tolerancia": "±5 mm em 5 m"
+    },
+    {
+      "item": "Prumo dos pilares",
+      "metodo": "Prumo de face",
+      "tolerancia": "±2 mm em 2 m"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Base apicoada",
+    "Topo nivelado",
+    "Prumo conferido",
+    "Travamentos"
+  ],
+  "bloqueios_pcc": [
+    "RN não transferida",
+    "Desmoldante ausente",
+    "Nível/prumo fora da tolerância"
+  ]
+}

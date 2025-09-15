@@ -1,0 +1,93 @@
+{
+  "codigo": "PE02501/FS02603",
+  "atividade": "Pintura Látex PVA (interiores)",
+  "ifs_tags": [
+    "ifs:acabamentos",
+    "ifs:pintura",
+    "ifs:latex_pva"
+  ],
+  "pre_condicoes": [
+    "Revestimentos de paredes e tetos concluídos há ≥30 dias",
+    "Pisos concluídos (exceto carpetes/assoalhos sensíveis)",
+    "Batentes, portas e caixilhos instalados e acabados",
+    "Ambiente limpo e protegido (lonas/fita)"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "Preparar base: remover óleo/graxa/poeira e partes soltas",
+      "verificacao": "Visual",
+      "tolerancia": "Base limpa/íntegra",
+      "midia": "foto_preparacao_base.jpg"
+    },
+    {
+      "passo": "Corrigir imperfeições (argamassa/gesso para profundas; massa PVA para pontuais)",
+      "verificacao": "Visual",
+      "tolerancia": "Correções niveladas",
+      "midia": "foto_correcoes.jpg"
+    },
+    {
+      "passo": "Selar pontos localizados (seladora PVA/fundo preparador) antes da massa",
+      "verificacao": "Visual",
+      "tolerancia": "Selagem aplicada",
+      "midia": "foto_selagem.jpg"
+    },
+    {
+      "passo": "Lixar base (grana ~100), remover pó; preparar selador/fundo conforme fabricante",
+      "verificacao": "Visual",
+      "tolerancia": "Sem pó residual",
+      "midia": "foto_lixa100.jpg"
+    },
+    {
+      "passo": "Aplicar selador PVA ou fundo preparador; após secar, lixar (grana ~150)",
+      "verificacao": "Visual",
+      "tolerancia": "Cobertura uniforme",
+      "midia": "foto_selador.jpg"
+    },
+    {
+      "passo": "Para acabamento liso: aplicar massa corrida PVA em camadas finas; secar (~4 h) e lixar (grana ~180)",
+      "verificacao": "Visual",
+      "tolerancia": "Superfície lisa",
+      "midia": "foto_massa_pva.jpg"
+    },
+    {
+      "passo": "Aplicar 2–3 demãos de látex PVA; intervalo mínimo 4 h entre demãos",
+      "verificacao": "Registro + visual",
+      "tolerancia": "Cobertura sem falhas/escorrimentos",
+      "midia": "foto_demao_pva.jpg"
+    },
+    {
+      "passo": "Executar recortes (cantos/molduras) com pincel",
+      "verificacao": "Visual",
+      "tolerancia": "Acabamento limpo",
+      "midia": "foto_recortes.jpg"
+    }
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Preparação da base",
+      "metodo": "Visual (remoção de sujeiras/partes soltas)",
+      "tolerancia": "OK/Não OK"
+    },
+    {
+      "item": "Aplicação do selador",
+      "metodo": "Visual (cobrimento e uniformidade)",
+      "tolerancia": "OK/Não OK"
+    },
+    {
+      "item": "Aspecto final",
+      "metodo": "Visual (uniforme; sem falhas/escorrimentos)",
+      "tolerancia": "OK/Não OK"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Base limpa",
+    "Selador aplicado",
+    "Acabamento final (uniforme)"
+  ],
+  "bloqueios_pcc": [
+    "Substrato contaminado/úmido",
+    "Selador/fundo não aplicado",
+    "Intervalo entre demãos <4 h",
+    "Aspecto final com falhas/escorrimentos"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "codigo": "PE00101/FS00203",
+  "atividade": "Locação de Obra",
+  "ifs_tags": [
+    "ifs:locacao",
+    "ifs:servicos_preliminares"
+  ],
+  "pre_condicoes": [
+    "Terreno limpo e escavado até cotas de fundação",
+    "Topografia disponível (RN definida)",
+    "Materiais: pontaletes, sarrafos, arame recozido, pregos",
+    "Equipamentos: teodolito, nível de mangueira ou laser, prumo de centro, trena",
+    "Equipe treinada em topografia/locação"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "Definir nível de referência (RN)",
+      "verificacao": "Visual",
+      "tolerancia": "Obrigatório antes da locação",
+      "midia": "video_definir_RN.mp4"
+    },
+    {
+      "passo": "Fixar e nivelar tabeira",
+      "verificacao": "Linha e nível (mangueira ou laser)",
+      "tolerancia": "±1 cm a cada 5 m",
+      "midia": "foto_tabeira.jpg"
+    },
+    {
+      "passo": "Locar eixos na tabeira",
+      "verificacao": "Trena metálica",
+      "tolerancia": "±5 mm",
+      "midia": "video_locacao.mp4"
+    },
+    {
+      "passo": "Marcar pilares/estacas",
+      "verificacao": "Arame esticado + prumo de centro",
+      "tolerancia": "Centralização perfeita",
+      "midia": "foto_prumo.jpg"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Foto do gabarito montado",
+    "Foto da marcação de eixo",
+    "Foto da tabeira nivelada"
+  ],
+  "bloqueios_pcc": [
+    "Terreno não escavado/limpo",
+    "RN não definida",
+    "Tabeira fora de nível >1 cm/5 m"
+  ]
+}

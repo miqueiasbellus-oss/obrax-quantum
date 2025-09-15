@@ -1,0 +1,25 @@
+{
+  "versao_schema": "1.0",
+  "tipo": "FVM",
+  "codigo": "FM02301",
+  "titulo": "Elétricos: disjuntor, interruptor, tomada, fios/cabos, eletroduto",
+  "normas": [],
+  "campos_a_capturar": [],
+  "inspecoes": [
+    {
+      "id": 1,
+      "nome": "Quantidade",
+      "inspecao": "Conferir quantidade entregue"
+    },
+    {
+      "id": 2,
+      "nome": "Conformidade e identificação",
+      "inspecao": "Disjuntores: INMETRO NBR5361; Interruptores/tomadas: NBR6527/6147; Fios/cabos: NBR6148; Eletrodutos: NBR6689. Verificar integridade física.",
+      "criterios_aceite": "Com selo INMETRO, sem defeitos; segregar peças defeituosas ou sem identificação"
+    }
+  ],
+  "fotos_obrigatorias": [],
+  "bloqueios_pcc": [],
+  "amostragem_aceitacao": null,
+  "observacoes": []
+}

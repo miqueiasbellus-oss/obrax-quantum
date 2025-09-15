@@ -1,0 +1,68 @@
+{
+  "versao_schema": "1.0",
+  "tipo": "FVM",
+  "codigo": "FM00201",
+  "titulo": "Concreto dosado em central",
+  "normas": [],
+  "campos_a_capturar": [
+    "numero_lacre",
+    "hora_saida_fornecedor",
+    "hora_termino_lancamento",
+    "tempo_gasto_min",
+    "slump_cm",
+    "slump_pedido_cm"
+  ],
+  "inspecoes": [
+    {
+      "id": 1,
+      "nome": "Lacre",
+      "amostragem": "Caminhão",
+      "inspecao": "Verificar se o caminhão está lacrado e o número do lacre confere com a NF.",
+      "equipamento": null,
+      "criterios_aceite": "Lacre e número conforme a NF.",
+      "acao_nao_conforme": "Rejeitar o caminhão."
+    },
+    {
+      "id": 2,
+      "nome": "Aspecto visual",
+      "amostragem": "Caminhão",
+      "inspecao": "Inspecionar homogeneidade e consistência visual.",
+      "equipamento": null,
+      "criterios_aceite": "Concreto homogêneo, sem segregação.",
+      "acao_nao_conforme": "Rejeitar o caminhão."
+    },
+    {
+      "id": 3,
+      "nome": "Tempo de descarga",
+      "amostragem": "Caminhão",
+      "inspecao": "Registrar hora de saída do fornecedor (A) e término do lançamento (B).",
+      "equipamento": "Relógio/APP",
+      "criterios_aceite": "Tempo gasto (B-A) ≤ 150 minutos (2h30).",
+      "acao_nao_conforme": "Rejeitar o caminhão."
+    },
+    {
+      "id": 4,
+      "nome": "Slump test (abatimento)",
+      "amostragem": "Aproximadamente 30 litros",
+      "inspecao": "Executar ensaio de abatimento do tronco de cone.",
+      "equipamento": "Cone de Abrams, base nivelada, haste, trena",
+      "criterios_aceite": "Se resultado > slump pedido: rejeitar. Se resultado < slump pedido: pode adicionar água de comum acordo com o fornecedor, sem aumentar mais que 2,5 cm em relação ao valor medido.",
+      "acao_nao_conforme": "Rejeitar ou ajustar conforme regra."
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Foto do lacre",
+    "Foto do ensaio de slump com régua",
+    "Tela com horários A e B"
+  ],
+  "bloqueios_pcc": [
+    "Tempo de descarga > 150 min",
+    "Slump superior ao pedido",
+    "Lacre divergente ou ausente"
+  ],
+  "amostragem_aceitacao": null,
+  "observacoes": [
+    "Registrar temperatura ambiente se possível."
+  ],
+  "lote": "Cada entrega (1 caminhão)"
+}

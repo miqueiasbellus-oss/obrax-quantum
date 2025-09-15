@@ -1,0 +1,118 @@
+{
+  "version": "1.0",
+  "source": {
+    "po": "PO.014",
+    "doc_title": "Controle de materiais em obra"
+  },
+  "roles": {
+    "ALMOXARIFE": {
+      "can": [
+        "receber_nf",
+        "conferir_pedido",
+        "inspecionar_fvm",
+        "etiquetar",
+        "rastrear",
+        "isolar_restrito"
+      ]
+    },
+    "ENGENHEIRO_OBRA": {
+      "can": [
+        "qualificar_materiais",
+        "solicitar_ensaios",
+        "dispor_reprovados",
+        "aprovar_restricoes"
+      ]
+    },
+    "MESTRE_OBRA": {
+      "can": [
+        "informar_uso_antecipado",
+        "mapear_aplicacao_concreto"
+      ]
+    }
+  },
+  "material_states": [
+    "RECEIVED",
+    "INSPECTED",
+    "APPROVED",
+    "REJECTED",
+    "ACCEPTED_WITH_RESTRICTIONS",
+    "STORED",
+    "RESERVED",
+    "ISSUED",
+    "CONSUMED",
+    "RETURNED",
+    "SCRAPPED"
+  ],
+  "recebimento": {
+    "inputs": [
+      "nota_fiscal",
+      "pedido_compra",
+      "contrato_fornecimento"
+    ],
+    "checks": [
+      "dados_fiscais",
+      "especificacao",
+      "quantidade",
+      "FVM_quando_aplicavel"
+    ],
+    "actions_on_issue": [
+      "recusa_total",
+      "recusa_parcial",
+      "aceite_com_restricoes"
+    ]
+  },
+  "FVM_schema": {
+    "campos_obrigatorios": [
+      "fornecedor",
+      "obra",
+      "data",
+      "nf_numero",
+      "quantidade_nf",
+      "inspecoes",
+      "aprovacao_S_N",
+      "avaliacao_fornecedor",
+      "responsavel",
+      "disposicao"
+    ],
+    "anexos": [
+      "fotos_lote",
+      "laudos",
+      "romaneios"
+    ]
+  },
+  "identificacao_e_rastreabilidade": {
+    "estoque": [
+      "etiquetas_prateleiras",
+      "placas_granel",
+      "sinalizacao_estado: {APROVADO, EM_ANALISE, REJEITADO}"
+    ],
+    "mapas": [
+      "mapa_concretagem",
+      "planilha_rastreabilidade_blocos",
+      "outros_segundo_PQO"
+    ]
+  },
+  "ensaios_laboratoriais": {
+    "tabela_ensaios": "PO14_anexo",
+    "exemplos": [
+      "areia_NBR7211",
+      "concreto_NBR12655",
+      "blocos_concreto_NBR6136",
+      "telas_aço_NBR7481",
+      "barras_fios_NBR7480",
+      "manta_asfaltica_NBR9952"
+    ]
+  },
+  "armazenagem": {
+    "condicoes_gerais": [
+      "proximo_uso",
+      "sem_sobrecarga_lajes",
+      "seguir_fabricante"
+    ],
+    "especificas_exemplos": {
+      "ensacados": "local_fechado_sobre_estrado_pilhas_por_produto",
+      "barras_aco": "separado_por_bitola_sobre_caibros",
+      "blocos": "sem_contato_solo_limite_fiadas"
+    }
+  }
+}

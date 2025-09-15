@@ -1,0 +1,31 @@
+{
+  "versao_schema": "1.0",
+  "tipo": "FVM",
+  "codigo": "FM01801",
+  "titulo": "Forro de PVC",
+  "normas": [],
+  "campos_a_capturar": [
+    "tipo_regua",
+    "tonalidade",
+    "espessura",
+    "largura",
+    "ranhuras"
+  ],
+  "inspecoes": [
+    {
+      "id": 1,
+      "nome": "Quantidade",
+      "inspecao": "Conferir quantidade entregue"
+    },
+    {
+      "id": 2,
+      "nome": "Aspecto geral",
+      "inspecao": "Defeitos como quebramentos, empenamento, integridade da embalagem. Conferir tipo, tonalidade, peças complementares, dimensões contra amostra do fabricante",
+      "criterios_aceite": "Segregar peças defeituosas"
+    }
+  ],
+  "fotos_obrigatorias": [],
+  "bloqueios_pcc": [],
+  "amostragem_aceitacao": null,
+  "observacoes": []
+}

@@ -1,0 +1,79 @@
+{
+  "codigo": "PE01601",
+  "atividade": "Contrapiso (taliscas, mestras, sarrafeamento e acabamento)",
+  "ifs_tags": [
+    "ifs:vedacoes_horizontais",
+    "ifs:contrapiso"
+  ],
+  "pre_condicoes": [
+    "Marcação da alvenaria concluída",
+    "Instalações elétricas/hidráulicas do piso executadas e testadas",
+    "Base limpa (sem argamassa/entulho)",
+    "RN transferida (nível de mangueira ou laser)"
+  ],
+  "checklist_execucao": [
+    {
+      "passo": "Transferir nível a partir da RN conforme projeto de contrapiso",
+      "verificacao": "Mangueira/laser",
+      "tolerancia": "Conforme projeto"
+    },
+    {
+      "passo": "Executar taliscas com antecedência (~2 dias) e prever caimento de 1% nas áreas molhadas",
+      "verificacao": "Nível + trena",
+      "tolerancia": "1 cm/m para ralos"
+    },
+    {
+      "passo": "Preparar base: polvilhar cimento sobre superfície úmida para nata de ligação (vassoura)",
+      "verificacao": "Visual",
+      "tolerancia": "Nata contínua"
+    },
+    {
+      "passo": "Lançar argamassa farofa; executar mestras e preencher entre mestras",
+      "verificacao": "Visual",
+      "tolerancia": "Preenchimento homogêneo"
+    },
+    {
+      "passo": "Compactar com soquete até 8 kg",
+      "verificacao": "Visual",
+      "tolerancia": "Compactação uniforme"
+    },
+    {
+      "passo": "Sarrafeamento apoiado nas mestras até o nível",
+      "verificacao": "Régua de alumínio",
+      "tolerancia": "Nível conforme mestras"
+    },
+    {
+      "passo": "Acabamento final: polvilhar cimento e desempenar (madeira/aço conforme revestimento final)",
+      "verificacao": "Visual",
+      "tolerancia": "Superfície homogênea"
+    }
+  ],
+  "inspecoes_fvs": [
+    {
+      "item": "Caimento em áreas molhadas",
+      "metodo": "Nível + ensaio com água",
+      "tolerancia": "1% (1 cm/m)"
+    },
+    {
+      "item": "Planicidade geral",
+      "metodo": "Régua 2 m",
+      "tolerancia": "Conforme projeto/uso do ambiente"
+    },
+    {
+      "item": "Aderência (nata de ligação)",
+      "metodo": "Visual na execução",
+      "tolerancia": "Nata contínua"
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Taliscas/mestras",
+    "Sarrafeamento",
+    "Acabamento final",
+    "Teste de água (áreas molhadas)"
+  ],
+  "bloqueios_pcc": [
+    "Instalações não testadas/posicionadas",
+    "Ausência de taliscas/mestras",
+    "Caimento <1% em áreas molhadas"
+  ]
+}

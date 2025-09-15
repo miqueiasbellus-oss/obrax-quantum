@@ -1,0 +1,60 @@
+{
+  "versao_schema": "1.0",
+  "tipo": "FVM",
+  "codigo": "FM02401",
+  "titulo": "Tubos e conexões de PVC",
+  "normas": [
+    "NBR 5648",
+    "NBR 5448",
+    "NBR 5688"
+  ],
+  "campos_a_capturar": [
+    "sistema_predial (água fria/esgoto/pluvial)",
+    "DN",
+    "PN",
+    "DE",
+    "SR_SN",
+    "cor",
+    "marcacoes_normativas_ok (sim/nao)"
+  ],
+  "inspecoes": [
+    {
+      "id": 1,
+      "nome": "Diferença de quantidade",
+      "amostragem": "Toda a carga",
+      "inspecao": "Conferir a quantidade entregue.",
+      "equipamento": null,
+      "criterios_aceite": "Aceitar; diferenças: reposição/desconto.",
+      "acao_nao_conforme": "Negociar reposição/desconto."
+    },
+    {
+      "id": 2,
+      "nome": "Aspecto geral",
+      "amostragem": "Toda a carga",
+      "inspecao": "Verificar trincas, bolhas, furos, descontinuidades nas seções.",
+      "equipamento": null,
+      "criterios_aceite": "Sem falhas.",
+      "acao_nao_conforme": "Segregar e solicitar reposição."
+    },
+    {
+      "id": 3,
+      "nome": "Identificação normativa",
+      "amostragem": "10% da carga",
+      "inspecao": "Conferir marcações conforme tipo: Água fria (NBR 5648: fabricante, PVC 6,3 PN 750 kPa, DE, ÁGUA FRIA); Conexões água fria (NBR 5448: fabricante, DE/bolsas, DN rosca); Esgoto/ventilação/pluvial (NBR 5688: fabricante, PVC DN, ESGOTO SN/SR). Checar cor por sistema (marrom/branca/cinza; transição: azul).",
+      "equipamento": null,
+      "criterios_aceite": "Conforme norma e tabela de cores.",
+      "acao_nao_conforme": "Rejeitar lote se não conforme."
+    }
+  ],
+  "fotos_obrigatorias": [
+    "Marcações em tubo/conexão",
+    "Foto da cor do material"
+  ],
+  "bloqueios_pcc": [
+    "Marcações normativas ausentes/incorretas",
+    "Cor divergente do sistema"
+  ],
+  "amostragem_aceitacao": null,
+  "observacoes": [],
+  "lote": "Cada entrega (por tipo de peça)"
+}
