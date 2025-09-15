@@ -2,11 +2,11 @@ import { Link, useLocation } from 'react-router-dom';
 import { Building2, Users, CheckSquare, Package, BarChart3, CreditCard, LogIn } from 'lucide-react';
 
 const navigation = [
+  { name: 'Programação Quinzenal', href: '/programacao-quinzenal', icon: CheckSquare },
+  { name: 'Painel Encarregado', href: '/painel-encarregado', icon: Users },
+  { name: 'Status', href: '/status', icon: BarChart3 },
   { name: 'Obras', href: '/obras', icon: Building2 },
-  { name: 'Equipes', href: '/equipes', icon: Users },
-  { name: 'Checklists', href: '/checklists', icon: CheckSquare },
   { name: 'Materiais', href: '/materiais', icon: Package },
-  { name: 'Dashboard', href: '/dashboard', icon: BarChart3 },
   { name: 'ERP', href: '/erp', icon: CreditCard },
 ];
 
