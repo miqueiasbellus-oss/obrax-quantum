@@ -57,6 +57,10 @@ export default function App() {
             <Route path="/status" element={<Status />} />
             
             {/* Sprint 1 - Funcionalidades Implementadas */}
+            <Route path="/programacao-quinzenal" element={<ProgramacaoQuinzenal />} />
+            <Route path="/painel-encarregado" element={<PainelEncarregado />} />
+            
+            {/* Rotas alternativas para compatibilidade */}
             <Route path="/programacao" element={<ProgramacaoQuinzenal />} />
             <Route path="/encarregado" element={<PainelEncarregado />} />
             
