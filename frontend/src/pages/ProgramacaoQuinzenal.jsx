@@ -108,6 +108,13 @@ const ProgramacaoQuinzenal = () => {
     carregarAtividades();
   }, [quinzena]);
 
+  // Garantir que sempre temos dados para demonstração
+  useEffect(() => {
+    if (atividades.length === 0 && !loading) {
+      setAtividades(dadosExemplo);
+    }
+  }, [atividades, loading]);
+
   useEffect(() => {
     if (editingCell && inputRef.current) {
       inputRef.current.focus();
@@ -118,13 +125,15 @@ const ProgramacaoQuinzenal = () => {
   const carregarAtividades = async () => {
     setLoading(true);
     try {
+      // Tentar carregar da API primeiro
       const response = await axios.get(`${API_BASE}/programacao/atividades`, {
-        params: { quinzena }
+        params: { quinzena },
+        timeout: 5000 // 5 segundos de timeout
       });
       setAtividades(response.data);
     } catch (error) {
-      console.error('Erro ao carregar atividades:', error);
-      // Usar dados de exemplo quando API não estiver disponível
+      console.log('API não disponível, usando dados de exemplo:', error.message);
+      // Sempre usar dados de exemplo quando API não estiver disponível
       setAtividades(dadosExemplo);
     } finally {
       setLoading(false);
