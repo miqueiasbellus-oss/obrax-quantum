@@ -1,17 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  Play, 
-  Pause, 
-  CheckCircle, 
-  AlertTriangle,
-  Volume2,
-  FileText,
-  Camera,
-  Mic,
-  MapPin,
-  Clock,
-  User,
-  Calendar
+  Mic, 
+  Bot,
+  HardHat,
+  BarChart3,
+  ChevronDown,
+  ChevronUp
 } from 'lucide-react';
 import axios from 'axios';
 
@@ -21,67 +15,132 @@ export default function PainelEncarregado() {
   const [atividades, setAtividades] = useState([]);
   const [loading, setLoading] = useState(true);
   const [encarregadoId] = useState('João Silva');
-  const [quinzena] = useState('2024-Q1-1');
-  const [atividadeExpandida, setAtividadeExpandida] = useState(null);
+  const [atividadesExpandidas, setAtividadesExpandidas] = useState(new Set());
+  const [gravandoAudio, setGravandoAudio] = useState(null);
+  const [percentualInput, setPercentualInput] = useState({});
 
-  // Dados de exemplo para o encarregado
+  // Dados de exemplo com histórico de registros
   const dadosExemplo = [
     {
       id: 1,
-      codigo: 'PE00101',
-      atividade: 'Locação da obra',
-      grupo: 'Infraestrutura',
-      pavimento: 'Térreo',
-      local: 'Área Externa',
-      prazo_inicio: '2024-01-15',
-      prazo_fim: '2024-01-17',
-      percentual_atual: 100,
-      status: 'CONCLUÍDO',
-      prioridade: 'ALTA',
-      observacoes: 'Locação aprovada pela fiscalização',
-      dias_atraso: 0,
-      equipe_responsavel: 'Equipe A',
-      materiais_necessarios: ['Teodolito', 'Estacas', 'Tinta spray'],
-      audios_orientacao: ['Orientação sobre marcos de referência', 'Procedimento de conferência'],
-      ai_refs: ['NBR 12721 - Locação de obras', 'Manual de topografia']
+      codigo: 'PE01201',
+      atividade: 'Forro',
+      local: 'Pavimento Tipo 2 - Corredor do living',
+      equipe: 'RDA Eq.01',
+      prazo: '15/01/25',
+      status_atual: 'PARADO',
+      percentual_pagamento: 0,
+      registros: [
+        {
+          data: '01/01/25',
+          hora: '11:16',
+          status: 'PARADO',
+          descricao: 'Serviço não liberado para execução',
+          dificuldades: 'falta de definição de serviços antecessores',
+          predecessor: 'David'
+        },
+        {
+          data: '02/01/25',
+          hora: '09:16',
+          status: 'PARADO',
+          descricao: 'Serviço não liberado para execução',
+          dificuldades: 'falta de definição de serviços antecessores',
+          predecessor: 'David'
+        },
+        {
+          data: '03/01/25',
+          hora: '11:16',
+          status: 'PARADO',
+          descricao: 'Serviço não liberado para execução',
+          dificuldades: 'falta de definição de serviços antecessores',
+          predecessor: 'David'
+        }
+      ]
     },
     {
       id: 2,
       codigo: 'PE00201',
       atividade: 'Execução de radier',
-      grupo: 'Infraestrutura',
-      pavimento: 'Subsolo',
-      local: 'Área de Fundação',
-      prazo_inicio: '2024-01-18',
-      prazo_fim: '2024-01-25',
-      percentual_atual: 75,
-      status: 'EM_EXECUÇÃO',
-      prioridade: 'ALTA',
-      observacoes: 'Aguardando liberação do concreto',
-      dias_atraso: 2,
-      equipe_responsavel: 'Equipe B',
-      materiais_necessarios: ['Concreto C25', 'Armadura CA-50', 'Forma metálica'],
-      audios_orientacao: ['Procedimento de concretagem', 'Controle de qualidade'],
-      ai_refs: ['NBR 6118 - Estruturas de concreto', 'Manual de concretagem']
+      local: 'Subsolo - Área de Fundação',
+      equipe: 'Equipe B',
+      prazo: '25/01/25',
+      status_atual: 'EM_ANDAMENTO',
+      percentual_pagamento: 75,
+      registros: [
+        {
+          data: '01/01/25',
+          hora: '11:16',
+          status: 'PARADO',
+          descricao: 'Serviço não liberado para execução',
+          dificuldades: 'falta de definição de serviços antecessores',
+          predecessor: 'David'
+        },
+        {
+          data: '06/01/25',
+          hora: '14:18',
+          status: 'EM_ANDAMENTO',
+          descricao: 'Esta acontecendo isso isso e isso',
+          dificuldades: '',
+          predecessor: 'Gabriel',
+          material: 'Os insumos na obra estão acabando e não serão suficiente para finalizar o serviço'
+        },
+        {
+          data: '07/01/25',
+          hora: '17:16',
+          status: 'PARADO',
+          descricao: 'O material ainda não chegou e a equipe esta alocada agora em outro serviço',
+          dificuldades: '',
+          predecessor: 'Gabriel'
+        },
+        {
+          data: '08/01/25',
+          hora: '15:24',
+          status: 'EM_ANDAMENTO',
+          descricao: '',
+          dificuldades: '',
+          predecessor: ''
+        }
+      ]
     },
     {
       id: 3,
       codigo: 'PE00601',
       atividade: 'Formas para laje',
-      grupo: 'Estrutura',
-      pavimento: '1º Andar',
-      local: 'Laje L1',
-      prazo_inicio: '2024-01-26',
-      prazo_fim: '2024-02-02',
-      percentual_atual: 45,
-      status: 'EM_EXECUÇÃO',
-      prioridade: 'MÉDIA',
-      observacoes: 'Material em estoque suficiente',
-      dias_atraso: 0,
-      equipe_responsavel: 'Equipe C',
-      materiais_necessarios: ['Compensado 18mm', 'Pontaletes', 'Pregos'],
-      audios_orientacao: ['Montagem de formas', 'Verificação de prumo e nível'],
-      ai_refs: ['Manual de formas', 'Procedimento de montagem']
+      local: '1º Andar - Laje L1',
+      equipe: 'Equipe C',
+      prazo: '02/02/25',
+      status_atual: 'EM_ATRASO',
+      percentual_pagamento: 45,
+      registros: [
+        {
+          data: '09/01/25',
+          hora: '16:30',
+          status: 'EM_ATRASO',
+          descricao: 'Devido os atrasos de material definições e outros motivos das atividades anteriores',
+          dificuldades: '',
+          predecessor: ''
+        }
+      ]
+    },
+    {
+      id: 4,
+      codigo: 'PE03501',
+      atividade: 'Pintura esmalte',
+      local: '2º Andar - Esquadrias',
+      equipe: 'Equipe D',
+      prazo: '10/02/25',
+      status_atual: 'FINALIZADO_PARCIALMENTE',
+      percentual_pagamento: 80,
+      registros: [
+        {
+          data: '10/01/25',
+          hora: '16:30',
+          status: 'FINALIZADO_PARCIALMENTE',
+          descricao: 'Faltou finalizar a elétrica na frente do quadro não permitindo acabamento do forro',
+          dificuldades: '',
+          predecessor: ''
+        }
+      ]
     }
   ];
 
@@ -93,7 +152,6 @@ export default function PainelEncarregado() {
     setLoading(true);
     try {
       const response = await axios.get(`${API_BASE}/encarregado/${encarregadoId}/atividades`, {
-        params: { quinzena },
         timeout: 3000
       });
       setAtividades(response.data);
@@ -105,40 +163,76 @@ export default function PainelEncarregado() {
     }
   };
 
-  const atualizarStatus = async (atividadeId, novoStatus, dados = {}) => {
-    try {
-      // Simular atualização
-      const novasAtividades = atividades.map(atividade => 
-        atividade.id === atividadeId 
-          ? { ...atividade, status: novoStatus, ...dados }
-          : atividade
-      );
-      setAtividades(novasAtividades);
-      alert(`Status atualizado para: ${novoStatus}`);
-    } catch (error) {
-      console.error('Erro ao atualizar status:', error);
-      alert('Erro ao atualizar status');
+  const toggleAtividade = (atividadeId) => {
+    const novasExpandidas = new Set(atividadesExpandidas);
+    if (novasExpandidas.has(atividadeId)) {
+      novasExpandidas.delete(atividadeId);
+    } else {
+      novasExpandidas.add(atividadeId);
     }
+    setAtividadesExpandidas(novasExpandidas);
+  };
+
+  const iniciarGravacao = (atividadeId) => {
+    setGravandoAudio(atividadeId);
+    // Simular gravação
+    setTimeout(() => {
+      setGravandoAudio(null);
+      alert('Áudio gravado e enviado com sucesso!');
+    }, 3000);
+  };
+
+  const abrirAssistente = (tipo, atividade) => {
+    let mensagem = '';
+    switch (tipo) {
+      case 'robo':
+        mensagem = `🤖 Consultando normas e manuais para: ${atividade.atividade}\n\nReferências encontradas:\n• NBR 15575 - Desempenho de edificações\n• Manual técnico de execução\n• Procedimentos de qualidade`;
+        break;
+      case 'mestre':
+        mensagem = `👷 Instrução do Mestre de Obras para: ${atividade.atividade}\n\n"Verificar alinhamento e prumo antes de fixar. Usar nível a laser para garantir precisão. Equipe deve usar EPI completo."`;
+        break;
+      case 'engenheiro':
+        mensagem = `📊 Instrução do Engenheiro para: ${atividade.atividade}\n\n"Seguir projeto executivo PE-${atividade.codigo}. Tolerância máxima de 5mm. Realizar controle tecnológico conforme especificação."`;
+        break;
+    }
+    alert(mensagem);
+  };
+
+  const atualizarPercentual = (atividadeId, percentual) => {
+    setPercentualInput({
+      ...percentualInput,
+      [atividadeId]: percentual
+    });
+    
+    // Atualizar na lista de atividades
+    const novasAtividades = atividades.map(atividade => 
+      atividade.id === atividadeId 
+        ? { ...atividade, percentual_pagamento: percentual }
+        : atividade
+    );
+    setAtividades(novasAtividades);
   };
 
   const getStatusColor = (status) => {
     const colors = {
-      'PLANEJADO': 'bg-gray-100 text-gray-800 border-gray-300',
-      'EM_EXECUÇÃO': 'bg-yellow-100 text-yellow-800 border-yellow-300',
-      'CONCLUÍDO': 'bg-green-100 text-green-800 border-green-300',
-      'PARADO': 'bg-red-100 text-red-800 border-red-300',
-      'ATRASADO': 'bg-orange-100 text-orange-800 border-orange-300'
+      'PARADO': 'text-yellow-600',
+      'EM_ANDAMENTO': 'text-green-600',
+      'EM_ATRASO': 'text-red-600',
+      'FINALIZADO': 'text-blue-600',
+      'FINALIZADO_PARCIALMENTE': 'text-green-600'
     };
-    return colors[status] || 'bg-gray-100 text-gray-800 border-gray-300';
+    return colors[status] || 'text-gray-600';
   };
 
-  const getPrioridadeColor = (prioridade) => {
-    const colors = {
-      'ALTA': 'text-red-600',
-      'MÉDIA': 'text-yellow-600',
-      'BAIXA': 'text-green-600'
+  const getStatusText = (status) => {
+    const texts = {
+      'PARADO': 'Parado',
+      'EM_ANDAMENTO': 'Em Andamento',
+      'EM_ATRASO': 'Em Atraso',
+      'FINALIZADO': 'Finalizado',
+      'FINALIZADO_PARCIALMENTE': 'Finalizado Parcialmente'
     };
-    return colors[prioridade] || 'text-gray-600';
+    return texts[status] || status;
   };
 
   if (loading) {
@@ -160,257 +254,162 @@ export default function PainelEncarregado() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-bold text-gray-900">Painel do Encarregado</h1>
-              <p className="text-gray-600 mt-1">Interface otimizada para uso em campo</p>
+              <p className="text-gray-600 mt-1">Registros diários e controle de atividades</p>
             </div>
-            
-            <div className="flex items-center gap-4">
-              <div className="text-right">
-                <div className="flex items-center gap-2 text-sm text-gray-600">
-                  <User size={16} />
-                  <span>{encarregadoId}</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm text-gray-600">
-                  <Calendar size={16} />
-                  <span>Quinzena: {quinzena}</span>
-                </div>
+            <div className="text-right">
+              <div className="text-sm text-gray-600">
+                <span className="font-medium">{encarregadoId}</span>
+              </div>
+              <div className="text-sm text-gray-500">
+                {new Date().toLocaleDateString('pt-BR')}
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Resumo */}
+      {/* Lista de Atividades */}
       <div className="max-w-7xl mx-auto px-6 py-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-          <div className="bg-white rounded-lg shadow p-4">
-            <div className="flex items-center">
-              <div className="p-2 bg-blue-100 rounded-lg">
-                <FileText className="w-6 h-6 text-blue-600" />
-              </div>
-              <div className="ml-3">
-                <p className="text-sm font-medium text-gray-500">Total</p>
-                <p className="text-2xl font-semibold text-gray-900">{atividades.length}</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white rounded-lg shadow p-4">
-            <div className="flex items-center">
-              <div className="p-2 bg-yellow-100 rounded-lg">
-                <Clock className="w-6 h-6 text-yellow-600" />
-              </div>
-              <div className="ml-3">
-                <p className="text-sm font-medium text-gray-500">Em Execução</p>
-                <p className="text-2xl font-semibold text-gray-900">
-                  {atividades.filter(a => a.status === 'EM_EXECUÇÃO').length}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white rounded-lg shadow p-4">
-            <div className="flex items-center">
-              <div className="p-2 bg-green-100 rounded-lg">
-                <CheckCircle className="w-6 h-6 text-green-600" />
-              </div>
-              <div className="ml-3">
-                <p className="text-sm font-medium text-gray-500">Concluídas</p>
-                <p className="text-2xl font-semibold text-gray-900">
-                  {atividades.filter(a => a.status === 'CONCLUÍDO').length}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white rounded-lg shadow p-4">
-            <div className="flex items-center">
-              <div className="p-2 bg-red-100 rounded-lg">
-                <AlertTriangle className="w-6 h-6 text-red-600" />
-              </div>
-              <div className="ml-3">
-                <p className="text-sm font-medium text-gray-500">Atrasadas</p>
-                <p className="text-2xl font-semibold text-gray-900">
-                  {atividades.filter(a => a.dias_atraso > 0).length}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Lista de Atividades */}
         <div className="space-y-4">
           {atividades.map((atividade) => {
-            const isExpanded = atividadeExpandida === atividade.id;
-            const isAtrasada = atividade.dias_atraso > 0;
+            const isExpanded = atividadesExpandidas.has(atividade.id);
+            const ultimoRegistro = atividade.registros[atividade.registros.length - 1];
 
             return (
               <div key={atividade.id} className="bg-white rounded-lg shadow-sm border overflow-hidden">
-                {/* Header da Atividade */}
-                <div 
-                  className={`p-4 cursor-pointer border-l-4 ${isAtrasada ? 'border-red-500 bg-red-50' : 'border-blue-500'}`}
-                  onClick={() => setAtividadeExpandida(isExpanded ? null : atividade.id)}
-                >
-                  <div className="flex justify-between items-start">
+                {/* Card Principal */}
+                <div className="p-4 border-l-4 border-blue-500">
+                  <div className="flex items-center justify-between">
                     <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2">
-                        <h3 className="font-semibold text-lg text-gray-900">{atividade.codigo}</h3>
-                        <span className={`text-sm font-medium ${getPrioridadeColor(atividade.prioridade)}`}>
-                          {atividade.prioridade}
-                        </span>
-                        <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full border ${getStatusColor(atividade.status)}`}>
-                          {atividade.status}
-                        </span>
+                      <div className="flex items-center gap-4 mb-2">
+                        <h3 className="font-semibold text-lg text-gray-900">{atividade.atividade}</h3>
+                        <span className="text-sm text-gray-500">Prazo</span>
                       </div>
                       
-                      <p className="text-gray-700 mb-2">{atividade.atividade}</p>
-                      
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-600">
-                        <div>
-                          <span className="font-medium">Local:</span> {atividade.pavimento} - {atividade.local}
-                        </div>
-                        <div>
-                          <span className="font-medium">Prazo:</span> {new Date(atividade.prazo_fim).toLocaleDateString('pt-BR')}
-                        </div>
-                        <div>
-                          <span className="font-medium">Equipe:</span> {atividade.equipe_responsavel}
-                        </div>
-                        <div>
-                          <span className="font-medium">Progresso:</span> {atividade.percentual_atual}%
-                        </div>
+                      <div className="flex items-center gap-4 mb-2">
+                        <span className="text-sm text-gray-600">Local: {atividade.local}</span>
                       </div>
-
-                      {isAtrasada && (
-                        <div className="mt-3 p-2 bg-red-100 border border-red-200 rounded">
-                          <p className="text-red-800 text-sm font-medium">
-                            ⚠️ Atividade em atraso: {atividade.dias_atraso} dias
-                          </p>
-                        </div>
-                      )}
+                      
+                      <div className="flex items-center gap-4">
+                        <span className="text-sm text-gray-600">Equipe: {atividade.equipe}</span>
+                        <span className={`text-sm font-medium ${getStatusColor(atividade.status_atual)}`}>
+                          {getStatusText(atividade.status_atual)}
+                        </span>
+                      </div>
                     </div>
 
-                    <div className="ml-4">
-                      <div className="w-16 h-16 relative">
-                        <svg className="w-16 h-16 transform -rotate-90">
-                          <circle
-                            cx="32"
-                            cy="32"
-                            r="28"
-                            stroke="currentColor"
-                            strokeWidth="4"
-                            fill="transparent"
-                            className="text-gray-200"
-                          />
-                          <circle
-                            cx="32"
-                            cy="32"
-                            r="28"
-                            stroke="currentColor"
-                            strokeWidth="4"
-                            fill="transparent"
-                            strokeDasharray={`${2 * Math.PI * 28}`}
-                            strokeDashoffset={`${2 * Math.PI * 28 * (1 - atividade.percentual_atual / 100)}`}
-                            className="text-blue-600"
-                          />
-                        </svg>
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <span className="text-sm font-semibold text-gray-900">
-                            {atividade.percentual_atual}%
-                          </span>
-                        </div>
+                    <div className="flex items-center gap-3">
+                      {/* Campo de Percentual */}
+                      <div className="flex items-center gap-2">
+                        <input
+                          type="number"
+                          min="0"
+                          max="100"
+                          value={percentualInput[atividade.id] || atividade.percentual_pagamento}
+                          onChange={(e) => atualizarPercentual(atividade.id, parseInt(e.target.value) || 0)}
+                          className="w-16 text-center border border-gray-300 rounded px-2 py-1 text-sm"
+                        />
+                        <span className="text-sm text-gray-600">%</span>
+                      </div>
+
+                      {/* Botões de Ação */}
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() => abrirAssistente('robo', atividade)}
+                          className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                          title="Assistente IA - Normas e Manuais"
+                        >
+                          <Bot size={20} />
+                        </button>
+                        
+                        <button
+                          onClick={() => abrirAssistente('mestre', atividade)}
+                          className="p-2 text-orange-600 hover:bg-orange-50 rounded-lg transition-colors"
+                          title="Instrução do Mestre"
+                        >
+                          <HardHat size={20} />
+                        </button>
+                        
+                        <button
+                          onClick={() => abrirAssistente('engenheiro', atividade)}
+                          className="p-2 text-green-600 hover:bg-green-50 rounded-lg transition-colors"
+                          title="Instrução do Engenheiro"
+                        >
+                          <BarChart3 size={20} />
+                        </button>
                       </div>
                     </div>
                   </div>
+
+                  {/* Botão de Microfone */}
+                  <div className="flex items-center justify-between mt-4">
+                    <button
+                      onClick={() => iniciarGravacao(atividade.id)}
+                      disabled={gravandoAudio === atividade.id}
+                      className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+                        gravandoAudio === atividade.id
+                          ? 'bg-red-100 text-red-800 cursor-not-allowed'
+                          : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
+                      }`}
+                    >
+                      <Mic size={20} className={gravandoAudio === atividade.id ? 'animate-pulse' : ''} />
+                      {gravandoAudio === atividade.id ? 'Gravando...' : 'Gravar Áudio'}
+                    </button>
+
+                    <button
+                      onClick={() => toggleAtividade(atividade.id)}
+                      className="flex items-center gap-2 text-gray-600 hover:text-gray-800 transition-colors"
+                    >
+                      {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                      {isExpanded ? 'Ocultar' : 'Ver'} Registros
+                    </button>
+                  </div>
                 </div>
 
-                {/* Conteúdo Expandido */}
+                {/* Registros Expandidos */}
                 {isExpanded && (
-                  <div className="border-t bg-gray-50 p-4">
-                    {/* Materiais Necessários */}
-                    <div className="mb-4">
-                      <h4 className="font-medium text-gray-900 mb-2">Materiais Necessários:</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {atividade.materiais_necessarios.map((material, index) => (
-                          <span key={index} className="inline-flex px-2 py-1 text-xs bg-blue-100 text-blue-800 rounded-full">
-                            {material}
-                          </span>
+                  <div className="border-t bg-gray-50">
+                    <div className="p-4">
+                      <h4 className="font-medium text-gray-900 mb-3">Histórico de Registros</h4>
+                      <div className="space-y-3">
+                        {atividade.registros.map((registro, index) => (
+                          <div key={index} className="bg-white rounded border p-3">
+                            <div className="flex items-start justify-between mb-2">
+                              <div className="flex items-center gap-4">
+                                <span className="text-sm font-medium text-gray-900">
+                                  {registro.hora} {registro.data}
+                                </span>
+                                <span className={`text-sm font-medium ${getStatusColor(registro.status)}`}>
+                                  Status: {getStatusText(registro.status)}
+                                </span>
+                              </div>
+                            </div>
+                            
+                            {registro.descricao && (
+                              <p className="text-sm text-gray-700 mb-2">{registro.descricao}</p>
+                            )}
+                            
+                            {registro.dificuldades && (
+                              <p className="text-sm text-gray-600 mb-2">
+                                <span className="font-medium">Dificuldades:</span> {registro.dificuldades}
+                              </p>
+                            )}
+                            
+                            {registro.predecessor && (
+                              <p className="text-sm text-gray-600 mb-2">
+                                <span className="font-medium">Predecessor:</span> {registro.predecessor}
+                              </p>
+                            )}
+                            
+                            {registro.material && (
+                              <p className="text-sm text-gray-600">
+                                <span className="font-medium">Material:</span> {registro.material}
+                              </p>
+                            )}
+                          </div>
                         ))}
                       </div>
                     </div>
-
-                    {/* Orientações e Referências */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                      <div>
-                        <h4 className="font-medium text-gray-900 mb-2 flex items-center gap-2">
-                          <Volume2 size={16} />
-                          Orientações (Áudio)
-                        </h4>
-                        <div className="space-y-2">
-                          {atividade.audios_orientacao.map((audio, index) => (
-                            <div key={index} className="flex items-center gap-2 p-2 bg-white rounded border">
-                              <button className="text-blue-600 hover:text-blue-800">
-                                <Play size={16} />
-                              </button>
-                              <span className="text-sm text-gray-600">{audio}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div>
-                        <h4 className="font-medium text-gray-900 mb-2 flex items-center gap-2">
-                          <FileText size={16} />
-                          Referências (IA)
-                        </h4>
-                        <div className="space-y-1">
-                          {atividade.ai_refs.map((ref, index) => (
-                            <div key={index} className="text-sm text-blue-600 hover:text-blue-800 cursor-pointer p-2 bg-white rounded border">
-                              📄 {ref}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Botões de Ação */}
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                      <button
-                        onClick={() => atualizarStatus(atividade.id, 'PARADO')}
-                        className="flex items-center justify-center gap-2 bg-red-100 text-red-800 border border-red-300 rounded-lg py-2 px-4 hover:bg-red-200 transition-colors"
-                      >
-                        <Pause size={16} />
-                        Parado
-                      </button>
-                      
-                      <button
-                        onClick={() => atualizarStatus(atividade.id, 'EM_EXECUÇÃO')}
-                        className="flex items-center justify-center gap-2 bg-green-100 text-green-800 border border-green-300 rounded-lg py-2 px-4 hover:bg-green-200 transition-colors"
-                      >
-                        <Play size={16} />
-                        Em Andamento
-                      </button>
-                      
-                      <button
-                        onClick={() => atualizarStatus(atividade.id, 'CONCLUÍDO')}
-                        className="flex items-center justify-center gap-2 bg-blue-100 text-blue-800 border border-blue-300 rounded-lg py-2 px-4 hover:bg-blue-200 transition-colors"
-                      >
-                        <CheckCircle size={16} />
-                        Finalizar
-                      </button>
-
-                      <button className="flex items-center justify-center gap-2 bg-purple-100 text-purple-800 border border-purple-300 rounded-lg py-2 px-4 hover:bg-purple-200 transition-colors">
-                        <Camera size={16} />
-                        FVS
-                      </button>
-                    </div>
-
-                    {/* Observações */}
-                    {atividade.observacoes && (
-                      <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded">
-                        <p className="text-sm text-yellow-800">
-                          <strong>Observações:</strong> {atividade.observacoes}
-                        </p>
-                      </div>
-                    )}
                   </div>
                 )}
               </div>
@@ -420,12 +419,14 @@ export default function PainelEncarregado() {
 
         {/* Instruções */}
         <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
-          <h3 className="text-sm font-medium text-blue-900 mb-2">📱 Interface otimizada para campo:</h3>
+          <h3 className="text-sm font-medium text-blue-900 mb-2">📱 Como usar o painel:</h3>
           <div className="text-sm text-blue-800 space-y-1">
-            <p>• <strong>Toque na atividade</strong> para expandir e ver detalhes</p>
-            <p>• <strong>Botões grandes</strong> para facilitar uso com luvas</p>
-            <p>• <strong>Status visual</strong> com cores e indicadores de progresso</p>
-            <p>• <strong>Áudios e referências</strong> disponíveis offline</p>
+            <p>• <strong>🤖 Robô:</strong> Consulta normas e manuais de execução</p>
+            <p>• <strong>👷 Capacete:</strong> Recebe instrução do mestre de obras</p>
+            <p>• <strong>📊 Gráfico:</strong> Recebe instrução do engenheiro</p>
+            <p>• <strong>🎙️ Microfone:</strong> Grava áudio do que está acontecendo</p>
+            <p>• <strong>%:</strong> Atualiza percentual para pagamento do serviço</p>
+            <p>• <strong>Registros:</strong> Clique para ver histórico completo da atividade</p>
           </div>
         </div>
       </div>
