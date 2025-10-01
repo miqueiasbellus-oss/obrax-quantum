@@ -215,13 +215,13 @@ export default function PainelEncarregado() {
 
   const getStatusColor = (status) => {
     const colors = {
-      'PARADO': 'text-yellow-600',
-      'EM_ANDAMENTO': 'text-green-600',
-      'EM_ATRASO': 'text-red-600',
-      'FINALIZADO': 'text-blue-600',
-      'FINALIZADO_PARCIALMENTE': 'text-green-600'
+      'PARADO': '#FFA500',
+      'EM_ANDAMENTO': '#32CD32',
+      'EM_ATRASO': '#FF4444',
+      'FINALIZADO': '#4169E1',
+      'FINALIZADO_PARCIALMENTE': '#32CD32'
     };
-    return colors[status] || 'text-gray-600';
+    return colors[status] || '#666666';
   };
 
   const getStatusText = (status) => {
@@ -237,30 +237,76 @@ export default function PainelEncarregado() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Carregando suas atividades...</p>
+      <div style={{ 
+        minHeight: '100vh', 
+        backgroundColor: '#f8fafc', 
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'center' 
+      }}>
+        <div style={{ textAlign: 'center' }}>
+          <div style={{ 
+            width: '48px', 
+            height: '48px', 
+            border: '4px solid #e5e7eb', 
+            borderTop: '4px solid #3b82f6', 
+            borderRadius: '50%', 
+            animation: 'spin 1s linear infinite',
+            margin: '0 auto 16px'
+          }}></div>
+          <p style={{ color: '#6b7280' }}>Carregando suas atividades...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div style={{ minHeight: '100vh', backgroundColor: '#f8fafc' }}>
       {/* Header */}
-      <div className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
+      <div style={{ 
+        backgroundColor: 'white', 
+        boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)', 
+        borderBottom: '1px solid #e5e7eb' 
+      }}>
+        <div style={{ 
+          maxWidth: '1280px', 
+          margin: '0 auto', 
+          padding: '16px 24px' 
+        }}>
+          <div style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'space-between' 
+          }}>
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">Painel do Encarregado</h1>
-              <p className="text-gray-600 mt-1">Registros diários e controle de atividades</p>
+              <h1 style={{ 
+                fontSize: '24px', 
+                fontWeight: 'bold', 
+                color: '#111827', 
+                margin: '0 0 4px 0' 
+              }}>
+                Painel do Encarregado
+              </h1>
+              <p style={{ 
+                color: '#6b7280', 
+                margin: 0, 
+                fontSize: '14px' 
+              }}>
+                Registros diários e controle de atividades
+              </p>
             </div>
-            <div className="text-right">
-              <div className="text-sm text-gray-600">
-                <span className="font-medium">{encarregadoId}</span>
+            <div style={{ textAlign: 'right' }}>
+              <div style={{ 
+                fontSize: '14px', 
+                color: '#6b7280', 
+                fontWeight: '500' 
+              }}>
+                {encarregadoId}
               </div>
-              <div className="text-sm text-gray-500">
+              <div style={{ 
+                fontSize: '14px', 
+                color: '#9ca3af' 
+              }}>
                 {new Date().toLocaleDateString('pt-BR')}
               </div>
             </div>
@@ -269,54 +315,140 @@ export default function PainelEncarregado() {
       </div>
 
       {/* Lista de Atividades */}
-      <div className="max-w-7xl mx-auto px-6 py-6">
-        <div className="space-y-4">
+      <div style={{ 
+        maxWidth: '1280px', 
+        margin: '0 auto', 
+        padding: '24px' 
+      }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           {atividades.map((atividade) => {
             const isExpanded = atividadesExpandidas.has(atividade.id);
-            const ultimoRegistro = atividade.registros[atividade.registros.length - 1];
 
             return (
-              <div key={atividade.id} className="bg-white rounded-lg shadow-sm border overflow-hidden">
+              <div key={atividade.id} style={{ 
+                backgroundColor: 'white', 
+                borderRadius: '12px', 
+                boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)', 
+                border: '1px solid #e5e7eb',
+                overflow: 'hidden'
+              }}>
                 {/* Card Principal */}
-                <div className="p-4 border-l-4 border-blue-500">
-                  <div className="flex items-center justify-between">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-4 mb-2">
-                        <h3 className="font-semibold text-lg text-gray-900">{atividade.atividade}</h3>
-                        <span className="text-sm text-gray-500">Prazo</span>
+                <div style={{ 
+                  padding: '20px', 
+                  borderLeft: '4px solid #3b82f6',
+                  backgroundColor: '#f8fafc'
+                }}>
+                  <div style={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'space-between',
+                    marginBottom: '12px'
+                  }}>
+                    <div style={{ flex: 1 }}>
+                      <div style={{ 
+                        display: 'flex', 
+                        alignItems: 'center', 
+                        gap: '16px', 
+                        marginBottom: '8px' 
+                      }}>
+                        <h3 style={{ 
+                          fontSize: '18px', 
+                          fontWeight: '600', 
+                          color: '#111827', 
+                          margin: 0 
+                        }}>
+                          {atividade.atividade}
+                        </h3>
+                        <span style={{ 
+                          fontSize: '14px', 
+                          color: '#6b7280' 
+                        }}>
+                          Prazo
+                        </span>
                       </div>
                       
-                      <div className="flex items-center gap-4 mb-2">
-                        <span className="text-sm text-gray-600">Local: {atividade.local}</span>
+                      <div style={{ 
+                        fontSize: '14px', 
+                        color: '#6b7280', 
+                        marginBottom: '4px' 
+                      }}>
+                        Local: {atividade.local}
                       </div>
                       
-                      <div className="flex items-center gap-4">
-                        <span className="text-sm text-gray-600">Equipe: {atividade.equipe}</span>
-                        <span className={`text-sm font-medium ${getStatusColor(atividade.status_atual)}`}>
+                      <div style={{ 
+                        display: 'flex', 
+                        alignItems: 'center', 
+                        gap: '16px' 
+                      }}>
+                        <span style={{ 
+                          fontSize: '14px', 
+                          color: '#6b7280' 
+                        }}>
+                          Equipe: {atividade.equipe}
+                        </span>
+                        <span style={{ 
+                          fontSize: '14px', 
+                          fontWeight: '500',
+                          color: getStatusColor(atividade.status_atual)
+                        }}>
                           {getStatusText(atividade.status_atual)}
                         </span>
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-3">
+                    <div style={{ 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      gap: '12px' 
+                    }}>
                       {/* Campo de Percentual */}
-                      <div className="flex items-center gap-2">
+                      <div style={{ 
+                        display: 'flex', 
+                        alignItems: 'center', 
+                        gap: '8px' 
+                      }}>
                         <input
                           type="number"
                           min="0"
                           max="100"
                           value={percentualInput[atividade.id] || atividade.percentual_pagamento}
                           onChange={(e) => atualizarPercentual(atividade.id, parseInt(e.target.value) || 0)}
-                          className="w-16 text-center border border-gray-300 rounded px-2 py-1 text-sm"
+                          style={{
+                            width: '60px',
+                            textAlign: 'center',
+                            border: '1px solid #d1d5db',
+                            borderRadius: '6px',
+                            padding: '4px 8px',
+                            fontSize: '14px'
+                          }}
                         />
-                        <span className="text-sm text-gray-600">%</span>
+                        <span style={{ 
+                          fontSize: '14px', 
+                          color: '#6b7280' 
+                        }}>
+                          %
+                        </span>
                       </div>
 
                       {/* Botões de Ação */}
-                      <div className="flex items-center gap-2">
+                      <div style={{ 
+                        display: 'flex', 
+                        alignItems: 'center', 
+                        gap: '8px' 
+                      }}>
                         <button
                           onClick={() => abrirAssistente('robo', atividade)}
-                          className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                          style={{
+                            padding: '8px',
+                            backgroundColor: '#dbeafe',
+                            color: '#2563eb',
+                            border: 'none',
+                            borderRadius: '8px',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                          }}
                           title="Assistente IA - Normas e Manuais"
                         >
                           <Bot size={20} />
@@ -324,7 +456,17 @@ export default function PainelEncarregado() {
                         
                         <button
                           onClick={() => abrirAssistente('mestre', atividade)}
-                          className="p-2 text-orange-600 hover:bg-orange-50 rounded-lg transition-colors"
+                          style={{
+                            padding: '8px',
+                            backgroundColor: '#fed7aa',
+                            color: '#ea580c',
+                            border: 'none',
+                            borderRadius: '8px',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                          }}
                           title="Instrução do Mestre"
                         >
                           <HardHat size={20} />
@@ -332,7 +474,17 @@ export default function PainelEncarregado() {
                         
                         <button
                           onClick={() => abrirAssistente('engenheiro', atividade)}
-                          className="p-2 text-green-600 hover:bg-green-50 rounded-lg transition-colors"
+                          style={{
+                            padding: '8px',
+                            backgroundColor: '#bbf7d0',
+                            color: '#16a34a',
+                            border: 'none',
+                            borderRadius: '8px',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                          }}
                           title="Instrução do Engenheiro"
                         >
                           <BarChart3 size={20} />
@@ -341,24 +493,47 @@ export default function PainelEncarregado() {
                     </div>
                   </div>
 
-                  {/* Botão de Microfone */}
-                  <div className="flex items-center justify-between mt-4">
+                  {/* Botões de Microfone e Expandir */}
+                  <div style={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'space-between', 
+                    marginTop: '16px' 
+                  }}>
                     <button
                       onClick={() => iniciarGravacao(atividade.id)}
                       disabled={gravandoAudio === atividade.id}
-                      className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
-                        gravandoAudio === atividade.id
-                          ? 'bg-red-100 text-red-800 cursor-not-allowed'
-                          : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
-                      }`}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        padding: '8px 16px',
+                        backgroundColor: gravandoAudio === atividade.id ? '#fecaca' : '#f3f4f6',
+                        color: gravandoAudio === atividade.id ? '#dc2626' : '#374151',
+                        border: 'none',
+                        borderRadius: '8px',
+                        cursor: gravandoAudio === atividade.id ? 'not-allowed' : 'pointer',
+                        fontSize: '14px'
+                      }}
                     >
-                      <Mic size={20} className={gravandoAudio === atividade.id ? 'animate-pulse' : ''} />
+                      <Mic size={20} style={{ 
+                        animation: gravandoAudio === atividade.id ? 'pulse 1s infinite' : 'none' 
+                      }} />
                       {gravandoAudio === atividade.id ? 'Gravando...' : 'Gravar Áudio'}
                     </button>
 
                     <button
                       onClick={() => toggleAtividade(atividade.id)}
-                      className="flex items-center gap-2 text-gray-600 hover:text-gray-800 transition-colors"
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        color: '#6b7280',
+                        backgroundColor: 'transparent',
+                        border: 'none',
+                        cursor: 'pointer',
+                        fontSize: '14px'
+                      }}
                     >
                       {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
                       {isExpanded ? 'Ocultar' : 'Ver'} Registros
@@ -368,42 +543,96 @@ export default function PainelEncarregado() {
 
                 {/* Registros Expandidos */}
                 {isExpanded && (
-                  <div className="border-t bg-gray-50">
-                    <div className="p-4">
-                      <h4 className="font-medium text-gray-900 mb-3">Histórico de Registros</h4>
-                      <div className="space-y-3">
+                  <div style={{ 
+                    borderTop: '1px solid #e5e7eb', 
+                    backgroundColor: '#f9fafb' 
+                  }}>
+                    <div style={{ padding: '20px' }}>
+                      <h4 style={{ 
+                        fontSize: '16px', 
+                        fontWeight: '500', 
+                        color: '#111827', 
+                        margin: '0 0 12px 0' 
+                      }}>
+                        Histórico de Registros
+                      </h4>
+                      <div style={{ 
+                        display: 'flex', 
+                        flexDirection: 'column', 
+                        gap: '12px' 
+                      }}>
                         {atividade.registros.map((registro, index) => (
-                          <div key={index} className="bg-white rounded border p-3">
-                            <div className="flex items-start justify-between mb-2">
-                              <div className="flex items-center gap-4">
-                                <span className="text-sm font-medium text-gray-900">
+                          <div key={index} style={{ 
+                            backgroundColor: 'white', 
+                            borderRadius: '8px', 
+                            border: '1px solid #e5e7eb', 
+                            padding: '12px' 
+                          }}>
+                            <div style={{ 
+                              display: 'flex', 
+                              alignItems: 'start', 
+                              justifyContent: 'space-between', 
+                              marginBottom: '8px' 
+                            }}>
+                              <div style={{ 
+                                display: 'flex', 
+                                alignItems: 'center', 
+                                gap: '16px' 
+                              }}>
+                                <span style={{ 
+                                  fontSize: '14px', 
+                                  fontWeight: '500', 
+                                  color: '#111827' 
+                                }}>
                                   {registro.hora} {registro.data}
                                 </span>
-                                <span className={`text-sm font-medium ${getStatusColor(registro.status)}`}>
+                                <span style={{ 
+                                  fontSize: '14px', 
+                                  fontWeight: '500',
+                                  color: getStatusColor(registro.status)
+                                }}>
                                   Status: {getStatusText(registro.status)}
                                 </span>
                               </div>
                             </div>
                             
                             {registro.descricao && (
-                              <p className="text-sm text-gray-700 mb-2">{registro.descricao}</p>
+                              <p style={{ 
+                                fontSize: '14px', 
+                                color: '#374151', 
+                                margin: '0 0 8px 0' 
+                              }}>
+                                {registro.descricao}
+                              </p>
                             )}
                             
                             {registro.dificuldades && (
-                              <p className="text-sm text-gray-600 mb-2">
-                                <span className="font-medium">Dificuldades:</span> {registro.dificuldades}
+                              <p style={{ 
+                                fontSize: '14px', 
+                                color: '#6b7280', 
+                                margin: '0 0 8px 0' 
+                              }}>
+                                <span style={{ fontWeight: '500' }}>Dificuldades:</span> {registro.dificuldades}
                               </p>
                             )}
                             
                             {registro.predecessor && (
-                              <p className="text-sm text-gray-600 mb-2">
-                                <span className="font-medium">Predecessor:</span> {registro.predecessor}
+                              <p style={{ 
+                                fontSize: '14px', 
+                                color: '#6b7280', 
+                                margin: '0 0 8px 0' 
+                              }}>
+                                <span style={{ fontWeight: '500' }}>Predecessor:</span> {registro.predecessor}
                               </p>
                             )}
                             
                             {registro.material && (
-                              <p className="text-sm text-gray-600">
-                                <span className="font-medium">Material:</span> {registro.material}
+                              <p style={{ 
+                                fontSize: '14px', 
+                                color: '#6b7280', 
+                                margin: 0 
+                              }}>
+                                <span style={{ fontWeight: '500' }}>Material:</span> {registro.material}
                               </p>
                             )}
                           </div>
@@ -418,18 +647,47 @@ export default function PainelEncarregado() {
         </div>
 
         {/* Instruções */}
-        <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
-          <h3 className="text-sm font-medium text-blue-900 mb-2">📱 Como usar o painel:</h3>
-          <div className="text-sm text-blue-800 space-y-1">
-            <p>• <strong>🤖 Robô:</strong> Consulta normas e manuais de execução</p>
-            <p>• <strong>👷 Capacete:</strong> Recebe instrução do mestre de obras</p>
-            <p>• <strong>📊 Gráfico:</strong> Recebe instrução do engenheiro</p>
-            <p>• <strong>🎙️ Microfone:</strong> Grava áudio do que está acontecendo</p>
-            <p>• <strong>%:</strong> Atualiza percentual para pagamento do serviço</p>
-            <p>• <strong>Registros:</strong> Clique para ver histórico completo da atividade</p>
+        <div style={{ 
+          marginTop: '24px', 
+          backgroundColor: '#eff6ff', 
+          border: '1px solid #bfdbfe', 
+          borderRadius: '8px', 
+          padding: '16px' 
+        }}>
+          <h3 style={{ 
+            fontSize: '14px', 
+            fontWeight: '500', 
+            color: '#1e40af', 
+            margin: '0 0 8px 0' 
+          }}>
+            📱 Como usar o painel:
+          </h3>
+          <div style={{ 
+            fontSize: '14px', 
+            color: '#1e40af', 
+            lineHeight: '1.5' 
+          }}>
+            <p style={{ margin: '0 0 4px 0' }}>• <strong>🤖 Robô:</strong> Consulta normas e manuais de execução</p>
+            <p style={{ margin: '0 0 4px 0' }}>• <strong>👷 Capacete:</strong> Recebe instrução do mestre de obras</p>
+            <p style={{ margin: '0 0 4px 0' }}>• <strong>📊 Gráfico:</strong> Recebe instrução do engenheiro</p>
+            <p style={{ margin: '0 0 4px 0' }}>• <strong>🎙️ Microfone:</strong> Grava áudio do que está acontecendo</p>
+            <p style={{ margin: '0 0 4px 0' }}>• <strong>%:</strong> Atualiza percentual para pagamento do serviço</p>
+            <p style={{ margin: 0 }}>• <strong>Registros:</strong> Clique para ver histórico completo da atividade</p>
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.5; }
+        }
+      `}</style>
     </div>
   );
 }
