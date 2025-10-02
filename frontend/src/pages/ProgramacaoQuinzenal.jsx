@@ -1,5 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Mic, Bot, MapPin, Plus, Upload, Download, Save } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { 
+  Mic, 
+  Bot,
+  MapPin,
+  Plus,
+  Search,
+  Filter
+} from 'lucide-react';
 import axios from 'axios';
 
 const API_BASE = 'https://obrax-api.onrender.com';
@@ -7,13 +14,16 @@ const API_BASE = 'https://obrax-api.onrender.com';
 export default function ProgramacaoQuinzenal() {
   const [atividades, setAtividades] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [editingCell, setEditingCell] = useState(null);
-  const [tempValue, setTempValue] = useState('');
-  const [saveStatus, setSaveStatus] = useState('saved');
-  const [lastSaved, setLastSaved] = useState(new Date());
-  const inputRef = useRef(null);
+  const [editandoCelula, setEditandoCelula] = useState(null);
+  const [valorEdicao, setValorEdicao] = useState('');
+  const [filtros, setFiltros] = useState({
+    busca: '',
+    grupo: '',
+    encarregado: '',
+    status: ''
+  });
 
-  // Dados de exemplo com estrutura completa
+  // Dados de exemplo com design moderno
   const dadosExemplo = [
     {
       id: 1,
@@ -25,8 +35,8 @@ export default function ProgramacaoQuinzenal() {
       local: 'Área Externa',
       inicio: '2024-01-15',
       fim: '2024-01-17',
-      percentual_anterior: 0,
-      percentual_atual: 100,
+      perc_anterior: 0,
+      perc_atual: 100,
       status: 'CONCLUÍDO',
       observacoes: 'Locação aprovada pela fiscalização'
     },
@@ -40,8 +50,8 @@ export default function ProgramacaoQuinzenal() {
       local: 'Área de Fundação',
       inicio: '2024-01-18',
       fim: '2024-01-25',
-      percentual_anterior: 30,
-      percentual_atual: 75,
+      perc_anterior: 30,
+      perc_atual: 75,
       status: 'EM_EXECUÇÃO',
       observacoes: 'Aguardando liberação do concreto'
     },
@@ -55,8 +65,8 @@ export default function ProgramacaoQuinzenal() {
       local: 'Laje L1',
       inicio: '2024-01-26',
       fim: '2024-02-02',
-      percentual_anterior: 0,
-      percentual_atual: 45,
+      perc_anterior: 0,
+      perc_atual: 45,
       status: 'EM_EXECUÇÃO',
       observacoes: 'Material em estoque suficiente'
     },
@@ -70,8 +80,8 @@ export default function ProgramacaoQuinzenal() {
       local: 'Apartamentos 101-105',
       inicio: '2024-02-03',
       fim: '2024-02-15',
-      percentual_anterior: 0,
-      percentual_atual: 20,
+      perc_anterior: 0,
+      perc_atual: 20,
       status: 'INICIADO',
       observacoes: 'Blocos cerâmicos entregues'
     },
@@ -85,38 +95,16 @@ export default function ProgramacaoQuinzenal() {
       local: 'Fachada Norte',
       inicio: '2024-02-16',
       fim: '2024-02-28',
-      percentual_anterior: 0,
-      percentual_atual: 0,
+      perc_anterior: 0,
+      perc_atual: 0,
       status: 'PLANEJADO',
       observacoes: 'Dependente da conclusão da alvenaria'
     }
   ];
 
-  const colunas = [
-    { key: 'codigo', label: 'Código', width: '100px' },
-    { key: 'atividade', label: 'Atividade', width: '250px' },
-    { key: 'grupo', label: 'Grupo', width: '120px' },
-    { key: 'encarregado', label: 'Encarregado', width: '140px' },
-    { key: 'pavimento', label: 'Pavimento', width: '100px' },
-    { key: 'local', label: 'Local', width: '150px' },
-    { key: 'inicio', label: 'Início', width: '110px' },
-    { key: 'fim', label: 'Fim', width: '110px' },
-    { key: 'percentual_anterior', label: '% Anterior', width: '90px' },
-    { key: 'percentual_atual', label: '% Atual', width: '90px' },
-    { key: 'status', label: 'Status', width: '120px' },
-    { key: 'observacoes', label: 'Observações', width: '200px' }
-  ];
-
   useEffect(() => {
     carregarAtividades();
   }, []);
-
-  useEffect(() => {
-    if (editingCell && inputRef.current) {
-      inputRef.current.focus();
-      inputRef.current.select();
-    }
-  }, [editingCell]);
 
   const carregarAtividades = async () => {
     setLoading(true);
@@ -133,45 +121,31 @@ export default function ProgramacaoQuinzenal() {
     }
   };
 
-  const handleCellClick = (rowIndex, field, currentValue) => {
-    setEditingCell({ rowIndex, field });
-    setTempValue(currentValue || '');
+  const iniciarEdicao = (atividadeId, campo, valor) => {
+    setEditandoCelula(`${atividadeId}-${campo}`);
+    setValorEdicao(valor);
   };
 
-  const handleCellChange = (e) => {
-    setTempValue(e.target.value);
+  const salvarEdicao = (atividadeId, campo) => {
+    const novasAtividades = atividades.map(atividade => 
+      atividade.id === atividadeId 
+        ? { ...atividade, [campo]: valorEdicao }
+        : atividade
+    );
+    setAtividades(novasAtividades);
+    setEditandoCelula(null);
+    setValorEdicao('');
   };
 
-  const handleCellBlur = () => {
-    if (editingCell) {
-      const { rowIndex, field } = editingCell;
-      const newAtividades = [...atividades];
-      newAtividades[rowIndex][field] = tempValue;
-      setAtividades(newAtividades);
-      setEditingCell(null);
-      setSaveStatus('saving');
-      
-      // Simular salvamento
-      setTimeout(() => {
-        setSaveStatus('saved');
-        setLastSaved(new Date());
-      }, 1000);
-    }
+  const cancelarEdicao = () => {
+    setEditandoCelula(null);
+    setValorEdicao('');
   };
 
-  const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      handleCellBlur();
-    } else if (e.key === 'Escape') {
-      setEditingCell(null);
-      setTempValue('');
-    }
-  };
-
-  const adicionarLinha = () => {
+  const adicionarNovaLinha = () => {
     const novaAtividade = {
-      id: atividades.length + 1,
-      codigo: `PE${String(atividades.length + 1).padStart(5, '0')}`,
+      id: Date.now(),
+      codigo: `PE${String(Date.now()).slice(-5)}`,
       atividade: 'Nova Atividade',
       grupo: 'Grupo',
       encarregado: 'Encarregado',
@@ -179,8 +153,8 @@ export default function ProgramacaoQuinzenal() {
       local: 'Local',
       inicio: new Date().toISOString().split('T')[0],
       fim: new Date().toISOString().split('T')[0],
-      percentual_anterior: 0,
-      percentual_atual: 0,
+      perc_anterior: 0,
+      perc_atual: 0,
       status: 'PLANEJADO',
       observacoes: ''
     };
@@ -189,212 +163,329 @@ export default function ProgramacaoQuinzenal() {
 
   const getStatusColor = (status) => {
     const colors = {
-      'PLANEJADO': 'bg-gray-100 text-gray-800',
-      'INICIADO': 'bg-blue-100 text-blue-800',
-      'EM_EXECUÇÃO': 'bg-yellow-100 text-yellow-800',
-      'CONCLUÍDO': 'bg-green-100 text-green-800',
-      'ATRASADO': 'bg-red-100 text-red-800'
+      'PLANEJADO': '#6b7280',
+      'INICIADO': '#f59e0b',
+      'EM_EXECUÇÃO': '#10b981',
+      'CONCLUÍDO': '#3b82f6',
+      'ATRASADO': '#ef4444'
     };
-    return colors[status] || 'bg-gray-100 text-gray-800';
+    return colors[status] || '#6b7280';
   };
 
-  const renderCell = (atividade, field, rowIndex) => {
-    const isEditing = editingCell?.rowIndex === rowIndex && editingCell?.field === field;
-    const value = atividade[field];
+  const atividadesFiltradas = atividades.filter(atividade => {
+    return (
+      atividade.atividade.toLowerCase().includes(filtros.busca.toLowerCase()) &&
+      (filtros.grupo === '' || atividade.grupo === filtros.grupo) &&
+      (filtros.encarregado === '' || atividade.encarregado === filtros.encarregado) &&
+      (filtros.status === '' || atividade.status === filtros.status)
+    );
+  });
 
-    if (isEditing) {
-      if (field === 'status') {
-        return (
-          <select
-            ref={inputRef}
-            value={tempValue}
-            onChange={handleCellChange}
-            onBlur={handleCellBlur}
-            onKeyDown={handleKeyPress}
-            className="w-full h-full border-0 outline-none bg-white px-2 py-1 text-sm"
-          >
-            <option value="PLANEJADO">PLANEJADO</option>
-            <option value="INICIADO">INICIADO</option>
-            <option value="EM_EXECUÇÃO">EM_EXECUÇÃO</option>
-            <option value="CONCLUÍDO">CONCLUÍDO</option>
-            <option value="ATRASADO">ATRASADO</option>
-          </select>
-        );
-      } else if (field.includes('percentual')) {
-        return (
-          <input
-            ref={inputRef}
-            type="number"
-            min="0"
-            max="100"
-            value={tempValue}
-            onChange={handleCellChange}
-            onBlur={handleCellBlur}
-            onKeyDown={handleKeyPress}
-            className="w-full h-full border-0 outline-none bg-white px-2 py-1 text-sm text-center"
-          />
-        );
-      } else if (field === 'inicio' || field === 'fim') {
-        return (
-          <input
-            ref={inputRef}
-            type="date"
-            value={tempValue}
-            onChange={handleCellChange}
-            onBlur={handleCellBlur}
-            onKeyDown={handleKeyPress}
-            className="w-full h-full border-0 outline-none bg-white px-2 py-1 text-sm"
-          />
-        );
-      } else {
-        return (
-          <input
-            ref={inputRef}
-            type="text"
-            value={tempValue}
-            onChange={handleCellChange}
-            onBlur={handleCellBlur}
-            onKeyDown={handleKeyPress}
-            className="w-full h-full border-0 outline-none bg-white px-2 py-1 text-sm"
-          />
-        );
-      }
+  const renderCelula = (atividade, campo, tipo = 'text') => {
+    const chaveEdicao = `${atividade.id}-${campo}`;
+    const estaEditando = editandoCelula === chaveEdicao;
+    const valor = atividade[campo];
+
+    if (estaEditando) {
+      return (
+        <input
+          type={tipo}
+          value={valorEdicao}
+          onChange={(e) => setValorEdicao(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') salvarEdicao(atividade.id, campo);
+            if (e.key === 'Escape') cancelarEdicao();
+          }}
+          onBlur={() => salvarEdicao(atividade.id, campo)}
+          autoFocus
+          style={{
+            width: '100%',
+            padding: '4px 8px',
+            border: '2px solid #3b82f6',
+            borderRadius: '4px',
+            fontSize: '14px',
+            backgroundColor: 'white'
+          }}
+        />
+      );
     }
 
-    // Renderização normal da célula
-    if (field === 'status') {
-      return (
-        <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(value)}`}>
-          {value}
-        </span>
-      );
-    } else if (field.includes('percentual')) {
-      return (
-        <div className="text-center font-medium">
-          {value}%
-        </div>
-      );
-    } else {
-      return (
-        <div className="truncate">
-          {value}
-        </div>
-      );
-    }
+    return (
+      <div
+        onClick={() => iniciarEdicao(atividade.id, campo, valor)}
+        style={{
+          padding: '8px',
+          cursor: 'pointer',
+          minHeight: '20px',
+          borderRadius: '4px',
+          transition: 'background-color 0.2s'
+        }}
+        onMouseEnter={(e) => e.target.style.backgroundColor = '#f3f4f6'}
+        onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
+      >
+        {tipo === 'date' && valor ? new Date(valor).toLocaleDateString('pt-BR') : valor}
+      </div>
+    );
   };
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Carregando programação...</p>
+      <div style={{ 
+        minHeight: '100vh', 
+        backgroundColor: '#f8fafc', 
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'center' 
+      }}>
+        <div style={{ textAlign: 'center' }}>
+          <div style={{ 
+            width: '48px', 
+            height: '48px', 
+            border: '4px solid #e5e7eb', 
+            borderTop: '4px solid #3b82f6', 
+            borderRadius: '50%', 
+            animation: 'spin 1s linear infinite',
+            margin: '0 auto 16px'
+          }}></div>
+          <p style={{ color: '#6b7280' }}>Carregando programação...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div style={{ minHeight: '100vh', backgroundColor: '#f8fafc' }}>
       {/* Header */}
-      <div className="bg-white shadow-sm border-b">
-        <div className="max-w-full mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
+      <div style={{ 
+        backgroundColor: 'white', 
+        boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)', 
+        borderBottom: '1px solid #e5e7eb' 
+      }}>
+        <div style={{ 
+          maxWidth: '1400px', 
+          margin: '0 auto', 
+          padding: '16px 24px' 
+        }}>
+          <div style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'space-between',
+            marginBottom: '16px'
+          }}>
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">Programação Quinzenal</h1>
-              <p className="text-gray-600 mt-1">Gestão completa de atividades com dados reais FVS/PE</p>
+              <h1 style={{ 
+                fontSize: '24px', 
+                fontWeight: 'bold', 
+                color: '#111827', 
+                margin: '0 0 4px 0' 
+              }}>
+                Programação Quinzenal
+              </h1>
+              <p style={{ 
+                color: '#6b7280', 
+                margin: 0, 
+                fontSize: '14px' 
+              }}>
+                Gestão completa de atividades com dados reais FVS/PE
+              </p>
             </div>
             
-            <div className="flex items-center gap-4">
+            <div style={{ display: 'flex', gap: '12px' }}>
               <button
-                onClick={adicionarLinha}
-                className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                onClick={adicionarNovaLinha}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '8px 16px',
+                  backgroundColor: '#3b82f6',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  fontSize: '14px',
+                  fontWeight: '500'
+                }}
               >
-                <Plus size={18} />
+                <Plus size={16} />
                 Nova Linha
               </button>
-              
-              <div className="flex items-center gap-2">
-                {saveStatus === 'saving' && (
-                  <>
-                    <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></div>
-                    <span className="text-xs text-yellow-600">Salvando...</span>
-                  </>
-                )}
-                {saveStatus === 'saved' && (
-                  <>
-                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <span className="text-xs text-green-600">
-                      Salvo {lastSaved.toLocaleTimeString('pt-BR')}
-                    </span>
-                  </>
-                )}
-              </div>
+            </div>
+          </div>
+
+          {/* Filtros */}
+          <div style={{ 
+            display: 'flex', 
+            gap: '12px', 
+            flexWrap: 'wrap',
+            alignItems: 'center'
+          }}>
+            <div style={{ position: 'relative' }}>
+              <Search size={16} style={{ 
+                position: 'absolute', 
+                left: '12px', 
+                top: '50%', 
+                transform: 'translateY(-50%)', 
+                color: '#6b7280' 
+              }} />
+              <input
+                type="text"
+                placeholder="Buscar atividades..."
+                value={filtros.busca}
+                onChange={(e) => setFiltros({...filtros, busca: e.target.value})}
+                style={{
+                  paddingLeft: '40px',
+                  padding: '8px 12px',
+                  border: '1px solid #d1d5db',
+                  borderRadius: '8px',
+                  fontSize: '14px',
+                  width: '200px'
+                }}
+              />
+            </div>
+
+            <select
+              value={filtros.grupo}
+              onChange={(e) => setFiltros({...filtros, grupo: e.target.value})}
+              style={{
+                padding: '8px 12px',
+                border: '1px solid #d1d5db',
+                borderRadius: '8px',
+                fontSize: '14px'
+              }}
+            >
+              <option value="">Todos os Grupos</option>
+              <option value="Infraestrutura">Infraestrutura</option>
+              <option value="Estrutura">Estrutura</option>
+              <option value="Alvenaria">Alvenaria</option>
+              <option value="Revestimentos">Revestimentos</option>
+            </select>
+
+            <select
+              value={filtros.status}
+              onChange={(e) => setFiltros({...filtros, status: e.target.value})}
+              style={{
+                padding: '8px 12px',
+                border: '1px solid #d1d5db',
+                borderRadius: '8px',
+                fontSize: '14px'
+              }}
+            >
+              <option value="">Todos os Status</option>
+              <option value="PLANEJADO">Planejado</option>
+              <option value="INICIADO">Iniciado</option>
+              <option value="EM_EXECUÇÃO">Em Execução</option>
+              <option value="CONCLUÍDO">Concluído</option>
+            </select>
+
+            <div style={{ 
+              fontSize: '12px', 
+              color: '#6b7280',
+              marginLeft: 'auto'
+            }}>
+              Salvo {new Date().toLocaleTimeString('pt-BR')}
             </div>
           </div>
         </div>
       </div>
 
-      {/* Planilha */}
-      <div className="p-6">
-        <div className="bg-white rounded-lg shadow-sm border overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              {/* Cabeçalho */}
+      {/* Tabela */}
+      <div style={{ 
+        maxWidth: '1400px', 
+        margin: '0 auto', 
+        padding: '24px' 
+      }}>
+        <div style={{ 
+          backgroundColor: 'white', 
+          borderRadius: '12px', 
+          boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)', 
+          overflow: 'hidden' 
+        }}>
+          <div style={{ overflowX: 'auto' }}>
+            <table style={{ 
+              width: '100%', 
+              borderCollapse: 'collapse',
+              fontSize: '14px'
+            }}>
               <thead>
-                <tr className="bg-gray-50 border-b">
-                  {colunas.map((coluna) => (
-                    <th
-                      key={coluna.key}
-                      className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-r border-gray-200 last:border-r-0"
-                      style={{ width: coluna.width }}
-                    >
-                      {coluna.label}
-                    </th>
-                  ))}
-                  <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider w-24">
-                    Ações
-                  </th>
+                <tr style={{ backgroundColor: '#f8fafc' }}>
+                  <th style={{ padding: '12px', textAlign: 'left', fontWeight: '600', color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Código</th>
+                  <th style={{ padding: '12px', textAlign: 'left', fontWeight: '600', color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Atividade</th>
+                  <th style={{ padding: '12px', textAlign: 'left', fontWeight: '600', color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Grupo</th>
+                  <th style={{ padding: '12px', textAlign: 'left', fontWeight: '600', color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Encarregado</th>
+                  <th style={{ padding: '12px', textAlign: 'left', fontWeight: '600', color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Pavimento</th>
+                  <th style={{ padding: '12px', textAlign: 'left', fontWeight: '600', color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Local</th>
+                  <th style={{ padding: '12px', textAlign: 'left', fontWeight: '600', color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Início</th>
+                  <th style={{ padding: '12px', textAlign: 'left', fontWeight: '600', color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Fim</th>
+                  <th style={{ padding: '12px', textAlign: 'left', fontWeight: '600', color: '#374151', borderBottom: '1px solid #e5e7eb' }}>% Anterior</th>
+                  <th style={{ padding: '12px', textAlign: 'left', fontWeight: '600', color: '#374151', borderBottom: '1px solid #e5e7eb' }}>% Atual</th>
+                  <th style={{ padding: '12px', textAlign: 'left', fontWeight: '600', color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Status</th>
+                  <th style={{ padding: '12px', textAlign: 'left', fontWeight: '600', color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Observações</th>
+                  <th style={{ padding: '12px', textAlign: 'left', fontWeight: '600', color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Ações</th>
                 </tr>
               </thead>
-
-              {/* Corpo da tabela */}
               <tbody>
-                {atividades.map((atividade, rowIndex) => (
-                  <tr
-                    key={atividade.id}
-                    className={`border-b hover:bg-gray-50 transition-colors ${
-                      rowIndex % 2 === 0 ? 'bg-white' : 'bg-blue-50'
-                    }`}
-                  >
-                    {colunas.map((coluna) => (
-                      <td
-                        key={coluna.key}
-                        className="px-4 py-3 text-sm border-r border-gray-200 last:border-r-0 cursor-pointer hover:bg-gray-100 transition-colors"
-                        style={{ width: coluna.width }}
-                        onClick={() => handleCellClick(rowIndex, coluna.key, atividade[coluna.key])}
-                      >
-                        {renderCell(atividade, coluna.key, rowIndex)}
-                      </td>
-                    ))}
-                    
-                    {/* Botões de ação */}
-                    <td className="px-2 py-3 text-center border-r border-gray-200">
-                      <div className="flex items-center justify-center gap-1">
+                {atividadesFiltradas.map((atividade, index) => (
+                  <tr key={atividade.id} style={{ 
+                    backgroundColor: index % 2 === 0 ? 'white' : '#f8fafc',
+                    borderBottom: '1px solid #e5e7eb'
+                  }}>
+                    <td style={{ padding: '12px' }}>{renderCelula(atividade, 'codigo')}</td>
+                    <td style={{ padding: '12px' }}>{renderCelula(atividade, 'atividade')}</td>
+                    <td style={{ padding: '12px' }}>{renderCelula(atividade, 'grupo')}</td>
+                    <td style={{ padding: '12px' }}>{renderCelula(atividade, 'encarregado')}</td>
+                    <td style={{ padding: '12px' }}>{renderCelula(atividade, 'pavimento')}</td>
+                    <td style={{ padding: '12px' }}>{renderCelula(atividade, 'local')}</td>
+                    <td style={{ padding: '12px' }}>{renderCelula(atividade, 'inicio', 'date')}</td>
+                    <td style={{ padding: '12px' }}>{renderCelula(atividade, 'fim', 'date')}</td>
+                    <td style={{ padding: '12px' }}>{renderCelula(atividade, 'perc_anterior', 'number')}%</td>
+                    <td style={{ padding: '12px' }}>{renderCelula(atividade, 'perc_atual', 'number')}%</td>
+                    <td style={{ padding: '12px' }}>
+                      <span style={{ 
+                        color: getStatusColor(atividade.status),
+                        fontWeight: '500'
+                      }}>
+                        {atividade.status}
+                      </span>
+                    </td>
+                    <td style={{ padding: '12px' }}>{renderCelula(atividade, 'observacoes')}</td>
+                    <td style={{ padding: '12px' }}>
+                      <div style={{ display: 'flex', gap: '4px' }}>
                         <button
-                          className="p-1 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded transition-colors"
+                          style={{
+                            padding: '4px',
+                            backgroundColor: '#dbeafe',
+                            color: '#2563eb',
+                            border: 'none',
+                            borderRadius: '4px',
+                            cursor: 'pointer'
+                          }}
                           title="Gravação de áudio"
                         >
                           <Mic size={16} />
                         </button>
                         <button
-                          className="p-1 text-gray-400 hover:text-purple-600 hover:bg-purple-50 rounded transition-colors"
+                          style={{
+                            padding: '4px',
+                            backgroundColor: '#dcfce7',
+                            color: '#16a34a',
+                            border: 'none',
+                            borderRadius: '4px',
+                            cursor: 'pointer'
+                          }}
                           title="Assistente IA"
                         >
                           <Bot size={16} />
                         </button>
                         <button
-                          className="p-1 text-gray-400 hover:text-green-600 hover:bg-green-50 rounded transition-colors"
+                          style={{
+                            padding: '4px',
+                            backgroundColor: '#fef3c7',
+                            color: '#d97706',
+                            border: 'none',
+                            borderRadius: '4px',
+                            cursor: 'pointer'
+                          }}
                           title="Localização"
                         >
                           <MapPin size={16} />
@@ -409,16 +500,40 @@ export default function ProgramacaoQuinzenal() {
         </div>
 
         {/* Instruções */}
-        <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
-          <h3 className="text-sm font-medium text-blue-900 mb-2">💡 Como usar a planilha:</h3>
-          <div className="text-sm text-blue-800 space-y-1">
-            <p>• <strong>Clique em qualquer célula</strong> para editar o conteúdo</p>
-            <p>• <strong>Enter</strong> para salvar, <strong>Esc</strong> para cancelar</p>
-            <p>• <strong>Botões de ação</strong>: 🎙️ Áudio, 🤖 IA, 📍 Localização</p>
-            <p>• <strong>Salvamento automático</strong> após cada edição</p>
+        <div style={{ 
+          marginTop: '24px', 
+          backgroundColor: '#eff6ff', 
+          border: '1px solid #bfdbfe', 
+          borderRadius: '8px', 
+          padding: '16px' 
+        }}>
+          <h3 style={{ 
+            fontSize: '14px', 
+            fontWeight: '500', 
+            color: '#1e40af', 
+            margin: '0 0 8px 0' 
+          }}>
+            💡 Como usar a planilha:
+          </h3>
+          <div style={{ 
+            fontSize: '14px', 
+            color: '#1e40af', 
+            lineHeight: '1.5' 
+          }}>
+            <p style={{ margin: '0 0 4px 0' }}>• <strong>Clique em qualquer célula</strong> para editar o conteúdo</p>
+            <p style={{ margin: '0 0 4px 0' }}>• <strong>Enter</strong> para salvar, <strong>Esc</strong> para cancelar</p>
+            <p style={{ margin: '0 0 4px 0' }}>• <strong>Botões de ação:</strong> 🎙️ Áudio, 🤖 IA, 📍 Localização</p>
+            <p style={{ margin: 0 }}>• <strong>Salvamento automático</strong> após cada edição</p>
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+      `}</style>
     </div>
   );
 }
