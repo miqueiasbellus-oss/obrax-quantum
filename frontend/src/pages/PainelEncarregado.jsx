@@ -9,13 +9,15 @@ import {
   Calendar,
   MapPin,
   Users,
-  Clock
+  Clock,
+  Loader
 } from 'lucide-react';
 
 export default function PainelEncarregado() {
   const [atividades, setAtividades] = useState([]);
   const [expandidas, setExpandidas] = useState({});
   const [gravandoAudio, setGravandoAudio] = useState({});
+  const [processandoAudio, setProcessandoAudio] = useState({});
   const [mediaRecorder, setMediaRecorder] = useState(null);
 
   // Dados de exemplo com prazos da programação
@@ -36,27 +38,14 @@ export default function PainelEncarregado() {
           data: '01/01/25',
           hora: '11:16',
           status: 'Parado',
-          descricao: 'Serviço não liberado para execução',
-          dificuldades: 'falta de definição de serviços antecessores',
-          predecessor: 'David'
-        },
-        {
-          id: 2,
-          data: '02/01/25',
-          hora: '09:16',
-          status: 'Parado',
-          descricao: 'Serviço não liberado para execução',
-          dificuldades: 'falta de definição de serviços antecessores',
-          predecessor: 'David'
-        },
-        {
-          id: 3,
-          data: '03/01/25',
-          hora: '11:16',
-          status: 'Parado',
-          descricao: 'Serviço não liberado para execução',
-          dificuldades: 'falta de definição de serviços antecessores',
-          predecessor: 'David'
+          liberacao_servico: 'Não liberado',
+          predecessor: 'David',
+          dificuldades: 'Falta de definição de serviços antecessores',
+          retrabalho: 'Não',
+          ambiente_limpo: 'Sim',
+          colaboradores_equipes: 'RDA Eq.01',
+          motivo_atraso: 'Dependência de outros serviços',
+          observacoes_adicionais: 'Aguardando liberação da engenharia'
         }
       ]
     },
@@ -76,27 +65,14 @@ export default function PainelEncarregado() {
           data: '06/01/25',
           hora: '14:18',
           status: 'Em andamento',
-          descricao: 'Esta acontecendo isso isso e isso',
-          dificuldades: 'Material: Os insumos na obra estão acabando e não serão suficiente para finalizar o serviço',
-          predecessor: 'Gabriel'
-        },
-        {
-          id: 2,
-          data: '07/01/25',
-          hora: '17:16',
-          status: 'Parado',
-          descricao: 'O material ainda não chegou e a equipe esta alocada agora em outro serviço',
-          dificuldades: '',
-          predecessor: 'Gabriel'
-        },
-        {
-          id: 3,
-          data: '08/01/25',
-          hora: '15:24',
-          status: 'Em andamento',
-          descricao: '',
-          dificuldades: '',
-          predecessor: ''
+          liberacao_servico: 'Liberado',
+          predecessor: 'Gabriel',
+          dificuldades: 'Material insuficiente',
+          retrabalho: 'Não',
+          ambiente_limpo: 'Sim',
+          colaboradores_equipes: 'Equipe B completa',
+          motivo_atraso: 'Atraso na entrega de material',
+          observacoes_adicionais: 'Os insumos na obra estão acabando e não serão suficiente para finalizar o serviço'
         }
       ]
     },
@@ -116,31 +92,14 @@ export default function PainelEncarregado() {
           data: '09/01/25',
           hora: '16:30',
           status: 'Em atraso',
-          descricao: 'Devido os atrasos de material definições e outros motivos das atividades anteriores',
-          dificuldades: '',
-          predecessor: ''
-        }
-      ]
-    },
-    {
-      id: 4,
-      codigo: 'PE01401',
-      atividade: 'Revestimento argamassa',
-      local: 'Térreo - Fachada Norte',
-      equipe: 'Equipe D',
-      prazoInicio: '2024-02-16',
-      prazoFim: '2024-02-28',
-      status: 'Finalizado Parcialmente',
-      percentual: 85,
-      registros: [
-        {
-          id: 1,
-          data: '10/01/25',
-          hora: '18:45',
-          status: 'Finalizado parcialmente',
-          descricao: 'Faltou finalizar a elétrica na frente do quadro não permitindo o acabamento do forro',
-          dificuldades: '',
-          predecessor: ''
+          liberacao_servico: 'Parcialmente liberado',
+          predecessor: 'Equipe anterior',
+          dificuldades: 'Atrasos de atividades anteriores',
+          retrabalho: 'Sim',
+          ambiente_limpo: 'Não',
+          colaboradores_equipes: 'Equipe C reduzida',
+          motivo_atraso: 'Dependência de atividades anteriores',
+          observacoes_adicionais: 'Devido os atrasos de material definições e outros motivos das atividades anteriores'
         }
       ]
     }
@@ -168,6 +127,98 @@ export default function PainelEncarregado() {
     return colors[status] || '#6b7280';
   };
 
+  // Função para transcrever áudio usando Web Speech API
+  const transcreverAudio = async (audioBlob) => {
+    return new Promise((resolve) => {
+      // Simulação de transcrição (em produção, usar API real)
+      const transcricoesPossíveis = [
+        "O serviço foi liberado hoje pela manhã, a equipe está completa, não temos dificuldades no momento, o ambiente está limpo e organizado",
+        "Estamos com atraso devido à falta de material, o predecessor não finalizou ainda, precisa de retrabalho na parte elétrica",
+        "Serviço parado, aguardando liberação do engenheiro, equipe reduzida hoje, ambiente precisa ser limpo antes de continuar",
+        "Tudo liberado, equipe trabalhando normalmente, sem dificuldades, ambiente ok, sem necessidade de retrabalho",
+        "Problema com o predecessor, serviço não foi liberado, equipe ociosa, ambiente sujo, precisa de limpeza urgente"
+      ];
+      
+      const transcricaoAleatoria = transcricoesPossíveis[Math.floor(Math.random() * transcricoesPossíveis.length)];
+      
+      setTimeout(() => {
+        resolve(transcricaoAleatoria);
+      }, 2000); // Simula tempo de processamento
+    });
+  };
+
+  // Função para categorizar o texto transcrito usando IA
+  const categorizarTexto = async (textoTranscrito) => {
+    return new Promise((resolve) => {
+      // Simulação de IA para categorização (em produção, usar OpenAI API)
+      const palavrasChave = {
+        liberacao_servico: ['liberado', 'liberação', 'aprovado', 'autorizado', 'pode começar', 'pode iniciar'],
+        status: ['parado', 'andamento', 'executando', 'finalizado', 'atrasado', 'concluído'],
+        predecessor: ['predecessor', 'equipe anterior', 'serviço anterior', 'dependência'],
+        dificuldades: ['dificuldade', 'problema', 'complicação', 'obstáculo', 'impedimento'],
+        retrabalho: ['retrabalho', 'refazer', 'corrigir', 'ajustar', 'reparar'],
+        ambiente_limpo: ['limpo', 'organizado', 'sujo', 'bagunçado', 'desarrumado'],
+        colaboradores_equipes: ['equipe', 'colaborador', 'funcionário', 'pessoal', 'time'],
+        motivo_atraso: ['atraso', 'atrasado', 'demora', 'pendência', 'espera'],
+        observacoes_adicionais: ['observação', 'nota', 'comentário', 'adicional', 'importante']
+      };
+
+      const resultado = {
+        liberacao_servico: '',
+        status: '',
+        predecessor: '',
+        dificuldades: '',
+        retrabalho: '',
+        ambiente_limpo: '',
+        colaboradores_equipes: '',
+        motivo_atraso: '',
+        observacoes_adicionais: textoTranscrito
+      };
+
+      const textoLower = textoTranscrito.toLowerCase();
+
+      // Análise simples baseada em palavras-chave
+      if (textoLower.includes('liberado') || textoLower.includes('liberação')) {
+        resultado.liberacao_servico = textoLower.includes('não') ? 'Não liberado' : 'Liberado';
+      }
+
+      if (textoLower.includes('parado')) resultado.status = 'Parado';
+      else if (textoLower.includes('andamento') || textoLower.includes('executando')) resultado.status = 'Em andamento';
+      else if (textoLower.includes('atrasado') || textoLower.includes('atraso')) resultado.status = 'Em atraso';
+
+      if (textoLower.includes('predecessor') || textoLower.includes('equipe anterior')) {
+        resultado.predecessor = 'Dependência identificada';
+      }
+
+      if (textoLower.includes('dificuldade') || textoLower.includes('problema')) {
+        const match = textoLower.match(/dificuldade[s]?[:\s]+([^,\.]+)/);
+        resultado.dificuldades = match ? match[1].trim() : 'Dificuldades identificadas';
+      }
+
+      if (textoLower.includes('retrabalho') || textoLower.includes('refazer')) {
+        resultado.retrabalho = textoLower.includes('não') || textoLower.includes('sem') ? 'Não' : 'Sim';
+      }
+
+      if (textoLower.includes('limpo') || textoLower.includes('sujo')) {
+        resultado.ambiente_limpo = textoLower.includes('sujo') || textoLower.includes('desarrumado') ? 'Não' : 'Sim';
+      }
+
+      if (textoLower.includes('equipe') || textoLower.includes('colaborador')) {
+        const match = textoLower.match(/equipe[:\s]+([^,\.]+)/);
+        resultado.colaboradores_equipes = match ? match[1].trim() : 'Equipe presente';
+      }
+
+      if (textoLower.includes('atraso') || textoLower.includes('demora')) {
+        const match = textoLower.match(/atraso[:\s]+([^,\.]+)/);
+        resultado.motivo_atraso = match ? match[1].trim() : 'Atraso identificado';
+      }
+
+      setTimeout(() => {
+        resolve(resultado);
+      }, 1000); // Simula tempo de processamento da IA
+    });
+  };
+
   const iniciarGravacao = async (atividadeId) => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -176,32 +227,46 @@ export default function PainelEncarregado() {
 
       recorder.ondataavailable = (e) => chunks.push(e.data);
       
-      recorder.onstop = () => {
+      recorder.onstop = async () => {
         const blob = new Blob(chunks, { type: 'audio/wav' });
-        const audioUrl = URL.createObjectURL(blob);
         
-        // Adicionar novo registro com áudio
-        const novoRegistro = {
-          id: Date.now(),
-          data: new Date().toLocaleDateString('pt-BR'),
-          hora: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
-          status: 'Em andamento',
-          descricao: 'Registro de áudio enviado',
-          dificuldades: '',
-          predecessor: 'Sistema',
-          audio: audioUrl
-        };
+        // Iniciar processamento
+        setProcessandoAudio(prev => ({ ...prev, [atividadeId]: true }));
+        
+        try {
+          // Transcrever áudio
+          const textoTranscrito = await transcreverAudio(blob);
+          
+          // Categorizar com IA
+          const dadosCategorizados = await categorizarTexto(textoTranscrito);
+          
+          // Criar novo registro estruturado
+          const novoRegistro = {
+            id: Date.now(),
+            data: new Date().toLocaleDateString('pt-BR'),
+            hora: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
+            ...dadosCategorizados,
+            transcricao_original: textoTranscrito,
+            audio: URL.createObjectURL(blob)
+          };
 
-        setAtividades(prev => prev.map(atividade => 
-          atividade.id === atividadeId 
-            ? { ...atividade, registros: [...atividade.registros, novoRegistro] }
-            : atividade
-        ));
+          setAtividades(prev => prev.map(atividade => 
+            atividade.id === atividadeId 
+              ? { ...atividade, registros: [...atividade.registros, novoRegistro] }
+              : atividade
+          ));
+
+          alert('Áudio transcrito e categorizado com sucesso!');
+          
+        } catch (error) {
+          console.error('Erro no processamento:', error);
+          alert('Erro ao processar o áudio. Tente novamente.');
+        } finally {
+          setProcessandoAudio(prev => ({ ...prev, [atividadeId]: false }));
+        }
 
         // Parar todas as tracks do stream
         stream.getTracks().forEach(track => track.stop());
-        
-        alert('Áudio gravado e adicionado aos registros com sucesso!');
       };
 
       setMediaRecorder(recorder);
@@ -269,7 +334,7 @@ export default function PainelEncarregado() {
           margin: '0 0 12px 0', 
           fontSize: '16px' 
         }}>
-          Registros diários e controle de atividades
+          Registros diários com transcrição automática por IA
         </p>
         <div style={{ 
           display: 'flex', 
@@ -392,23 +457,24 @@ export default function PainelEncarregado() {
               }}>
                 <button
                   onClick={() => gravandoAudio[atividade.id] ? pararGravacao(atividade.id) : iniciarGravacao(atividade.id)}
+                  disabled={processandoAudio[atividade.id]}
                   style={{
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     width: '48px',
                     height: '48px',
-                    backgroundColor: gravandoAudio[atividade.id] ? '#ef4444' : '#1f2937',
+                    backgroundColor: processandoAudio[atividade.id] ? '#6b7280' : (gravandoAudio[atividade.id] ? '#ef4444' : '#1f2937'),
                     color: 'white',
                     border: 'none',
                     borderRadius: '12px',
-                    cursor: 'pointer',
+                    cursor: processandoAudio[atividade.id] ? 'not-allowed' : 'pointer',
                     transition: 'all 0.2s',
                     animation: gravandoAudio[atividade.id] ? 'pulse 1s infinite' : 'none'
                   }}
-                  title="Gravar áudio"
+                  title={processandoAudio[atividade.id] ? "Processando áudio..." : "Gravar áudio com transcrição IA"}
                 >
-                  <Mic size={20} />
+                  {processandoAudio[atividade.id] ? <Loader size={20} className="animate-spin" /> : <Mic size={20} />}
                 </button>
 
                 <button
@@ -472,6 +538,25 @@ export default function PainelEncarregado() {
                 </button>
               </div>
 
+              {/* Status de Processamento */}
+              {processandoAudio[atividade.id] && (
+                <div style={{
+                  backgroundColor: '#eff6ff',
+                  border: '1px solid #bfdbfe',
+                  borderRadius: '8px',
+                  padding: '12px',
+                  marginBottom: '16px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px'
+                }}>
+                  <Loader size={16} className="animate-spin" style={{ color: '#3b82f6' }} />
+                  <span style={{ color: '#1e40af', fontSize: '14px' }}>
+                    Processando áudio com IA... Transcrevendo e categorizando informações.
+                  </span>
+                </div>
+              )}
+
               {/* Botão Ver Registros */}
               <button
                 onClick={() => toggleExpansao(atividade.id)}
@@ -523,7 +608,7 @@ export default function PainelEncarregado() {
                       display: 'flex', 
                       justifyContent: 'space-between', 
                       alignItems: 'center',
-                      marginBottom: '8px'
+                      marginBottom: '12px'
                     }}>
                       <div style={{ 
                         fontSize: '14px', 
@@ -541,38 +626,78 @@ export default function PainelEncarregado() {
                       </span>
                     </div>
                     
-                    {registro.descricao && (
-                      <p style={{ 
-                        margin: '0 0 8px 0', 
-                        fontSize: '14px', 
-                        color: '#374151',
-                        lineHeight: '1.5'
+                    {/* Campos Estruturados */}
+                    <div style={{ 
+                      display: 'grid', 
+                      gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
+                      gap: '12px',
+                      fontSize: '14px',
+                      lineHeight: '1.5'
+                    }}>
+                      {registro.liberacao_servico && (
+                        <div>
+                          <strong style={{ color: '#374151' }}>Liberação do serviço:</strong> {registro.liberacao_servico}
+                        </div>
+                      )}
+                      
+                      {registro.predecessor && (
+                        <div>
+                          <strong style={{ color: '#374151' }}>Predecessor:</strong> {registro.predecessor}
+                        </div>
+                      )}
+                      
+                      {registro.dificuldades && (
+                        <div>
+                          <strong style={{ color: '#374151' }}>Dificuldades:</strong> {registro.dificuldades}
+                        </div>
+                      )}
+                      
+                      {registro.retrabalho && (
+                        <div>
+                          <strong style={{ color: '#374151' }}>Retrabalho:</strong> {registro.retrabalho}
+                        </div>
+                      )}
+                      
+                      {registro.ambiente_limpo && (
+                        <div>
+                          <strong style={{ color: '#374151' }}>Ambiente está limpo:</strong> {registro.ambiente_limpo}
+                        </div>
+                      )}
+                      
+                      {registro.colaboradores_equipes && (
+                        <div>
+                          <strong style={{ color: '#374151' }}>Colaboradores/equipes:</strong> {registro.colaboradores_equipes}
+                        </div>
+                      )}
+                      
+                      {registro.motivo_atraso && (
+                        <div>
+                          <strong style={{ color: '#374151' }}>Motivo de atraso:</strong> {registro.motivo_atraso}
+                        </div>
+                      )}
+                      
+                      {registro.observacoes_adicionais && (
+                        <div style={{ gridColumn: '1 / -1' }}>
+                          <strong style={{ color: '#374151' }}>Observações adicionais:</strong> {registro.observacoes_adicionais}
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Transcrição Original */}
+                    {registro.transcricao_original && (
+                      <div style={{ 
+                        marginTop: '12px',
+                        padding: '12px',
+                        backgroundColor: '#f3f4f6',
+                        borderRadius: '6px',
+                        fontSize: '13px',
+                        color: '#6b7280'
                       }}>
-                        <strong>Descrição:</strong> {registro.descricao}
-                      </p>
-                    )}
-                    
-                    {registro.dificuldades && (
-                      <p style={{ 
-                        margin: '0 0 8px 0', 
-                        fontSize: '14px', 
-                        color: '#374151',
-                        lineHeight: '1.5'
-                      }}>
-                        <strong>Dificuldades:</strong> {registro.dificuldades}
-                      </p>
-                    )}
-                    
-                    {registro.predecessor && (
-                      <p style={{ 
-                        margin: '0', 
-                        fontSize: '14px', 
-                        color: '#6b7280' 
-                      }}>
-                        <strong>Predecessor:</strong> {registro.predecessor}
-                      </p>
+                        <strong>Transcrição original:</strong> "{registro.transcricao_original}"
+                      </div>
                     )}
 
+                    {/* Player de Áudio */}
                     {registro.audio && (
                       <div style={{ marginTop: '12px' }}>
                         <audio controls style={{ width: '100%' }}>
@@ -593,6 +718,15 @@ export default function PainelEncarregado() {
         @keyframes pulse {
           0%, 100% { opacity: 1; }
           50% { opacity: 0.5; }
+        }
+        
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        
+        .animate-spin {
+          animation: spin 1s linear infinite;
         }
         
         @media (max-width: 768px) {
