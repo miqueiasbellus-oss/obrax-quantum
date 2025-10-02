@@ -133,10 +133,12 @@ export default function PainelEncarregado() {
       // Simulação de transcrição (em produção, usar API real)
       const transcricoesPossíveis = [
         "O serviço foi liberado hoje pela manhã, a equipe está completa, não temos dificuldades no momento, o ambiente está limpo e organizado",
-        "Estamos com atraso devido à falta de material, o predecessor não finalizou ainda, precisa de retrabalho na parte elétrica",
+        "Estamos com atraso devido à falta de material, o predecessor João não finalizou ainda, precisa de retrabalho na parte elétrica",
         "Serviço parado, aguardando liberação do engenheiro, equipe reduzida hoje, ambiente precisa ser limpo antes de continuar",
         "Tudo liberado, equipe trabalhando normalmente, sem dificuldades, ambiente ok, sem necessidade de retrabalho",
-        "Problema com o predecessor, serviço não foi liberado, equipe ociosa, ambiente sujo, precisa de limpeza urgente"
+        "Problema com o predecessor Carlos, serviço não foi liberado, equipe ociosa, ambiente sujo, precisa de limpeza urgente",
+        "O predecessor Maria precisa finalizar a instalação elétrica, estamos com dificuldade de falta de material, ambiente está limpo",
+        "Serviço em andamento, equipe completa trabalhando, sem retrabalho necessário, observação importante: material chegou hoje"
       ];
       
       const transcricaoAleatoria = transcricoesPossíveis[Math.floor(Math.random() * transcricoesPossíveis.length)];
@@ -150,19 +152,6 @@ export default function PainelEncarregado() {
   // Função para categorizar o texto transcrito usando IA
   const categorizarTexto = async (textoTranscrito) => {
     return new Promise((resolve) => {
-      // Simulação de IA para categorização (em produção, usar OpenAI API)
-      const palavrasChave = {
-        liberacao_servico: ['liberado', 'liberação', 'aprovado', 'autorizado', 'pode começar', 'pode iniciar'],
-        status: ['parado', 'andamento', 'executando', 'finalizado', 'atrasado', 'concluído'],
-        predecessor: ['predecessor', 'equipe anterior', 'serviço anterior', 'dependência'],
-        dificuldades: ['dificuldade', 'problema', 'complicação', 'obstáculo', 'impedimento'],
-        retrabalho: ['retrabalho', 'refazer', 'corrigir', 'ajustar', 'reparar'],
-        ambiente_limpo: ['limpo', 'organizado', 'sujo', 'bagunçado', 'desarrumado'],
-        colaboradores_equipes: ['equipe', 'colaborador', 'funcionário', 'pessoal', 'time'],
-        motivo_atraso: ['atraso', 'atrasado', 'demora', 'pendência', 'espera'],
-        observacoes_adicionais: ['observação', 'nota', 'comentário', 'adicional', 'importante']
-      };
-
       const resultado = {
         liberacao_servico: '',
         status: '',
@@ -172,45 +161,171 @@ export default function PainelEncarregado() {
         ambiente_limpo: '',
         colaboradores_equipes: '',
         motivo_atraso: '',
-        observacoes_adicionais: textoTranscrito
+        observacoes_adicionais: ''
       };
 
       const textoLower = textoTranscrito.toLowerCase();
 
-      // Análise simples baseada em palavras-chave
-      if (textoLower.includes('liberado') || textoLower.includes('liberação')) {
-        resultado.liberacao_servico = textoLower.includes('não') ? 'Não liberado' : 'Liberado';
+      // 1. LIBERAÇÃO DO SERVIÇO
+      if (textoLower.includes('liberado') || textoLower.includes('liberação') || textoLower.includes('aprovado')) {
+        if (textoLower.includes('não') || textoLower.includes('não foi') || textoLower.includes('ainda não')) {
+          resultado.liberacao_servico = 'Não liberado';
+        } else {
+          resultado.liberacao_servico = 'Liberado';
+        }
       }
 
-      if (textoLower.includes('parado')) resultado.status = 'Parado';
-      else if (textoLower.includes('andamento') || textoLower.includes('executando')) resultado.status = 'Em andamento';
-      else if (textoLower.includes('atrasado') || textoLower.includes('atraso')) resultado.status = 'Em atraso';
-
-      if (textoLower.includes('predecessor') || textoLower.includes('equipe anterior')) {
-        resultado.predecessor = 'Dependência identificada';
+      // 2. STATUS
+      if (textoLower.includes('parado') || textoLower.includes('parou')) {
+        resultado.status = 'Parado';
+      } else if (textoLower.includes('andamento') || textoLower.includes('executando') || textoLower.includes('trabalhando')) {
+        resultado.status = 'Em andamento';
+      } else if (textoLower.includes('atrasado') || textoLower.includes('atraso')) {
+        resultado.status = 'Em atraso';
+      } else if (textoLower.includes('finalizado') || textoLower.includes('concluído') || textoLower.includes('terminado')) {
+        resultado.status = 'Finalizado';
       }
 
-      if (textoLower.includes('dificuldade') || textoLower.includes('problema')) {
-        const match = textoLower.match(/dificuldade[s]?[:\s]+([^,\.]+)/);
-        resultado.dificuldades = match ? match[1].trim() : 'Dificuldades identificadas';
+      // 3. PREDECESSOR (pessoa responsável por resolver problema)
+      const predecessorPatterns = [
+        /predecessor[\s:]+([\w\s]+?)(?:[,\.]|$)/i,
+        /responsável[\s:]+([\w\s]+?)(?:[,\.]|$)/i,
+        /([\w\s]+?)\s+(?:precisa|deve|tem que)\s+(?:resolver|finalizar|terminar)/i,
+        /([\w\s]+?)\s+(?:não finalizou|não terminou|não concluiu)/i
+      ];
+      
+      for (const pattern of predecessorPatterns) {
+        const match = textoTranscrito.match(pattern);
+        if (match) {
+          resultado.predecessor = match[1].trim();
+          break;
+        }
       }
 
-      if (textoLower.includes('retrabalho') || textoLower.includes('refazer')) {
-        resultado.retrabalho = textoLower.includes('não') || textoLower.includes('sem') ? 'Não' : 'Sim';
+      // 4. DIFICULDADES (problemas que impedem continuidade)
+      let dificuldadesEncontradas = [];
+      
+      // Falta de material
+      if (textoLower.includes('falta de material') || textoLower.includes('sem material')) {
+        dificuldadesEncontradas.push('falta de material');
+      }
+      
+      // Predecessor não finalizou
+      if (textoLower.includes('predecessor não finalizou') || textoLower.includes('não finalizou ainda')) {
+        dificuldadesEncontradas.push('predecessor não finalizou');
+      }
+      
+      // Problemas gerais
+      const problemaPatterns = [
+        /(?:problema|dificuldade|complicação)[\s:]+([^,\.]+)/i,
+        /(?:devido|por causa)[\s:]+([^,\.]+)/i,
+        /(?:impedimento|obstáculo)[\s:]+([^,\.]+)/i
+      ];
+      
+      for (const pattern of problemaPatterns) {
+        const match = textoTranscrito.match(pattern);
+        if (match && !match[1].includes('observação')) {
+          dificuldadesEncontradas.push(match[1].trim());
+        }
+      }
+      
+      if (dificuldadesEncontradas.length > 0) {
+        resultado.dificuldades = dificuldadesEncontradas.join(', ');
       }
 
-      if (textoLower.includes('limpo') || textoLower.includes('sujo')) {
-        resultado.ambiente_limpo = textoLower.includes('sujo') || textoLower.includes('desarrumado') ? 'Não' : 'Sim';
+      // 5. RETRABALHO
+      if (textoLower.includes('retrabalho') || textoLower.includes('refazer') || textoLower.includes('precisa de retrabalho')) {
+        if (textoLower.includes('não precisa') || textoLower.includes('sem retrabalho') || textoLower.includes('não há retrabalho')) {
+          resultado.retrabalho = 'Não';
+        } else {
+          resultado.retrabalho = 'Sim';
+          // Capturar detalhes do retrabalho
+          const retrabalhoMatch = textoTranscrito.match(/retrabalho[\s:]+([^,\.]+)/i);
+          if (retrabalhoMatch) {
+            resultado.retrabalho = `Sim - ${retrabalhoMatch[1].trim()}`;
+          }
+        }
       }
 
-      if (textoLower.includes('equipe') || textoLower.includes('colaborador')) {
-        const match = textoLower.match(/equipe[:\s]+([^,\.]+)/);
-        resultado.colaboradores_equipes = match ? match[1].trim() : 'Equipe presente';
+      // 6. AMBIENTE LIMPO
+      if (textoLower.includes('limpo') || textoLower.includes('organizado')) {
+        resultado.ambiente_limpo = 'Sim';
+      } else if (textoLower.includes('sujo') || textoLower.includes('bagunçado') || textoLower.includes('desarrumado')) {
+        resultado.ambiente_limpo = 'Não';
       }
 
-      if (textoLower.includes('atraso') || textoLower.includes('demora')) {
-        const match = textoLower.match(/atraso[:\s]+([^,\.]+)/);
-        resultado.motivo_atraso = match ? match[1].trim() : 'Atraso identificado';
+      // 7. COLABORADORES/EQUIPES
+      const equipePatterns = [
+        /equipe[\s:]+([\w\s]+?)(?:[,\.]|$)/i,
+        /colaborador[es]*[\s:]+([\w\s]+?)(?:[,\.]|$)/i,
+        /pessoal[\s:]+([\w\s]+?)(?:[,\.]|$)/i
+      ];
+      
+      for (const pattern of equipePatterns) {
+        const match = textoTranscrito.match(pattern);
+        if (match) {
+          resultado.colaboradores_equipes = match[1].trim();
+          break;
+        }
+      }
+
+      // 8. MOTIVO DE ATRASO
+      if (textoLower.includes('atraso') || textoLower.includes('atrasado')) {
+        const atrasoPatterns = [
+          /atraso[\s:]+devido[\s:]+([^,\.]+)/i,
+          /atrasado[\s:]+por[\s:]+([^,\.]+)/i,
+          /motivo[\s:]+([^,\.]+)/i
+        ];
+        
+        for (const pattern of atrasoPatterns) {
+          const match = textoTranscrito.match(pattern);
+          if (match) {
+            resultado.motivo_atraso = match[1].trim();
+            break;
+          }
+        }
+        
+        if (!resultado.motivo_atraso && resultado.dificuldades) {
+          resultado.motivo_atraso = resultado.dificuldades;
+        }
+      }
+
+      // 9. OBSERVAÇÕES ADICIONAIS (apenas o que não se encaixa ou quando explicitamente mencionado)
+      const observacaoPatterns = [
+        /observação[\s:]+([^,\.]+)/i,
+        /nota[\s:]+([^,\.]+)/i,
+        /importante[\s:]+([^,\.]+)/i
+      ];
+      
+      for (const pattern of observacaoPatterns) {
+        const match = textoTranscrito.match(pattern);
+        if (match) {
+          resultado.observacoes_adicionais = match[1].trim();
+          break;
+        }
+      }
+      
+      // Se não encontrou observação explícita, verificar se há informações não categorizadas
+      if (!resultado.observacoes_adicionais) {
+        const palavrasCategorizadas = [
+          resultado.liberacao_servico,
+          resultado.status,
+          resultado.predecessor,
+          resultado.dificuldades,
+          resultado.retrabalho,
+          resultado.ambiente_limpo,
+          resultado.colaboradores_equipes,
+          resultado.motivo_atraso
+        ].filter(item => item).join(' ').toLowerCase();
+        
+        // Se há muito texto não categorizado, colocar em observações
+        const textoNaoCategorizado = textoTranscrito.toLowerCase()
+          .replace(/liberado|liberação|parado|andamento|predecessor|dificuldade|problema|retrabalho|limpo|sujo|equipe|atraso/g, '')
+          .trim();
+        
+        if (textoNaoCategorizado.length > 20) {
+          resultado.observacoes_adicionais = textoTranscrito;
+        }
       }
 
       setTimeout(() => {
@@ -626,7 +741,7 @@ export default function PainelEncarregado() {
                       </span>
                     </div>
                     
-                    {/* Campos Estruturados */}
+                    {/* Campos Estruturados - Só mostra campos preenchidos */}
                     <div style={{ 
                       display: 'grid', 
                       gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
@@ -637,6 +752,12 @@ export default function PainelEncarregado() {
                       {registro.liberacao_servico && (
                         <div>
                           <strong style={{ color: '#374151' }}>Liberação do serviço:</strong> {registro.liberacao_servico}
+                        </div>
+                      )}
+                      
+                      {registro.status && (
+                        <div>
+                          <strong style={{ color: '#374151' }}>Status:</strong> {registro.status}
                         </div>
                       )}
                       
