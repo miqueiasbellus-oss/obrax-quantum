@@ -1,491 +1,757 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  PlayIcon, 
-  PauseIcon, 
-  CheckCircleIcon, 
-  ExclamationTriangleIcon,
-  SpeakerWaveIcon,
-  DocumentTextIcon,
-  CameraIcon,
-  MicrophoneIcon
-} from '@heroicons/react/24/outline';
-import axios from 'axios';
+  Mic, 
+  Bot, 
+  HardHat, 
+  BarChart3,
+  ChevronDown,
+  ChevronUp,
+  Calendar,
+  MapPin,
+  Users,
+  Clock,
+  Loader
+} from 'lucide-react';
 
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000';
-
-const PainelEncarregado = () => {
+export default function PainelEncarregado() {
   const [atividades, setAtividades] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [encarregadoId] = useState('joao@obra.com'); // Simular usuário logado
-  const [quinzena] = useState('2024-Q1-1');
-  const [atividadeExpandida, setAtividadeExpandida] = useState(null);
-  const [showModal, setShowModal] = useState(false);
-  const [modalType, setModalType] = useState('');
-  const [modalData, setModalData] = useState({});
+  const [expandidas, setExpandidas] = useState({});
+  const [gravandoAudio, setGravandoAudio] = useState({});
+  const [processandoAudio, setProcessandoAudio] = useState({});
+  const [mediaRecorder, setMediaRecorder] = useState(null);
+
+  // Dados de exemplo com prazos da programação
+  const dadosExemplo = [
+    {
+      id: 1,
+      codigo: 'PE00101',
+      atividade: 'Forro',
+      local: 'Pavimento Tipo 2 - Corredor do living',
+      equipe: 'RDA Eq.01',
+      prazoInicio: '2024-01-15',
+      prazoFim: '2024-01-17',
+      status: 'Parado',
+      percentual: 0,
+      registros: [
+        {
+          id: 1,
+          data: '01/01/25',
+          hora: '11:16',
+          status: 'Parado',
+          liberacao_servico: 'Não liberado',
+          predecessor: 'David',
+          dificuldades: 'Falta de definição de serviços antecessores',
+          retrabalho: 'Não',
+          ambiente_limpo: 'Sim',
+          colaboradores_equipes: 'RDA Eq.01',
+          motivo_atraso: 'Dependência de outros serviços',
+          observacoes_adicionais: 'Aguardando liberação da engenharia'
+        }
+      ]
+    },
+    {
+      id: 2,
+      codigo: 'PE00201',
+      atividade: 'Execução de radier',
+      local: 'Subsolo - Área de Fundação',
+      equipe: 'Equipe B',
+      prazoInicio: '2024-01-18',
+      prazoFim: '2024-01-25',
+      status: 'Em Andamento',
+      percentual: 75,
+      registros: [
+        {
+          id: 1,
+          data: '06/01/25',
+          hora: '14:18',
+          status: 'Em andamento',
+          liberacao_servico: 'Liberado',
+          predecessor: 'Gabriel',
+          dificuldades: 'Material insuficiente',
+          retrabalho: 'Não',
+          ambiente_limpo: 'Sim',
+          colaboradores_equipes: 'Equipe B completa',
+          motivo_atraso: 'Atraso na entrega de material',
+          observacoes_adicionais: 'Os insumos na obra estão acabando e não serão suficiente para finalizar o serviço'
+        }
+      ]
+    },
+    {
+      id: 3,
+      codigo: 'PE00601',
+      atividade: 'Formas para laje',
+      local: '1º Andar - Laje L1',
+      equipe: 'Equipe C',
+      prazoInicio: '2024-01-26',
+      prazoFim: '2024-02-02',
+      status: 'Em Atraso',
+      percentual: 45,
+      registros: [
+        {
+          id: 1,
+          data: '09/01/25',
+          hora: '16:30',
+          status: 'Em atraso',
+          liberacao_servico: 'Parcialmente liberado',
+          predecessor: 'Equipe anterior',
+          dificuldades: 'Atrasos de atividades anteriores',
+          retrabalho: 'Sim',
+          ambiente_limpo: 'Não',
+          colaboradores_equipes: 'Equipe C reduzida',
+          motivo_atraso: 'Dependência de atividades anteriores',
+          observacoes_adicionais: 'Devido os atrasos de material definições e outros motivos das atividades anteriores'
+        }
+      ]
+    }
+  ];
 
   useEffect(() => {
-    carregarAtividades();
+    setAtividades(dadosExemplo);
   }, []);
 
-  const carregarAtividades = async () => {
-    setLoading(true);
-    try {
-      const response = await axios.get(`${API_BASE}/encarregado/${encarregadoId}/atividades`, {
-        params: { quinzena }
-      });
-      setAtividades(response.data);
-    } catch (error) {
-      console.error('Erro ao carregar atividades:', error);
-    } finally {
-      setLoading(false);
-    }
+  const toggleExpansao = (atividadeId) => {
+    setExpandidas(prev => ({
+      ...prev,
+      [atividadeId]: !prev[atividadeId]
+    }));
   };
 
-  const atualizarStatus = async (atividadeId, acao, dados = {}) => {
-    try {
-      await axios.post(`${API_BASE}/atividade/${atividadeId}/status`, {
-        acao,
-        ...dados
-      }, {
-        params: { encarregado_id: encarregadoId }
-      });
-      
-      carregarAtividades();
-      setShowModal(false);
-      setModalData({});
-      
-      alert(`Status atualizado: ${acao}`);
-    } catch (error) {
-      console.error('Erro ao atualizar status:', error);
-      alert('Erro ao atualizar status');
-    }
-  };
-
-  const reportarDificuldade = async (atividadeId, mensagem) => {
-    try {
-      await axios.post(`${API_BASE}/atividade/${atividadeId}/dificuldade`, {
-        mensagem
-      }, {
-        params: { encarregado_id: encarregadoId }
-      });
-      
-      alert('Dificuldade reportada aos responsáveis!');
-      setShowModal(false);
-      setModalData({});
-    } catch (error) {
-      console.error('Erro ao reportar dificuldade:', error);
-      alert('Erro ao reportar dificuldade');
-    }
-  };
-
-  const preencherFVS = async (atividadeId, fvsData) => {
-    try {
-      const response = await axios.post(`${API_BASE}/atividade/${atividadeId}/fvs`, fvsData, {
-        params: { inspetor_id: encarregadoId }
-      });
-      
-      if (response.data.resultado === 'PASS') {
-        alert('FVS aprovado! Atividade liberada para medição.');
-      } else {
-        alert('FVS reprovado. NC gerada: ' + response.data.nc_gerada);
-      }
-      
-      carregarAtividades();
-      setShowModal(false);
-      setModalData({});
-    } catch (error) {
-      console.error('Erro ao preencher FVS:', error);
-      alert('Erro ao preencher FVS');
-    }
-  };
-
-  const openModal = (type, atividade) => {
-    setModalType(type);
-    setModalData({ atividade });
-    setShowModal(true);
-  };
-
-  const StatusBadge = ({ status }) => {
+  const getStatusColor = (status) => {
     const colors = {
-      'PLANNED': 'bg-gray-100 text-gray-800',
-      'READY': 'bg-blue-100 text-blue-800',
-      'IN_EXECUTION': 'bg-yellow-100 text-yellow-800',
-      'INSPECTION_PENDING': 'bg-orange-100 text-orange-800'
+      'Parado': '#f59e0b',
+      'Em Andamento': '#10b981',
+      'Em Atraso': '#ef4444',
+      'Finalizado': '#3b82f6',
+      'Finalizado Parcialmente': '#10b981'
     };
-
-    return (
-      <span className={`px-2 py-1 text-xs font-medium rounded-full ${colors[status] || 'bg-gray-100 text-gray-800'}`}>
-        {status}
-      </span>
-    );
+    return colors[status] || '#6b7280';
   };
 
-  const AtividadeCard = ({ atividade }) => {
-    const isExpanded = atividadeExpandida === atividade.id;
-    const isAtrasada = atividade.dias_atraso && atividade.dias_atraso > 0;
-
-    return (
-      <div className={`bg-white rounded-lg shadow-md border-l-4 ${isAtrasada ? 'border-red-500' : 'border-blue-500'}`}>
-        <div 
-          className="p-4 cursor-pointer"
-          onClick={() => setAtividadeExpandida(isExpanded ? null : atividade.id)}
-        >
-          <div className="flex justify-between items-start mb-2">
-            <div>
-              <h3 className="font-semibold text-lg text-gray-900">{atividade.codigo}</h3>
-              <p className="text-gray-600">{atividade.atividade}</p>
-            </div>
-            <StatusBadge status={atividade.status} />
-          </div>
-          
-          <div className="grid grid-cols-2 gap-4 text-sm text-gray-600 mb-3">
-            <div>
-              <span className="font-medium">Local:</span> {atividade.pavimento} - {atividade.local}
-            </div>
-            <div>
-              <span className="font-medium">Prazo:</span> {atividade.prazo_fim ? new Date(atividade.prazo_fim).toLocaleDateString() : '-'}
-            </div>
-          </div>
-
-          {isAtrasada && (
-            <div className="bg-red-50 border border-red-200 rounded p-2 mb-3">
-              <p className="text-red-800 text-sm font-medium">
-                ⚠️ Atividade em atraso: {atividade.dias_atraso} dias
-              </p>
-            </div>
-          )}
-
-          <div className="flex items-center mb-3">
-            <div className="flex-1 bg-gray-200 rounded-full h-2">
-              <div
-                className="bg-blue-600 h-2 rounded-full"
-                style={{ width: `${atividade.perc_prog_atual}%` }}
-              ></div>
-            </div>
-            <span className="ml-2 text-sm font-medium">{atividade.perc_prog_atual}%</span>
-          </div>
-        </div>
-
-        {isExpanded && (
-          <div className="border-t bg-gray-50 p-4">
-            {/* Áudios de Orientação */}
-            {atividade.audios_orientacao && atividade.audios_orientacao.length > 0 && (
-              <div className="mb-4">
-                <h4 className="font-medium text-gray-900 mb-2 flex items-center gap-2">
-                  <SpeakerWaveIcon className="w-4 h-4" />
-                  Orientações (Áudio)
-                </h4>
-                <div className="space-y-2">
-                  {atividade.audios_orientacao.map((audio, index) => (
-                    <div key={index} className="flex items-center gap-2 p-2 bg-white rounded border">
-                      <button className="text-blue-600 hover:text-blue-800">
-                        <PlayIcon className="w-4 h-4" />
-                      </button>
-                      <span className="text-sm text-gray-600">Orientação {index + 1}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Referências de IA */}
-            {atividade.ai_refs && atividade.ai_refs.length > 0 && (
-              <div className="mb-4">
-                <h4 className="font-medium text-gray-900 mb-2 flex items-center gap-2">
-                  <DocumentTextIcon className="w-4 h-4" />
-                  Referências (IA)
-                </h4>
-                <div className="space-y-1">
-                  {atividade.ai_refs.map((ref, index) => (
-                    <div key={index} className="text-sm text-blue-600 hover:text-blue-800 cursor-pointer">
-                      📄 {ref}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Botão de Dificuldade */}
-            <div className="mb-4">
-              <button
-                onClick={() => openModal('dificuldade', atividade)}
-                className="w-full bg-orange-100 text-orange-800 border border-orange-300 rounded-lg py-2 px-4 flex items-center justify-center gap-2 hover:bg-orange-200"
-              >
-                <ExclamationTriangleIcon className="w-4 h-4" />
-                Estou com dificuldade
-              </button>
-            </div>
-
-            {/* Botões de Ação Rápida */}
-            <div className="grid grid-cols-2 gap-3 mb-4">
-              <button
-                onClick={() => openModal('parado', atividade)}
-                className="bg-red-100 text-red-800 border border-red-300 rounded-lg py-2 px-4 flex items-center justify-center gap-2 hover:bg-red-200"
-              >
-                <PauseIcon className="w-4 h-4" />
-                Parado
-              </button>
-              
-              <button
-                onClick={() => atualizarStatus(atividade.id, 'EM_ANDAMENTO')}
-                className="bg-green-100 text-green-800 border border-green-300 rounded-lg py-2 px-4 flex items-center justify-center gap-2 hover:bg-green-200"
-              >
-                <PlayIcon className="w-4 h-4" />
-                Em andamento
-              </button>
-              
-              <button
-                onClick={() => openModal('parcial', atividade)}
-                className="bg-purple-100 text-purple-800 border border-purple-300 rounded-lg py-2 px-4 flex items-center justify-center gap-2 hover:bg-purple-200"
-              >
-                <CheckCircleIcon className="w-4 h-4" />
-                Fechamento Parcial
-              </button>
-              
-              <button
-                onClick={() => openModal('finalizado', atividade)}
-                className="bg-blue-100 text-blue-800 border border-blue-300 rounded-lg py-2 px-4 flex items-center justify-center gap-2 hover:bg-blue-200"
-              >
-                <CheckCircleIcon className="w-4 h-4" />
-                Finalizar
-              </button>
-            </div>
-
-            {/* Botão FVS */}
-            <button
-              onClick={() => openModal('fvs', atividade)}
-              className="w-full bg-indigo-100 text-indigo-800 border border-indigo-300 rounded-lg py-2 px-4 flex items-center justify-center gap-2 hover:bg-indigo-200"
-            >
-              <CameraIcon className="w-4 h-4" />
-              Preencher FVS
-            </button>
-          </div>
-        )}
-      </div>
-    );
+  // Função para transcrever áudio usando Web Speech API
+  const transcreverAudio = async (audioBlob) => {
+    return new Promise((resolve) => {
+      // Simulação de transcrição (em produção, usar API real)
+      const transcricoesPossíveis = [
+        "O serviço foi liberado hoje pela manhã, a equipe está completa, não temos dificuldades no momento, o ambiente está limpo e organizado",
+        "Estamos com atraso devido à falta de material, o predecessor não finalizou ainda, precisa de retrabalho na parte elétrica",
+        "Serviço parado, aguardando liberação do engenheiro, equipe reduzida hoje, ambiente precisa ser limpo antes de continuar",
+        "Tudo liberado, equipe trabalhando normalmente, sem dificuldades, ambiente ok, sem necessidade de retrabalho",
+        "Problema com o predecessor, serviço não foi liberado, equipe ociosa, ambiente sujo, precisa de limpeza urgente"
+      ];
+      
+      const transcricaoAleatoria = transcricoesPossíveis[Math.floor(Math.random() * transcricoesPossíveis.length)];
+      
+      setTimeout(() => {
+        resolve(transcricaoAleatoria);
+      }, 2000); // Simula tempo de processamento
+    });
   };
 
-  // Modal Component
-  const Modal = () => {
-    const [formData, setFormData] = useState({});
+  // Função para categorizar o texto transcrito usando IA
+  const categorizarTexto = async (textoTranscrito) => {
+    return new Promise((resolve) => {
+      // Simulação de IA para categorização (em produção, usar OpenAI API)
+      const palavrasChave = {
+        liberacao_servico: ['liberado', 'liberação', 'aprovado', 'autorizado', 'pode começar', 'pode iniciar'],
+        status: ['parado', 'andamento', 'executando', 'finalizado', 'atrasado', 'concluído'],
+        predecessor: ['predecessor', 'equipe anterior', 'serviço anterior', 'dependência'],
+        dificuldades: ['dificuldade', 'problema', 'complicação', 'obstáculo', 'impedimento'],
+        retrabalho: ['retrabalho', 'refazer', 'corrigir', 'ajustar', 'reparar'],
+        ambiente_limpo: ['limpo', 'organizado', 'sujo', 'bagunçado', 'desarrumado'],
+        colaboradores_equipes: ['equipe', 'colaborador', 'funcionário', 'pessoal', 'time'],
+        motivo_atraso: ['atraso', 'atrasado', 'demora', 'pendência', 'espera'],
+        observacoes_adicionais: ['observação', 'nota', 'comentário', 'adicional', 'importante']
+      };
 
-    const handleSubmit = () => {
-      const atividade = modalData.atividade;
+      const resultado = {
+        liberacao_servico: '',
+        status: '',
+        predecessor: '',
+        dificuldades: '',
+        retrabalho: '',
+        ambiente_limpo: '',
+        colaboradores_equipes: '',
+        motivo_atraso: '',
+        observacoes_adicionais: textoTranscrito
+      };
 
-      switch (modalType) {
-        case 'dificuldade':
-          reportarDificuldade(atividade.id, formData.mensagem);
-          break;
-        case 'parado':
-          atualizarStatus(atividade.id, 'PARADO', {
-            motivo_atraso: formData.motivo_atraso,
-            observacao: formData.observacao
-          });
-          break;
-        case 'parcial':
-        case 'finalizado':
-          atualizarStatus(atividade.id, modalType === 'parcial' ? 'PARCIAL' : 'FINALIZADO', {
-            percentual_para_pagar: parseFloat(formData.percentual),
-            observacao: formData.observacao
-          });
-          break;
-        case 'fvs':
-          preencherFVS(atividade.id, {
-            itens_verificados: [
-              { item: 'Qualidade do serviço', verificado: formData.qualidade || false },
-              { item: 'Tolerâncias dimensionais', verificado: formData.tolerancias || false },
-              { item: 'Acabamento', verificado: formData.acabamento || false }
-            ],
-            fotos_evidencia: formData.fotos || [],
-            tolerancias_ok: formData.tolerancias_ok !== false,
-            observacoes: formData.observacoes
-          });
-          break;
+      const textoLower = textoTranscrito.toLowerCase();
+
+      // Análise simples baseada em palavras-chave
+      if (textoLower.includes('liberado') || textoLower.includes('liberação')) {
+        resultado.liberacao_servico = textoLower.includes('não') ? 'Não liberado' : 'Liberado';
       }
-    };
 
-    if (!showModal) return null;
+      if (textoLower.includes('parado')) resultado.status = 'Parado';
+      else if (textoLower.includes('andamento') || textoLower.includes('executando')) resultado.status = 'Em andamento';
+      else if (textoLower.includes('atrasado') || textoLower.includes('atraso')) resultado.status = 'Em atraso';
 
-    return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-        <div className="bg-white rounded-lg p-6 w-full max-w-md">
-          <h2 className="text-xl font-bold mb-4">
-            {modalType === 'dificuldade' && 'Reportar Dificuldade'}
-            {modalType === 'parado' && 'Marcar como Parado'}
-            {modalType === 'parcial' && 'Fechamento Parcial'}
-            {modalType === 'finalizado' && 'Finalizar Atividade'}
-            {modalType === 'fvs' && 'Preencher FVS'}
-          </h2>
+      if (textoLower.includes('predecessor') || textoLower.includes('equipe anterior')) {
+        resultado.predecessor = 'Dependência identificada';
+      }
 
-          <div className="space-y-4">
-            {modalType === 'dificuldade' && (
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Mensagem</label>
-                <textarea
-                  value={formData.mensagem || ''}
-                  onChange={(e) => setFormData({...formData, mensagem: e.target.value})}
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                  rows="3"
-                  placeholder="Descreva a dificuldade..."
-                />
-              </div>
-            )}
+      if (textoLower.includes('dificuldade') || textoLower.includes('problema')) {
+        const match = textoLower.match(/dificuldade[s]?[:\s]+([^,\.]+)/);
+        resultado.dificuldades = match ? match[1].trim() : 'Dificuldades identificadas';
+      }
 
-            {modalType === 'parado' && (
-              <>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Motivo</label>
-                  <select
-                    value={formData.motivo_atraso || ''}
-                    onChange={(e) => setFormData({...formData, motivo_atraso: e.target.value})}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                  >
-                    <option value="">Selecionar motivo...</option>
-                    <option value="Falta de material">Falta de material</option>
-                    <option value="Chuva">Chuva</option>
-                    <option value="Falta de equipamento">Falta de equipamento</option>
-                    <option value="Aguardando liberação">Aguardando liberação</option>
-                    <option value="Outro">Outro</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Observação</label>
-                  <textarea
-                    value={formData.observacao || ''}
-                    onChange={(e) => setFormData({...formData, observacao: e.target.value})}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                    rows="2"
-                  />
-                </div>
-              </>
-            )}
+      if (textoLower.includes('retrabalho') || textoLower.includes('refazer')) {
+        resultado.retrabalho = textoLower.includes('não') || textoLower.includes('sem') ? 'Não' : 'Sim';
+      }
 
-            {(modalType === 'parcial' || modalType === 'finalizado') && (
-              <>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Percentual para pagamento (%)
-                  </label>
-                  <input
-                    type="number"
-                    min="0"
-                    max="100"
-                    value={formData.percentual || ''}
-                    onChange={(e) => setFormData({...formData, percentual: e.target.value})}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Observação</label>
-                  <textarea
-                    value={formData.observacao || ''}
-                    onChange={(e) => setFormData({...formData, observacao: e.target.value})}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                    rows="2"
-                  />
-                </div>
-              </>
-            )}
+      if (textoLower.includes('limpo') || textoLower.includes('sujo')) {
+        resultado.ambiente_limpo = textoLower.includes('sujo') || textoLower.includes('desarrumado') ? 'Não' : 'Sim';
+      }
 
-            {modalType === 'fvs' && (
-              <>
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">Itens de Verificação</label>
-                  <div className="space-y-2">
-                    <label className="flex items-center">
-                      <input
-                        type="checkbox"
-                        checked={formData.qualidade || false}
-                        onChange={(e) => setFormData({...formData, qualidade: e.target.checked})}
-                        className="mr-2"
-                      />
-                      Qualidade do serviço
-                    </label>
-                    <label className="flex items-center">
-                      <input
-                        type="checkbox"
-                        checked={formData.tolerancias || false}
-                        onChange={(e) => setFormData({...formData, tolerancias: e.target.checked})}
-                        className="mr-2"
-                      />
-                      Tolerâncias dimensionais
-                    </label>
-                    <label className="flex items-center">
-                      <input
-                        type="checkbox"
-                        checked={formData.acabamento || false}
-                        onChange={(e) => setFormData({...formData, acabamento: e.target.checked})}
-                        className="mr-2"
-                      />
-                      Acabamento
-                    </label>
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Observações</label>
-                  <textarea
-                    value={formData.observacoes || ''}
-                    onChange={(e) => setFormData({...formData, observacoes: e.target.value})}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2"
-                    rows="2"
-                  />
-                </div>
-                <div className="text-sm text-gray-600">
-                  📷 Fotos de evidência serão capturadas automaticamente
-                </div>
-              </>
-            )}
-          </div>
+      if (textoLower.includes('equipe') || textoLower.includes('colaborador')) {
+        const match = textoLower.match(/equipe[:\s]+([^,\.]+)/);
+        resultado.colaboradores_equipes = match ? match[1].trim() : 'Equipe presente';
+      }
 
-          <div className="flex justify-end gap-3 mt-6">
-            <button
-              onClick={() => setShowModal(false)}
-              className="px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50"
-            >
-              Cancelar
-            </button>
-            <button
-              onClick={handleSubmit}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-            >
-              Confirmar
-            </button>
-          </div>
-        </div>
-      </div>
-    );
+      if (textoLower.includes('atraso') || textoLower.includes('demora')) {
+        const match = textoLower.match(/atraso[:\s]+([^,\.]+)/);
+        resultado.motivo_atraso = match ? match[1].trim() : 'Atraso identificado';
+      }
+
+      setTimeout(() => {
+        resolve(resultado);
+      }, 1000); // Simula tempo de processamento da IA
+    });
+  };
+
+  const iniciarGravacao = async (atividadeId) => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const recorder = new MediaRecorder(stream);
+      const chunks = [];
+
+      recorder.ondataavailable = (e) => chunks.push(e.data);
+      
+      recorder.onstop = async () => {
+        const blob = new Blob(chunks, { type: 'audio/wav' });
+        
+        // Iniciar processamento
+        setProcessandoAudio(prev => ({ ...prev, [atividadeId]: true }));
+        
+        try {
+          // Transcrever áudio
+          const textoTranscrito = await transcreverAudio(blob);
+          
+          // Categorizar com IA
+          const dadosCategorizados = await categorizarTexto(textoTranscrito);
+          
+          // Criar novo registro estruturado
+          const novoRegistro = {
+            id: Date.now(),
+            data: new Date().toLocaleDateString('pt-BR'),
+            hora: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
+            ...dadosCategorizados,
+            transcricao_original: textoTranscrito,
+            audio: URL.createObjectURL(blob)
+          };
+
+          setAtividades(prev => prev.map(atividade => 
+            atividade.id === atividadeId 
+              ? { ...atividade, registros: [...atividade.registros, novoRegistro] }
+              : atividade
+          ));
+
+          alert('Áudio transcrito e categorizado com sucesso!');
+          
+        } catch (error) {
+          console.error('Erro no processamento:', error);
+          alert('Erro ao processar o áudio. Tente novamente.');
+        } finally {
+          setProcessandoAudio(prev => ({ ...prev, [atividadeId]: false }));
+        }
+
+        // Parar todas as tracks do stream
+        stream.getTracks().forEach(track => track.stop());
+      };
+
+      setMediaRecorder(recorder);
+      setGravandoAudio(prev => ({ ...prev, [atividadeId]: true }));
+      recorder.start();
+
+      // Parar automaticamente após 30 segundos
+      setTimeout(() => {
+        if (recorder.state === 'recording') {
+          pararGravacao(atividadeId);
+        }
+      }, 30000);
+
+    } catch (error) {
+      console.error('Erro ao acessar microfone:', error);
+      alert('Erro ao acessar o microfone. Verifique as permissões.');
+    }
+  };
+
+  const pararGravacao = (atividadeId) => {
+    if (mediaRecorder && mediaRecorder.state === 'recording') {
+      mediaRecorder.stop();
+      setGravandoAudio(prev => ({ ...prev, [atividadeId]: false }));
+      setMediaRecorder(null);
+    }
+  };
+
+  const atualizarPercentual = (atividadeId, novoPercentual) => {
+    setAtividades(prev => prev.map(atividade => 
+      atividade.id === atividadeId 
+        ? { ...atividade, percentual: parseInt(novoPercentual) || 0 }
+        : atividade
+    ));
+  };
+
+  const formatarPrazo = (inicio, fim) => {
+    const dataInicio = new Date(inicio).toLocaleDateString('pt-BR');
+    const dataFim = new Date(fim).toLocaleDateString('pt-BR');
+    return `${dataInicio} - ${dataFim}`;
   };
 
   return (
-    <div className="p-4 max-w-4xl mx-auto">
+    <div style={{ 
+      minHeight: '100vh', 
+      backgroundColor: '#f8fafc',
+      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+    }}>
       {/* Header */}
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-900 mb-2">Minhas Atividades</h1>
-        <p className="text-gray-600">Quinzena: {quinzena} | Encarregado: {encarregadoId}</p>
+      <div style={{ 
+        backgroundColor: 'white', 
+        boxShadow: '0 2px 4px rgba(0,0,0,0.1)', 
+        padding: '20px 24px',
+        borderBottom: '1px solid #e5e7eb'
+      }}>
+        <h1 style={{ 
+          fontSize: '28px', 
+          fontWeight: '700', 
+          color: '#111827', 
+          margin: '0 0 8px 0' 
+        }}>
+          Painel do Encarregado
+        </h1>
+        <p style={{ 
+          color: '#6b7280', 
+          margin: '0 0 12px 0', 
+          fontSize: '16px' 
+        }}>
+          Registros diários com transcrição automática por IA
+        </p>
+        <div style={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          gap: '16px',
+          fontSize: '14px',
+          color: '#374151'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <Users size={16} />
+            <span>João Silva</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <Calendar size={16} />
+            <span>{new Date().toLocaleDateString('pt-BR')}</span>
+          </div>
+        </div>
       </div>
 
       {/* Lista de Atividades */}
-      <div className="space-y-4">
-        {loading ? (
-          <div className="text-center py-8">
-            <div className="text-gray-500">Carregando atividades...</div>
+      <div style={{ 
+        maxWidth: '1200px', 
+        margin: '0 auto', 
+        padding: '24px' 
+      }}>
+        {atividades.map((atividade) => (
+          <div key={atividade.id} style={{ 
+            backgroundColor: 'white',
+            borderRadius: '16px',
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05)',
+            marginBottom: '20px',
+            overflow: 'hidden',
+            border: '1px solid #e5e7eb'
+          }}>
+            {/* Card Principal */}
+            <div style={{ 
+              padding: '24px',
+              borderBottom: expandidas[atividade.id] ? '1px solid #e5e7eb' : 'none'
+            }}>
+              <div style={{ 
+                display: 'flex', 
+                justifyContent: 'space-between', 
+                alignItems: 'flex-start',
+                marginBottom: '16px'
+              }}>
+                <div style={{ flex: 1 }}>
+                  <h3 style={{ 
+                    fontSize: '20px', 
+                    fontWeight: '600', 
+                    color: '#111827', 
+                    margin: '0 0 8px 0' 
+                  }}>
+                    {atividade.atividade}
+                  </h3>
+                  <div style={{ 
+                    fontSize: '14px', 
+                    color: '#6b7280',
+                    lineHeight: '1.5'
+                  }}>
+                    <div style={{ marginBottom: '4px' }}>
+                      <MapPin size={14} style={{ display: 'inline', marginRight: '6px' }} />
+                      {atividade.local}
+                    </div>
+                    <div style={{ marginBottom: '4px' }}>
+                      <Users size={14} style={{ display: 'inline', marginRight: '6px' }} />
+                      {atividade.equipe}
+                    </div>
+                    <div>
+                      <Clock size={14} style={{ display: 'inline', marginRight: '6px' }} />
+                      {formatarPrazo(atividade.prazoInicio, atividade.prazoFim)}
+                    </div>
+                  </div>
+                </div>
+                
+                <div style={{ 
+                  textAlign: 'right',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'flex-end',
+                  gap: '8px'
+                }}>
+                  <span style={{ 
+                    color: getStatusColor(atividade.status),
+                    fontWeight: '600',
+                    fontSize: '16px'
+                  }}>
+                    {atividade.status}
+                  </span>
+                  
+                  <div style={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    gap: '8px' 
+                  }}>
+                    <input
+                      type="number"
+                      min="0"
+                      max="100"
+                      value={atividade.percentual}
+                      onChange={(e) => atualizarPercentual(atividade.id, e.target.value)}
+                      style={{
+                        width: '60px',
+                        padding: '4px 8px',
+                        border: '1px solid #d1d5db',
+                        borderRadius: '6px',
+                        fontSize: '14px',
+                        textAlign: 'center'
+                      }}
+                    />
+                    <span style={{ fontSize: '14px', color: '#6b7280' }}>%</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Botões de Ação */}
+              <div style={{ 
+                display: 'flex', 
+                gap: '12px',
+                marginBottom: '16px'
+              }}>
+                <button
+                  onClick={() => gravandoAudio[atividade.id] ? pararGravacao(atividade.id) : iniciarGravacao(atividade.id)}
+                  disabled={processandoAudio[atividade.id]}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '48px',
+                    height: '48px',
+                    backgroundColor: processandoAudio[atividade.id] ? '#6b7280' : (gravandoAudio[atividade.id] ? '#ef4444' : '#1f2937'),
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '12px',
+                    cursor: processandoAudio[atividade.id] ? 'not-allowed' : 'pointer',
+                    transition: 'all 0.2s',
+                    animation: gravandoAudio[atividade.id] ? 'pulse 1s infinite' : 'none'
+                  }}
+                  title={processandoAudio[atividade.id] ? "Processando áudio..." : "Gravar áudio com transcrição IA"}
+                >
+                  {processandoAudio[atividade.id] ? <Loader size={20} className="animate-spin" /> : <Mic size={20} />}
+                </button>
+
+                <button
+                  onClick={() => alert('Assistente IA: Consultando normas e manuais de execução...')}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '48px',
+                    height: '48px',
+                    backgroundColor: '#3b82f6',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '12px',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s'
+                  }}
+                  title="Assistente IA - Normas e manuais"
+                >
+                  <Bot size={20} />
+                </button>
+
+                <button
+                  onClick={() => alert('Instrução do Mestre: Reproduzindo orientações técnicas...')}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '48px',
+                    height: '48px',
+                    backgroundColor: '#f59e0b',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '12px',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s'
+                  }}
+                  title="Instrução do Mestre"
+                >
+                  <HardHat size={20} />
+                </button>
+
+                <button
+                  onClick={() => alert('Instrução do Engenheiro: Carregando especificações técnicas...')}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '48px',
+                    height: '48px',
+                    backgroundColor: '#10b981',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '12px',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s'
+                  }}
+                  title="Instrução do Engenheiro"
+                >
+                  <BarChart3 size={20} />
+                </button>
+              </div>
+
+              {/* Status de Processamento */}
+              {processandoAudio[atividade.id] && (
+                <div style={{
+                  backgroundColor: '#eff6ff',
+                  border: '1px solid #bfdbfe',
+                  borderRadius: '8px',
+                  padding: '12px',
+                  marginBottom: '16px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px'
+                }}>
+                  <Loader size={16} className="animate-spin" style={{ color: '#3b82f6' }} />
+                  <span style={{ color: '#1e40af', fontSize: '14px' }}>
+                    Processando áudio com IA... Transcrevendo e categorizando informações.
+                  </span>
+                </div>
+              )}
+
+              {/* Botão Ver Registros */}
+              <button
+                onClick={() => toggleExpansao(atividade.id)}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '8px 16px',
+                  backgroundColor: '#f3f4f6',
+                  color: '#374151',
+                  border: '1px solid #d1d5db',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  width: '100%',
+                  justifyContent: 'center'
+                }}
+              >
+                {expandidas[atividade.id] ? 'Ocultar Registros' : 'Ver Registros'}
+                {expandidas[atividade.id] ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+              </button>
+            </div>
+
+            {/* Registros Expandidos */}
+            {expandidas[atividade.id] && (
+              <div style={{ 
+                backgroundColor: '#f8fafc',
+                padding: '20px 24px'
+              }}>
+                <h4 style={{ 
+                  fontSize: '16px', 
+                  fontWeight: '600', 
+                  color: '#374151', 
+                  margin: '0 0 16px 0' 
+                }}>
+                  Histórico de Registros
+                </h4>
+                
+                {atividade.registros.map((registro) => (
+                  <div key={registro.id} style={{ 
+                    backgroundColor: 'white',
+                    border: '1px solid #e5e7eb',
+                    borderRadius: '8px',
+                    padding: '16px',
+                    marginBottom: '12px'
+                  }}>
+                    <div style={{ 
+                      display: 'flex', 
+                      justifyContent: 'space-between', 
+                      alignItems: 'center',
+                      marginBottom: '12px'
+                    }}>
+                      <div style={{ 
+                        fontSize: '14px', 
+                        fontWeight: '500', 
+                        color: '#111827' 
+                      }}>
+                        {registro.data} {registro.hora}
+                      </div>
+                      <span style={{ 
+                        color: getStatusColor(registro.status),
+                        fontWeight: '500',
+                        fontSize: '14px'
+                      }}>
+                        Status: {registro.status}
+                      </span>
+                    </div>
+                    
+                    {/* Campos Estruturados */}
+                    <div style={{ 
+                      display: 'grid', 
+                      gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
+                      gap: '12px',
+                      fontSize: '14px',
+                      lineHeight: '1.5'
+                    }}>
+                      {registro.liberacao_servico && (
+                        <div>
+                          <strong style={{ color: '#374151' }}>Liberação do serviço:</strong> {registro.liberacao_servico}
+                        </div>
+                      )}
+                      
+                      {registro.predecessor && (
+                        <div>
+                          <strong style={{ color: '#374151' }}>Predecessor:</strong> {registro.predecessor}
+                        </div>
+                      )}
+                      
+                      {registro.dificuldades && (
+                        <div>
+                          <strong style={{ color: '#374151' }}>Dificuldades:</strong> {registro.dificuldades}
+                        </div>
+                      )}
+                      
+                      {registro.retrabalho && (
+                        <div>
+                          <strong style={{ color: '#374151' }}>Retrabalho:</strong> {registro.retrabalho}
+                        </div>
+                      )}
+                      
+                      {registro.ambiente_limpo && (
+                        <div>
+                          <strong style={{ color: '#374151' }}>Ambiente está limpo:</strong> {registro.ambiente_limpo}
+                        </div>
+                      )}
+                      
+                      {registro.colaboradores_equipes && (
+                        <div>
+                          <strong style={{ color: '#374151' }}>Colaboradores/equipes:</strong> {registro.colaboradores_equipes}
+                        </div>
+                      )}
+                      
+                      {registro.motivo_atraso && (
+                        <div>
+                          <strong style={{ color: '#374151' }}>Motivo de atraso:</strong> {registro.motivo_atraso}
+                        </div>
+                      )}
+                      
+                      {registro.observacoes_adicionais && (
+                        <div style={{ gridColumn: '1 / -1' }}>
+                          <strong style={{ color: '#374151' }}>Observações adicionais:</strong> {registro.observacoes_adicionais}
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Transcrição Original */}
+                    {registro.transcricao_original && (
+                      <div style={{ 
+                        marginTop: '12px',
+                        padding: '12px',
+                        backgroundColor: '#f3f4f6',
+                        borderRadius: '6px',
+                        fontSize: '13px',
+                        color: '#6b7280'
+                      }}>
+                        <strong>Transcrição original:</strong> "{registro.transcricao_original}"
+                      </div>
+                    )}
+
+                    {/* Player de Áudio */}
+                    {registro.audio && (
+                      <div style={{ marginTop: '12px' }}>
+                        <audio controls style={{ width: '100%' }}>
+                          <source src={registro.audio} type="audio/wav" />
+                          Seu navegador não suporta áudio.
+                        </audio>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
-        ) : atividades.length === 0 ? (
-          <div className="text-center py-8">
-            <div className="text-gray-500">Nenhuma atividade encontrada</div>
-          </div>
-        ) : (
-          atividades.map((atividade) => (
-            <AtividadeCard key={atividade.id} atividade={atividade} />
-          ))
-        )}
+        ))}
       </div>
 
-      {/* Modal */}
-      <Modal />
+      <style jsx>{`
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.5; }
+        }
+        
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        
+        .animate-spin {
+          animation: spin 1s linear infinite;
+        }
+        
+        @media (max-width: 768px) {
+          .container {
+            padding: 16px !important;
+          }
+          
+          .card {
+            margin-bottom: 16px !important;
+          }
+          
+          .header {
+            padding: 16px !important;
+          }
+          
+          .buttons {
+            flex-wrap: wrap !important;
+          }
+          
+          .button {
+            width: 44px !important;
+            height: 44px !important;
+          }
+        }
+      `}</style>
     </div>
   );
-};
-
-export default PainelEncarregado;
-
+}
