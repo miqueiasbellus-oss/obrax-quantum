@@ -7,14 +7,14 @@ const features = [
     title: 'Programação Quinzenal',
     description: 'Planejamento e programação de atividades quinzenais com controle de cronograma e dependências.',
     icon: Calendar,
-    href: '/programacao-quinzenal',
+    href: '/programacao',
     status: 'active'
   },
   {
     title: 'Painel do Encarregado',
     description: 'Interface para encarregados reportarem progresso com transcrição de voz e categorização por IA.',
     icon: ClipboardList,
-    href: '/painel-encarregado',
+    href: '/encarregado',
     status: 'active'
   },
   {
