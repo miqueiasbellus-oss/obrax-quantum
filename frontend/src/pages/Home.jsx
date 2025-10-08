@@ -1,8 +1,22 @@
-import { Building2, Users, CheckSquare, Package, BarChart3, CreditCard, ExternalLink } from 'lucide-react';
+import { Building2, Users, CheckSquare, Package, BarChart3, CreditCard, ExternalLink, Calendar, ClipboardList } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import FeatureCard from '../components/FeatureCard';
 
 const features = [
+  {
+    title: 'Programação Quinzenal',
+    description: 'Planejamento e programação de atividades quinzenais com controle de cronograma e dependências.',
+    icon: Calendar,
+    href: '/programacao-quinzenal',
+    status: 'active'
+  },
+  {
+    title: 'Painel do Encarregado',
+    description: 'Interface para encarregados reportarem progresso com transcrição de voz e categorização por IA.',
+    icon: ClipboardList,
+    href: '/painel-encarregado',
+    status: 'active'
+  },
   {
     title: 'Gestão de Obras',
     description: 'Controle completo de atividades, cronogramas e dependências com visibilidade total do progresso.',
