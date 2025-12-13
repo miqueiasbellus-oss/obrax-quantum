@@ -1,30 +1,25 @@
-import apiClient, { TOKEN_KEY } from "./api";
+import apiClient from "./api";
 
-export interface LoginRequest {
-  username: string;
-  password: string;
-}
-
-export interface LoginResponse {
-  access_token: string;
-  token_type: string;
-}
-
-class AuthService {
-  async login(data: LoginRequest): Promise<LoginResponse> {
-    const response = await apiClient.post<LoginResponse>("/auth/login", data);
-    localStorage.setItem(TOKEN_KEY, response.data.access_token);
-    return response.data;
-  }
+const authService = {
+  async login(username, password) {
+    const res = await apiClient.post("/auth/login", { username, password });
+    const { access_token } = res.data;
+    localStorage.setItem("access_token", access_token);
+    return res.data;
+  },
 
   logout() {
-    localStorage.removeItem(TOKEN_KEY);
+    localStorage.removeItem("access_token");
     window.location.href = "/login";
-  }
+  },
 
-  isAuthenticated(): boolean {
-    return !!localStorage.getItem(TOKEN_KEY);
-  }
-}
+  getToken() {
+    return localStorage.getItem("access_token");
+  },
 
-export default new AuthService();
+  isAuthenticated() {
+    return !!localStorage.getItem("access_token");
+  },
+};
+
+export default authService;
