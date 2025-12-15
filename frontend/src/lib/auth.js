@@ -1,9 +1,7 @@
-import apiClient from "./api";
-
-const TOKEN_KEY = "OBRAX_TOKEN";
+import apiClient, { TOKEN_KEY } from "./api";
 
 const authService = {
-  async login(username: string, password: string) {
+  async login(username, password) {
     const res = await apiClient.post("/auth/login", { username, password });
     const { access_token } = res.data;
     localStorage.setItem(TOKEN_KEY, access_token);
