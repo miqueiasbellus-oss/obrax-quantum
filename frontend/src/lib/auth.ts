@@ -1,4 +1,6 @@
-import apiClient, { TOKEN_KEY } from "./api";
+import apiClient from "./api";
+
+const TOKEN_KEY = "OBRAX_TOKEN";
 
 const authService = {
   async login(username: string, password: string) {
