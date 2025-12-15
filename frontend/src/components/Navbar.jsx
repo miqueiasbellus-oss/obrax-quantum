@@ -1,5 +1,6 @@
-import { Link, useLocation } from 'react-router-dom';
-import { Calendar, UserCheck, BarChart3, Building2, Package, CreditCard, LogIn } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Calendar, UserCheck, BarChart3, Building2, Package, CreditCard, LogIn, LogOut } from 'lucide-react';
+import authService from '../lib/auth';
 
 const navigation = [
   { name: 'Programação Quinzenal', href: '/programacao-quinzenal', icon: Calendar },
@@ -12,6 +13,16 @@ const navigation = [
 
 export default function Navbar({ apiStatus }) {
   const location = useLocation();
+  const navigate = useNavigate();
+  const isAuthenticated = authService.isAuthenticated();
+
+  const handleLoginClick = () => {
+    navigate('/login');
+  };
+
+  const handleLogoutClick = () => {
+    authService.logout();
+  };
 
   return (
     <header className="navbar">
@@ -42,10 +53,17 @@ export default function Navbar({ apiStatus }) {
           <span className={`status-pill ${apiStatus.online ? 'online' : apiStatus.error ? 'offline' : 'connecting'}`}>
             {apiStatus.online ? 'API Online' : apiStatus.error ? 'API Offline' : 'Conectando...'}
           </span>
-          <button className="login-btn">
-            <LogIn size={18} />
-            Fazer Login
-          </button>
+          {isAuthenticated ? (
+            <button className="login-btn" onClick={handleLogoutClick}>
+              <LogOut size={18} />
+              Sair
+            </button>
+          ) : (
+            <button className="login-btn" onClick={handleLoginClick}>
+              <LogIn size={18} />
+              Fazer Login
+            </button>
+          )}
         </div>
       </div>
     </header>

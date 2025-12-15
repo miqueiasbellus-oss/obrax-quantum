@@ -97,7 +97,7 @@ export default function Home({ apiStatus }) {
                   </div>
                   <div className="status-item">
                     <span>Docs:</span>
-                    <a href={`${import.meta.env.VITE_API_URL || 'https://obrax-api.onrender.com'}/docs`} target="_blank" rel="noreferrer">
+                    <a href={`${import.meta.env.VITE_API_URL || 'https://obrax-backend.onrender.com'}/docs`} target="_blank" rel="noreferrer">
                       Swagger UI
                     </a>
                   </div>
