@@ -6,7 +6,7 @@ export default function TesteApi() {
   const [log, setLog] = useState<any>(null);
 
   async function doLogin() {
-    const r = await auth.login({ username: "admin2", password: "123456" });
+    const r = await auth.login("admin2", "123456");
     setLog(r);
   }
 
