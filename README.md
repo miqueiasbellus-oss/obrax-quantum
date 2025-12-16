@@ -74,9 +74,21 @@ npm run dev
 
 ## Deploy
 
-- **Backend**: Railway (automático via Git)
-- **Frontend**: Vercel (automático via Git)
-- **Banco**: PostgreSQL no Railway
+- **Backend**: Render (automático via Git)
+- **Frontend**: Render (automático via Git)
+- **Banco**: PostgreSQL no Supabase
+
+## Documentação de Governança
+
+Antes de contribuir com o projeto, consulte a documentação de governança:
+
+| Documento | Descrição |
+|-----------|-----------|
+| [MANUS.md](MANUS.md) | Guia rápido para IAs e colaboradores |
+| [OBRAX_SYSTEM_RULES.md](docs/OBRAX_SYSTEM_RULES.md) | Regras gerais do sistema |
+| [OBRAX_EVENT_CONTRACT.md](docs/OBRAX_EVENT_CONTRACT.md) | Contratos de eventos |
+| [OBRAX_INTENT_MAP.md](docs/OBRAX_INTENT_MAP.md) | Mapa de intenções do usuário |
+| [OBRAX_MANUS_MASTER_PROMPT.md](docs/OBRAX_MANUS_MASTER_PROMPT.md) | Prompt master para sessões com IA |
 
 ## Roadmap
 
