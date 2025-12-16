@@ -1,243 +1,169 @@
-# OBRAX QUANTUM — Mapa de Intenções
+OBRAX QUANTUM — Mapa de Intenções
 
-> **Versão:** 1.0.0  
-> **Última atualização:** 2025-12-16  
-> **Autor:** Manus AI
+Versão: 1.1.0
+Última atualização: 2025-12-16
+Status: Fase de Fundação (Governança)
+Autor: Projeto OBRAX (curadoria manual)
 
-Este documento mapeia as intenções do usuário que o sistema OBRAX QUANTUM deve reconhecer e processar. Cada intenção define um objetivo do usuário, o trigger que a ativa, as entidades envolvidas, o evento gerado e a resposta esperada.
+Este documento define as intenções de negócio reconhecidas pelo sistema OBRAX QUANTUM.
+Intenções representam o que o usuário quer fazer, não como isso é implementado.
 
----
+⚠️ REGRA FUNDAMENTAL SOBRE INTENÇÕES
 
-## 1. Estrutura de uma Intenção
+🔒 INTENÇÃO ≠ IA
 
-Cada intenção segue a estrutura abaixo:
+Intenções podem ser acionadas 100% via UI tradicional
 
-| Campo | Descrição |
-|-------|-----------|
-| **Código** | Identificador único (ex: `INTENT_001`) |
-| **Nome** | Nome descritivo da intenção |
-| **Trigger** | Como a intenção é ativada (voz, texto, UI) |
-| **Entidade Principal** | Recurso afetado (Obra, Atividade, Material, etc.) |
-| **Evento Gerado** | Evento disparado ao processar a intenção |
-| **Resposta Esperada** | O que o usuário espera como resultado |
-| **Exemplos** | Frases de exemplo que ativam a intenção |
+IA / NLU / Voz são opcionais e futuras
 
----
+Nenhuma intenção autoriza automaticamente uso de IA
 
-## 2. Intenções Cadastradas
+IA só entra quando explicitamente solicitada pelo usuário
 
-### INTENT_001 — Criar Obra
+👉 O sistema deve funcionar sem IA.
 
-| Campo | Valor |
-|-------|-------|
-| **Código** | `INTENT_001` |
-| **Nome** | Criar Obra |
-| **Trigger** | Voz, Texto, UI (botão "Nova Obra") |
-| **Entidade Principal** | `Work` |
-| **Evento Gerado** | `WORK.CREATED` |
-| **Resposta Esperada** | Confirmação de criação com ID e nome da obra |
+1. Estrutura de uma Intenção
 
-**Exemplos de frases:**
-- "Criar uma nova obra chamada Torre Infinita"
-- "Cadastrar obra residencial em Itajaí"
-- "Nova obra comercial no centro"
+Cada intenção segue obrigatoriamente esta estrutura:
 
----
+Campo	Descrição
+Código	Identificador único (INTENT_XXX)
+Nome	Nome humano da intenção
+Trigger	UI, Texto ou Voz (opcional)
+Entidade Principal	Entidade afetada
+Evento Gerado	Evento oficial (se houver)
+Resultado Esperado	O que muda no sistema
+Observações	Regras importantes
+Exemplos	Frases ou ações típicas
+2. Intenções Oficiais
+INTENT_001 — Criar Obra
+Campo	Valor
+Código	INTENT_001
+Nome	Criar Obra
+Trigger	UI (botão), Texto, Voz
+Entidade Principal	Work
+Evento Gerado	WORK.CREATED
+Resultado Esperado	Obra criada e persistida
+Observações	Não depende de IA
 
-### INTENT_002 — Listar Obras
+Exemplos:
 
-| Campo | Valor |
-|-------|-------|
-| **Código** | `INTENT_002` |
-| **Nome** | Listar Obras |
-| **Trigger** | Voz, Texto, UI (menu "Obras") |
-| **Entidade Principal** | `Work` |
-| **Evento Gerado** | Nenhum (consulta) |
-| **Resposta Esperada** | Lista de obras com nome, status e localização |
+Criar nova obra
 
-**Exemplos de frases:**
-- "Quais são as obras ativas?"
-- "Listar todas as obras"
-- "Mostrar obras em andamento"
+Nova obra residencial
 
----
+Cadastrar obra Torre Infinita
 
-### INTENT_003 — Atualizar Status da Obra
+INTENT_002 — Listar Obras
+Campo	Valor
+Código	INTENT_002
+Nome	Listar Obras
+Trigger	UI
+Entidade Principal	Work
+Evento Gerado	❌ Nenhum (consulta)
+Resultado Esperado	Lista de obras
+Observações	Consulta não gera evento
+INTENT_003 — Atualizar Status da Obra
+Campo	Valor
+Código	INTENT_003
+Nome	Atualizar Status da Obra
+Trigger	UI
+Entidade Principal	Work
+Evento Gerado	WORK.STATUS_CHANGED
+Resultado Esperado	Status atualizado
+Observações	Estado persistido
+INTENT_004 — Criar Atividade
+Campo	Valor
+Código	INTENT_004
+Nome	Criar Atividade
+Trigger	UI
+Entidade Principal	Activity
+Evento Gerado	ACTIVITY.CREATED
+Resultado Esperado	Atividade criada
+Observações	Não depende de IA
+INTENT_005 — Concluir Atividade
+Campo	Valor
+Código	INTENT_005
+Nome	Concluir Atividade
+Trigger	UI
+Entidade Principal	Activity
+Evento Gerado	ACTIVITY.COMPLETED
+Resultado Esperado	Atividade concluída
+Observações	Estado final
+INTENT_006 — Registrar Problema
+Campo	Valor
+Código	INTENT_006
+Nome	Registrar Problema
+Trigger	UI
+Entidade Principal	Issue
+Evento Gerado	ISSUE.CREATED (futuro)
+Resultado Esperado	Problema registrado
+Observações	IA opcional no futuro
+INTENT_007 — Solicitar Material
+Campo	Valor
+Código	INTENT_007
+Nome	Solicitar Material
+Trigger	UI
+Entidade Principal	MaterialRequest
+Evento Gerado	MATERIAL.REQUESTED (futuro)
+Resultado Esperado	Solicitação registrada
+Observações	Sem automação obrigatória
+INTENT_008 — Consultar Progresso
+Campo	Valor
+Código	INTENT_008
+Nome	Consultar Progresso
+Trigger	UI
+Entidade Principal	Work, Activity
+Evento Gerado	❌ Nenhum
+Resultado Esperado	Visão de progresso
+Observações	Dashboard apenas
+INTENT_009 — Gerar Relatório
+Campo	Valor
+Código	INTENT_009
+Nome	Gerar Relatório
+Trigger	UI
+Entidade Principal	Report
+Evento Gerado	REPORT.GENERATED (futuro)
+Resultado Esperado	Relatório disponível
+Observações	Pode envolver n8n no futuro
+INTENT_010 — Enviar Áudio (PIPELINE FUTURO)
+Campo	Valor
+Código	INTENT_010
+Nome	Enviar Áudio
+Trigger	UI (botão)
+Entidade Principal	AudioJob
+Evento Gerado	AUDIO.UPLOADED
+Resultado Esperado	Áudio registrado
+Observações	IA não obrigatória
+3. Regras Importantes
 
-| Campo | Valor |
-|-------|-------|
-| **Código** | `INTENT_003` |
-| **Nome** | Atualizar Status da Obra |
-| **Trigger** | Voz, Texto, UI (dropdown de status) |
-| **Entidade Principal** | `Work` |
-| **Evento Gerado** | `WORK.STATUS_CHANGED` |
-| **Resposta Esperada** | Confirmação da mudança de status |
+❌ Intenções não autorizam implementação automática
 
-**Exemplos de frases:**
-- "Pausar a obra Torre Infinita"
-- "Marcar obra como concluída"
-- "Reativar a obra do centro"
+❌ Intenção não obriga uso de IA
 
----
+✅ UI tradicional é sempre suficiente
 
-### INTENT_004 — Criar Atividade
+✅ Eventos só existem se documentados no Event Contract
 
-| Campo | Valor |
-|-------|-------|
-| **Código** | `INTENT_004` |
-| **Nome** | Criar Atividade |
-| **Trigger** | Voz, Texto, UI (botão "Nova Atividade") |
-| **Entidade Principal** | `Activity` |
-| **Evento Gerado** | `ACTIVITY.CREATED` |
-| **Resposta Esperada** | Confirmação de criação com ID e nome da atividade |
+✅ Backend executa, frontend solicita, n8n processa
 
-**Exemplos de frases:**
-- "Adicionar atividade de fundação na Torre Infinita"
-- "Criar tarefa de instalação elétrica"
-- "Nova atividade: pintura externa"
+4. Adicionando Novas Intenções
 
----
+Para adicionar nova intenção:
 
-### INTENT_005 — Concluir Atividade
+Definir código INTENT_XXX
 
-| Campo | Valor |
-|-------|-------|
-| **Código** | `INTENT_005` |
-| **Nome** | Concluir Atividade |
-| **Trigger** | Voz, Texto, UI (checkbox de conclusão) |
-| **Entidade Principal** | `Activity` |
-| **Evento Gerado** | `ACTIVITY.COMPLETED` |
-| **Resposta Esperada** | Confirmação de conclusão |
+Descrever intenção neste arquivo
 
-**Exemplos de frases:**
-- "Concluir a atividade de fundação"
-- "Marcar instalação elétrica como pronta"
-- "Finalizar pintura externa"
+Verificar se há evento oficial correspondente
 
----
+Não implementar nada sem solicitação explícita
 
-### INTENT_006 — Registrar Problema
+Só depois criar código
 
-| Campo | Valor |
-|-------|-------|
-| **Código** | `INTENT_006` |
-| **Nome** | Registrar Problema |
-| **Trigger** | Voz, Texto, UI (botão "Reportar Problema") |
-| **Entidade Principal** | `Issue` |
-| **Evento Gerado** | `ISSUE.CREATED` |
-| **Resposta Esperada** | Confirmação de registro com número do problema |
+5. Regra Final para o Manus
 
-**Exemplos de frases:**
-- "Registrar problema de infiltração no bloco A"
-- "Reportar falta de material na obra"
-- "Problema: atraso na entrega de concreto"
+❗ Documentar ≠ Implementar
 
----
-
-### INTENT_007 — Solicitar Material
-
-| Campo | Valor |
-|-------|-------|
-| **Código** | `INTENT_007` |
-| **Nome** | Solicitar Material |
-| **Trigger** | Voz, Texto, UI (formulário de solicitação) |
-| **Entidade Principal** | `MaterialRequest` |
-| **Evento Gerado** | `MATERIAL.REQUESTED` |
-| **Resposta Esperada** | Confirmação de solicitação com número do pedido |
-
-**Exemplos de frases:**
-- "Solicitar 100 sacos de cimento para Torre Infinita"
-- "Pedir mais vergalhões para a obra"
-- "Preciso de 50 metros de fio elétrico"
-
----
-
-### INTENT_008 — Consultar Progresso
-
-| Campo | Valor |
-|-------|-------|
-| **Código** | `INTENT_008` |
-| **Nome** | Consultar Progresso |
-| **Trigger** | Voz, Texto, UI (dashboard) |
-| **Entidade Principal** | `Work`, `Activity` |
-| **Evento Gerado** | Nenhum (consulta) |
-| **Resposta Esperada** | Percentual de conclusão e atividades pendentes |
-
-**Exemplos de frases:**
-- "Qual o progresso da Torre Infinita?"
-- "Quantas atividades faltam na obra?"
-- "Status geral das obras ativas"
-
----
-
-### INTENT_009 — Enviar Relatório
-
-| Campo | Valor |
-|-------|-------|
-| **Código** | `INTENT_009` |
-| **Nome** | Enviar Relatório |
-| **Trigger** | Voz, Texto, UI (botão "Gerar Relatório") |
-| **Entidade Principal** | `Report` |
-| **Evento Gerado** | `REPORT.GENERATED` |
-| **Resposta Esperada** | Link para download ou envio por email/WhatsApp |
-
-**Exemplos de frases:**
-- "Gerar relatório semanal da Torre Infinita"
-- "Enviar relatório de progresso para o cliente"
-- "Relatório de custos do mês"
-
----
-
-### INTENT_010 — Agendar Visita
-
-| Campo | Valor |
-|-------|-------|
-| **Código** | `INTENT_010` |
-| **Nome** | Agendar Visita |
-| **Trigger** | Voz, Texto, UI (calendário) |
-| **Entidade Principal** | `Visit` |
-| **Evento Gerado** | `VISIT.SCHEDULED` |
-| **Resposta Esperada** | Confirmação de agendamento com data e hora |
-
-**Exemplos de frases:**
-- "Agendar visita na Torre Infinita para sexta-feira"
-- "Marcar inspeção para amanhã às 10h"
-- "Visita técnica na obra do centro dia 20"
-
----
-
-## 3. Adicionando Novas Intenções
-
-Para adicionar uma nova intenção ao sistema:
-
-1. **Defina um código único** seguindo o padrão `INTENT_XXX`.
-2. **Documente a intenção** neste arquivo seguindo a estrutura padrão.
-3. **Defina o evento** correspondente em `docs/OBRAX_EVENT_CONTRACT.md`.
-4. **Implemente o reconhecimento** no n8n (workflow de NLU).
-5. **Implemente a ação** no backend (endpoint ou workflow).
-6. **Implemente a UI** no frontend (se aplicável).
-7. **Teste o fluxo completo** antes de fazer merge.
-
----
-
-## 4. Matriz de Intenções vs. Entidades
-
-| Intenção | Work | Activity | Issue | Material | Report | Visit |
-|----------|------|----------|-------|----------|--------|-------|
-| INTENT_001 | **X** | | | | | |
-| INTENT_002 | **X** | | | | | |
-| INTENT_003 | **X** | | | | | |
-| INTENT_004 | | **X** | | | | |
-| INTENT_005 | | **X** | | | | |
-| INTENT_006 | | | **X** | | | |
-| INTENT_007 | | | | **X** | | |
-| INTENT_008 | **X** | **X** | | | | |
-| INTENT_009 | | | | | **X** | |
-| INTENT_010 | | | | | | **X** |
-
----
-
-## Referências
-
-- [Rasa NLU Documentation](https://rasa.com/docs/rasa/nlu-training-data/)
-- [Dialogflow Intent Design](https://cloud.google.com/dialogflow/docs/intents-overview)
+Nenhuma intenção documentada aqui pode ser implementada
+sem pedido explícito do usuário.
