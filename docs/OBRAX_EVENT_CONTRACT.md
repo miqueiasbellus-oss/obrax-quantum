@@ -1,331 +1,265 @@
-# OBRAX QUANTUM — Contratos de Eventos
+OBRAX QUANTUM — Contratos de Eventos
 
-> **Versão:** 1.0.0  
-> **Última atualização:** 2025-12-16  
-> **Autor:** Manus AI
+Versão: 1.1.0
+Última atualização: 2025-12-16
+Status: Fase de Fundação (Governança)
+Autor: Projeto OBRAX (curadoria manual)
 
-Este documento define os contratos de eventos utilizados para comunicação entre os componentes do sistema OBRAX QUANTUM (Frontend, Backend, n8n). Todo novo evento deve ser documentado aqui antes da implementação.
+Este documento define os eventos oficiais de negócio do sistema OBRAX QUANTUM.
+Eventos representam estado consolidado persistido no backend.
 
----
+⚠️ REGRA FUNDAMENTAL DO SISTEMA
 
-## 1. Estrutura Padrão de Evento
+🔒 SOMENTE O BACKEND PODE EMITIR EVENTOS OFICIAIS.
 
-Todos os eventos seguem a estrutura base abaixo:
+Frontend NUNCA é source de evento
 
-```json
+n8n NUNCA é source de evento
+
+Frontend apenas solicita ações via API
+
+n8n apenas processa tarefas e retorna resultados
+
+Evento ≠ webhook ≠ log ≠ automação intermediária
+
+👉 Evento é registro oficial de estado, não passo interno.
+
+1. Estrutura Padrão de Evento (Evento Oficial)
+
+Todos os eventos oficiais seguem obrigatoriamente a estrutura abaixo:
+
 {
   "event_id": "uuid-v4",
   "event_type": "DOMAIN.ACTION",
-  "timestamp": "2025-12-16T12:00:00Z",
-  "source": "frontend|backend|n8n",
-  "payload": { ... },
+  "timestamp": "ISO-8601",
+  "source": "backend",
+  "entity": "string",
+  "entity_id": "string|number",
+  "payload": {},
   "metadata": {
     "user_id": "string|null",
     "correlation_id": "string|null",
     "version": "1.0"
   }
 }
-```
 
-| Campo | Tipo | Obrigatório | Descrição |
-|-------|------|-------------|-----------|
-| `event_id` | UUID v4 | Sim | Identificador único do evento |
-| `event_type` | String | Sim | Tipo do evento no formato `DOMÍNIO.AÇÃO` |
-| `timestamp` | ISO 8601 | Sim | Data/hora de criação do evento |
-| `source` | Enum | Sim | Origem do evento |
-| `payload` | Object | Sim | Dados específicos do evento |
-| `metadata` | Object | Não | Informações adicionais de contexto |
+Campos obrigatórios
+Campo	Obrigatório	Observação
+event_id	Sim	UUID do evento
+event_type	Sim	Formato DOMINIO.ACAO
+timestamp	Sim	ISO 8601
+source	Sim	Sempre backend
+entity	Sim	Entidade persistida
+entity_id	Sim	ID real da entidade
+payload	Sim	Estado relevante
+2. 🚫 Eventos de Autenticação (FORA DO ESCOPO ATUAL)
 
----
+Eventos de autenticação NÃO FAZEM PARTE do contrato nesta fase.
 
-## 2. Eventos de Autenticação
+Eventos como:
 
-### 2.1 AUTH.LOGIN_SUCCESS
+AUTH.LOGIN_SUCCESS
 
-Disparado quando um usuário realiza login com sucesso.
+AUTH.LOGIN_FAILED
 
-**Source:** `backend`  
-**Consumers:** `frontend`, `n8n`
+AUTH.LOGOUT
 
-```json
-{
-  "event_type": "AUTH.LOGIN_SUCCESS",
-  "payload": {
-    "user_id": "string",
-    "username": "string",
-    "access_token": "string",
-    "expires_at": "2025-12-17T12:00:00Z"
-  }
-}
-```
+❌ NÃO DEVEM SER IMPLEMENTADOS
+❌ NÃO DEVEM DISPARAR AUTOMAÇÕES
 
-### 2.2 AUTH.LOGIN_FAILED
+📌 Motivo:
 
-Disparado quando uma tentativa de login falha.
+Autenticação não representa evento de negócio
 
-**Source:** `backend`  
-**Consumers:** `n8n` (para alertas de segurança)
+Login não é prioridade funcional
 
-```json
-{
-  "event_type": "AUTH.LOGIN_FAILED",
-  "payload": {
-    "username": "string",
-    "reason": "invalid_credentials|user_not_found|account_locked",
-    "ip_address": "string"
-  }
-}
-```
+Evita induzir refactors e automações desnecessárias
 
-### 2.3 AUTH.LOGOUT
+👉 Se necessário no futuro, criar:
 
-Disparado quando um usuário realiza logout.
+OBRAX_SECURITY_EVENT_CONTRACT.md (FUTURO)
 
-**Source:** `frontend`  
-**Consumers:** `backend`, `n8n`
+3. Eventos de Obras (Work)
+3.1 WORK.CREATED
 
-```json
-{
-  "event_type": "AUTH.LOGOUT",
-  "payload": {
-    "user_id": "string",
-    "reason": "user_initiated|session_expired|forced"
-  }
-}
-```
+Disparado quando uma obra é criada e persistida no backend.
 
----
-
-## 3. Eventos de Obras
-
-### 3.1 WORK.CREATED
-
-Disparado quando uma nova obra é criada.
-
-**Source:** `backend`  
-**Consumers:** `frontend`, `n8n`
-
-```json
 {
   "event_type": "WORK.CREATED",
+  "source": "backend",
+  "entity": "work",
+  "entity_id": 12,
   "payload": {
-    "work_id": "integer",
-    "name": "string",
+    "name": "Torre Infinita",
     "work_type": "RESIDENTIAL|COMMERCIAL|INDUSTRIAL|INFRASTRUCTURE",
-    "status": "ACTIVE|PAUSED|COMPLETED|CANCELLED",
-    "location": "string",
-    "budget": "number|null",
-    "start_date": "ISO 8601|null",
-    "end_date": "ISO 8601|null",
-    "created_by": "string"
+    "status": "ACTIVE",
+    "location": "string"
   }
 }
-```
 
-### 3.2 WORK.UPDATED
 
-Disparado quando uma obra é atualizada.
+Usos permitidos:
 
-**Source:** `backend`  
-**Consumers:** `frontend`, `n8n`
+Criar pastas
 
-```json
+Criar planilhas
+
+Inicializar dashboards
+
+Notificar responsáveis
+
+3.2 WORK.UPDATED
 {
   "event_type": "WORK.UPDATED",
+  "source": "backend",
+  "entity": "work",
+  "entity_id": 12,
   "payload": {
-    "work_id": "integer",
     "changes": {
-      "field_name": {
+      "field": {
         "old_value": "any",
         "new_value": "any"
       }
-    },
-    "updated_by": "string"
+    }
   }
 }
-```
 
-### 3.3 WORK.STATUS_CHANGED
-
-Disparado quando o status de uma obra muda.
-
-**Source:** `backend`  
-**Consumers:** `frontend`, `n8n`
-
-```json
+3.3 WORK.STATUS_CHANGED
 {
   "event_type": "WORK.STATUS_CHANGED",
+  "source": "backend",
+  "entity": "work",
+  "entity_id": 12,
   "payload": {
-    "work_id": "integer",
     "old_status": "ACTIVE|PAUSED|COMPLETED|CANCELLED",
     "new_status": "ACTIVE|PAUSED|COMPLETED|CANCELLED",
-    "reason": "string|null",
-    "changed_by": "string"
+    "reason": "string|null"
   }
 }
-```
 
----
-
-## 4. Eventos de Atividades
-
-### 4.1 ACTIVITY.CREATED
-
-Disparado quando uma nova atividade é criada.
-
-**Source:** `backend`  
-**Consumers:** `frontend`, `n8n`
-
-```json
+4. Eventos de Atividades (Activity)
+4.1 ACTIVITY.CREATED
 {
   "event_type": "ACTIVITY.CREATED",
+  "source": "backend",
+  "entity": "activity",
+  "entity_id": 55,
   "payload": {
-    "activity_id": "integer",
-    "work_id": "integer",
-    "name": "string",
-    "description": "string|null",
-    "status": "PENDING|IN_PROGRESS|COMPLETED|BLOCKED",
-    "priority": "LOW|MEDIUM|HIGH|CRITICAL",
-    "assigned_to": "string|null",
-    "due_date": "ISO 8601|null",
-    "created_by": "string"
+    "work_id": 12,
+    "name": "Contrapiso sacada ático",
+    "priority": "LOW|MEDIUM|HIGH|CRITICAL"
   }
 }
-```
 
-### 4.2 ACTIVITY.COMPLETED
-
-Disparado quando uma atividade é concluída.
-
-**Source:** `backend`  
-**Consumers:** `frontend`, `n8n`
-
-```json
+4.2 ACTIVITY.COMPLETED
 {
   "event_type": "ACTIVITY.COMPLETED",
+  "source": "backend",
+  "entity": "activity",
+  "entity_id": 55,
   "payload": {
-    "activity_id": "integer",
-    "work_id": "integer",
-    "completed_by": "string",
-    "completion_notes": "string|null",
-    "evidence_urls": ["string"]
+    "completed_by": "user_id",
+    "notes": "string|null"
   }
 }
-```
 
----
+5. Eventos de Áudio (PIPELINE FUTURO — NÃO IMPLEMENTAR AINDA)
 
-## 5. Eventos de Áudio/Transcrição
+⚠️ IMPORTANTE
+Esta seção define contrato futuro.
+Documentar ≠ autorizar implementação.
 
-### 5.1 AUDIO.RECEIVED
+5.1 AUDIO.UPLOADED
 
-Disparado quando um áudio é recebido (ex: via WhatsApp).
+Único evento oficial de entrada de áudio.
 
-**Source:** `n8n`  
-**Consumers:** `n8n` (workflow de transcrição)
-
-```json
 {
-  "event_type": "AUDIO.RECEIVED",
+  "event_type": "AUDIO.UPLOADED",
+  "source": "backend",
+  "entity": "audio_job",
+  "entity_id": 88,
   "payload": {
-    "audio_id": "string",
-    "source": "whatsapp|telegram|web",
-    "sender_id": "string",
-    "sender_name": "string",
-    "audio_url": "string",
-    "duration_seconds": "number",
-    "mime_type": "audio/ogg|audio/mp3|audio/wav"
+    "audio_url": "https://storage/...",
+    "work_id": 12
   }
 }
-```
 
-### 5.2 AUDIO.TRANSCRIBED
 
-Disparado quando um áudio é transcrito com sucesso.
+📌 Backend cria o job → dispara o evento.
 
-**Source:** `n8n`  
-**Consumers:** `backend`, `n8n`
+5.2 AUDIO.PROCESSED
 
-```json
+Evento emitido somente após o backend receber e validar o resultado do processamento.
+
 {
-  "event_type": "AUDIO.TRANSCRIBED",
+  "event_type": "AUDIO.PROCESSED",
+  "source": "backend",
+  "entity": "audio_job",
+  "entity_id": 88,
   "payload": {
-    "audio_id": "string",
     "transcription": "string",
-    "language": "pt-BR|en-US",
-    "confidence": "number (0-1)",
-    "duration_ms": "number",
-    "model": "whisper-1"
+    "summary": "string",
+    "categories": ["string"],
+    "priority": "LOW|MEDIUM|HIGH"
   }
 }
-```
 
-### 5.3 AUDIO.INTENT_EXTRACTED
 
-Disparado quando uma intenção é extraída de uma transcrição.
+📌 Mesmo que o n8n processe:
 
-**Source:** `n8n`  
-**Consumers:** `backend`, `n8n`
+transcrição
 
-```json
-{
-  "event_type": "AUDIO.INTENT_EXTRACTED",
-  "payload": {
-    "audio_id": "string",
-    "intent_code": "INTENT_001",
-    "intent_name": "string",
-    "entities": {
-      "work_name": "string|null",
-      "activity_name": "string|null",
-      "date": "ISO 8601|null",
-      "quantity": "number|null"
-    },
-    "confidence": "number (0-1)",
-    "raw_transcription": "string"
-  }
-}
-```
+IA
 
----
+categorização
 
-## 6. Eventos de Notificação
+👉 o evento só existe quando o backend confirma.
 
-### 6.1 NOTIFICATION.SEND
+6. 🚫 Eventos de Notificação (NÃO SÃO EVENTOS DE NEGÓCIO)
 
-Disparado para enviar uma notificação ao usuário.
+Notificações NÃO representam estado persistido.
 
-**Source:** `backend`, `n8n`  
-**Consumers:** `n8n` (workflow de notificação)
+Exemplo:
 
-```json
-{
-  "event_type": "NOTIFICATION.SEND",
-  "payload": {
-    "recipient_id": "string",
-    "channel": "whatsapp|email|push|sms",
-    "template": "string",
-    "variables": { ... },
-    "priority": "low|normal|high"
-  }
-}
-```
+NOTIFICATION.SEND
 
----
+❌ Não entram neste contrato
+✔ São comandos internos de execução
 
-## 7. Adicionando Novos Eventos
+7. O que NÃO é evento oficial
 
-Para adicionar um novo evento ao sistema:
+❌ Não são eventos:
 
-1. **Defina o evento** seguindo a estrutura padrão.
-2. **Documente o evento** neste arquivo com source, consumers e payload.
-3. **Atualize o mapa de intenções** em `docs/OBRAX_INTENT_MAP.md` se aplicável.
-4. **Implemente o evento** no source (backend ou n8n).
-5. **Implemente os consumers** (frontend, backend ou n8n).
-6. **Teste o fluxo completo** antes de fazer merge.
+Webhooks internos
 
----
+Logs
 
-## Referências
+Processos intermediários
 
-- [CloudEvents Specification](https://cloudevents.io/)
-- [AsyncAPI Specification](https://www.asyncapi.com/)
+Transcrição bruta
+
+Extração de intenção
+
+Notificações
+
+Ações temporárias do n8n
+
+Evento = estado consolidado no backend.
+
+8. Regra de Ouro para o Manus
+
+Antes de implementar qualquer coisa:
+
+O evento existe neste arquivo?
+
+Ele representa estado persistido?
+
+Ele é emitido pelo backend?
+
+Se qualquer resposta for não → PARE.
+
+9. Referências (conceituais)
+
+CloudEvents (inspiração, não implementação)
+
+AsyncAPI (inspiração, não obrigação)
