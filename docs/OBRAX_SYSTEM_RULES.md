@@ -1,145 +1,161 @@
-# OBRAX QUANTUM — Regras do Sistema
+OBRAX QUANTUM — Regras do Sistema
 
-> **Versão:** 1.0.0  
-> **Última atualização:** 2025-12-16  
-> **Autor:** Manus AI
+Versão: 1.1.0
+Última atualização: 2025-12-16
+Status: Governança Ativa — Fase de Fundação
+Autor: Projeto OBRAX (curadoria manual)
 
-Este documento define as regras fundamentais que governam o desenvolvimento, integração e operação do sistema OBRAX QUANTUM. Todas as contribuições, features e integrações devem seguir estas diretrizes.
+Este documento define as regras obrigatórias que governam o desenvolvimento, integração e evolução do sistema OBRAX QUANTUM.
 
----
+Estas regras não são sugestões.
+Elas existem para impedir improviso, autoexpansão e alterações fora de escopo.
 
-## 1. Arquitetura de Referência
+⚠️ REGRA FUNDAMENTAL DO PROJETO
 
-O OBRAX QUANTUM segue uma arquitetura de três camadas com automação via n8n:
+🔒 DOCUMENTAR ≠ IMPLEMENTAR
 
-| Camada | Tecnologia | URL de Produção |
-|--------|------------|-----------------|
-| **Frontend** | Vite + React | `https://obrax-quantum.onrender.com` |
-| **Backend** | FastAPI (Python) | `https://obrax-backend.onrender.com` |
-| **Banco de Dados** | PostgreSQL (Supabase) | Gerenciado via Supabase |
-| **Automação** | n8n | Instância própria (a configurar) |
+Nenhuma documentação autoriza implementação automática
 
----
+Nenhuma ideia “bem definida” deve virar código sem pedido explícito
 
-## 2. Regras de Desenvolvimento
+O projeto está em FASE DE FUNDAÇÃO
 
-### 2.1 Separação de Responsabilidades
+👉 Planejar é obrigatório.
+👉 Executar só com autorização.
 
-O sistema segue o princípio de **separação clara de responsabilidades**:
+1. Arquitetura de Referência
 
-- **Frontend:** Apenas apresentação e interação com o usuário. Não deve conter lógica de negócio complexa.
-- **Backend:** Toda lógica de negócio, validação e persistência de dados.
-- **n8n:** Orquestração de workflows, integrações externas e automações.
+O OBRAX QUANTUM segue arquitetura de três camadas:
 
-### 2.2 Comunicação entre Camadas
+Camada	Responsabilidade
+Frontend	Interface e captura de ações
+Backend	Lógica de negócio e estado oficial
+n8n	Execução de automações delegadas
 
-Toda comunicação entre camadas deve seguir o padrão **REST + JSON**:
+📌 Backend é a ÚNICA fonte da verdade.
 
-- Endpoints do backend seguem o padrão `/api/{recurso}` para rotas protegidas.
-- Endpoints de autenticação seguem o padrão `/auth/{ação}`.
-- Webhooks do n8n devem usar o padrão `/webhook/{evento}`.
+2. Separação de Responsabilidades (OBRIGATÓRIA)
+Frontend
 
-### 2.3 Autenticação e Autorização
+Apenas UI
 
-O sistema utiliza **JWT (JSON Web Tokens)** para autenticação:
+Apenas chamadas à API
 
-- Token armazenado no `localStorage` com a chave `OBRAX_TOKEN`.
-- Header de autorização: `Authorization: Bearer <token>`.
-- Todas as rotas `/api/*` exigem autenticação.
-- Rotas `/auth/*` e `/health` são públicas.
+❌ Não contém lógica de negócio
 
----
+❌ Não chama n8n
 
-## 3. Regras de Integração
+❌ Não dispara eventos
 
-### 3.1 Integrações via n8n
+Backend
 
-Toda integração com serviços externos (WhatsApp, Whisper, OpenAI, etc.) deve ser feita via n8n:
+Valida tudo
 
-- O frontend **nunca** chama APIs externas diretamente.
-- O backend pode chamar APIs externas apenas para operações síncronas simples.
-- Operações assíncronas ou complexas devem ser delegadas ao n8n.
+Persiste tudo
 
-### 3.2 Contratos de Eventos
+Emite todos os eventos oficiais
 
-Toda comunicação entre componentes deve seguir os contratos definidos em `docs/OBRAX_EVENT_CONTRACT.md`:
+Centraliza regras
 
-- Eventos devem ter um `event_type` único e documentado.
-- Payloads devem seguir o schema JSON definido no contrato.
-- Novos eventos devem ser adicionados ao contrato antes da implementação.
+n8n
 
-### 3.3 Mapa de Intenções
+Executa tarefas
 
-Toda nova funcionalidade deve ser mapeada em `docs/OBRAX_INTENT_MAP.md`:
+Processa automações
 
-- Cada intenção deve ter um código único (ex: `INTENT_001`).
-- A intenção deve definir: trigger, entidade afetada, evento gerado e resposta esperada.
+❌ Não emite eventos oficiais
 
----
+❌ Não persiste estado final
 
-## 4. Regras de Qualidade
+3. Comunicação Entre Camadas
 
-### 4.1 Código
+Comunicação padrão: REST + JSON
 
-- Todo código JavaScript deve usar ES6+ e seguir o padrão do projeto.
-- Arquivos TypeScript (`.ts`, `.tsx`) são permitidos, mas devem ser compatíveis com a configuração Vite existente.
-- Imports devem usar caminhos relativos sem extensão (Vite resolve automaticamente).
+Frontend → Backend → (evento) → n8n → Backend
 
-### 4.2 Commits
+❌ Frontend → n8n (proibido)
 
-Commits devem seguir o padrão **Conventional Commits**:
+Eventos seguem exclusivamente:
 
-| Prefixo | Uso |
-|---------|-----|
-| `feat:` | Nova funcionalidade |
-| `fix:` | Correção de bug |
-| `docs:` | Alteração em documentação |
-| `chore:` | Tarefas de manutenção |
-| `refactor:` | Refatoração sem mudança de comportamento |
-| `test:` | Adição ou correção de testes |
+docs/OBRAX_EVENT_CONTRACT.md
 
-### 4.3 Issues e Features
+4. Escopo de Trabalho (REGRA CRÍTICA)
 
-Toda nova feature deve ser criada como Issue usando o template em `.github/ISSUE_TEMPLATE/feature_request.md`:
+🔒 ESCOPO É FECHADO POR TAREFA
 
-- A issue deve definir a intenção, entidade, evento e impacto na UI.
-- A issue deve ser aprovada antes da implementação.
+Para cada tarefa, o agente só pode:
 
----
+Alterar arquivos explicitamente autorizados
 
-## 5. Regras de Deploy
+Criar arquivos explicitamente solicitados
 
-### 5.1 Ambientes
+❌ É PROIBIDO:
 
-| Ambiente | Branch | Deploy |
-|----------|--------|--------|
-| Produção | `main` | Automático via Render |
-| Desenvolvimento | `dev` | Manual |
+Corrigir “erros encontrados”
 
-### 5.2 Processo de Deploy
+Refatorar código existente
 
-1. Alterações são feitas em branch feature (`feat/nome-da-feature`).
-2. Pull Request para `main` com revisão obrigatória.
-3. Merge dispara deploy automático no Render.
-4. Verificação pós-deploy no ambiente de produção.
+Ajustar login, tokens, imports ou build
 
----
+Converter TS ↔ JS
 
-## 6. Glossário
+“Melhorar” código sem pedido
 
-| Termo | Definição |
-|-------|-----------|
-| **Obra** | Projeto de construção gerenciado pelo sistema |
-| **Atividade** | Tarefa dentro de uma obra |
-| **Intenção** | Ação que o usuário deseja realizar |
-| **Evento** | Mensagem assíncrona entre componentes |
-| **Workflow** | Sequência de ações automatizadas no n8n |
+Se algo parecer errado:
+👉 Pare e pergunte.
 
----
+5. Intenções e Eventos
 
-## Referências
+Intenções definem o que o usuário quer
 
-- [FastAPI Documentation](https://fastapi.tiangolo.com/)
-- [Vite Documentation](https://vitejs.dev/)
-- [n8n Documentation](https://docs.n8n.io/)
-- [Conventional Commits](https://www.conventionalcommits.org/)
+Eventos representam estado persistido
+
+Nenhuma intenção autoriza código
+
+Nenhum evento existe fora do contrato
+
+Referências obrigatórias:
+
+docs/OBRAX_INTENT_MAP.md
+
+docs/OBRAX_EVENT_CONTRACT.md
+
+6. IA, Automação e n8n
+
+⚠️ IA NÃO É DEFAULT
+
+IA é opcional
+
+Automação é opt-in
+
+n8n só entra quando explicitamente solicitado
+
+❌ Não antecipar IA
+❌ Não criar pipelines futuros
+❌ Não “preparar código” sem pedido
+
+7. Qualidade e Commits
+
+Seguir Conventional Commits
+
+Um objetivo por commit
+
+Sem commits “mistos”
+
+8. Deploy
+
+Deploy automático via Render
+
+❌ Proibido deploy manual
+
+❌ Proibido alterar config sem autorização
+
+9. Regra Final (a mais importante)
+
+❗ Se não foi pedido, não faça.
+
+Qualquer violação destas regras:
+
+invalida a entrega
+
+exige refação conforme governança
