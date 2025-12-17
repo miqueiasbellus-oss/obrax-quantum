@@ -2,7 +2,7 @@ import { ArrowRight } from 'lucide-react';
 
 export default function FeatureCard({ title, description, icon: Icon, href, status = 'coming-soon' }) {
   const handleClick = () => {
-    if (status === 'available' && href) {
+    if ((status === 'available' || status === 'active') && href) {
       window.location.href = href;
     }
   };
@@ -18,14 +18,14 @@ export default function FeatureCard({ title, description, icon: Icon, href, stat
       
       <div className="feature-card-footer">
         <button 
-          className={`feature-btn ${status === 'available' ? 'primary' : 'secondary'}`}
-          disabled={status !== 'available'}
+          className={`feature-btn ${(status === 'available' || status === 'active') ? 'primary' : 'secondary'}`}
+          disabled={status !== 'available' && status !== 'active'}
         >
-          {status === 'available' ? 'Abrir' : 'Em Breve'}
-          {status === 'available' && <ArrowRight size={16} />}
+          {(status === 'available' || status === 'active') ? 'Abrir' : 'Em Breve'}
+          {(status === 'available' || status === 'active') && <ArrowRight size={16} />}
         </button>
         
-        {status === 'available' && (
+        {(status === 'available' || status === 'active') && (
           <span className="feature-status available">Disponível</span>
         )}
         {status === 'development' && (
