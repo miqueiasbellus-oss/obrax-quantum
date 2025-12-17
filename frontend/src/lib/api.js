@@ -3,7 +3,7 @@ import axios from "axios";
 const API_BASE_URL =
   import.meta.env?.VITE_API_URL ||
   window?.API_URL ||
-  "https://obrax-backend.onrender.com";
+  "https://obrax-api.onrender.com";
 
 export const TOKEN_KEY = "OBRAX_TOKEN";
 
