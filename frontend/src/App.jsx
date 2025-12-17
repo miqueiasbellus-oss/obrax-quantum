@@ -11,7 +11,7 @@ import Obras from "./pages/Obras";
 import ProtectedRoute from "./components/ProtectedRoute";
 import "./App.css";
 
-const API_URL = import.meta.env.VITE_API_URL || "https://obrax-backend.onrender.com";
+const API_URL = import.meta.env.VITE_API_URL || "https://obrax-api.onrender.com";
 
 export default function App() {
   const [apiStatus, setApiStatus] = useState({
