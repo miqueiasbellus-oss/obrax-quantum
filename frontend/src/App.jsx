@@ -49,7 +49,7 @@ export default function App() {
   }, []);
 
   return (
-    <Router basename="/obrax-quantum">
+    <Router>
       <div className="app">
         <Navbar apiStatus={apiStatus} />
 
