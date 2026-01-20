@@ -23,7 +23,7 @@ export default function PainelEncarregado() {
   const fetchTasks = async () => {
     try {
       setLoading(true);
-      const response = await api.get(`/api/sprint0/tasks/list/${OBRA_ID}`);
+      const response = await api.get(`/api/encarregado/tasks`);
       setTasks(response.data);
       setError(null);
     } catch (err) {
