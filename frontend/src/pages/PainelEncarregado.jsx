@@ -24,7 +24,14 @@ export default function PainelEncarregado() {
     try {
       setLoading(true);
       const response = await api.get(`/api/encarregado/tasks`);
-      setTasks(response.data);
+      const CURRENT_USER = "Marcelo"; // depois vira dinâmico
+
+const minhasTasks = response.data.filter(
+  task => task.responsible_user === CURRENT_USER
+);
+
+setTasks(minhasTasks);
+
       setError(null);
     } catch (err) {
       console.error('Erro ao carregar tarefas:', err);
