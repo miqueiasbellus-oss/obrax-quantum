@@ -23,7 +23,7 @@ export default function PainelEncarregado() {
   const fetchTasks = async () => {
     try {
       setLoading(true);
-      const response = await api.get(`/api/encarregado/tasks`);
+      const response = await api.get(`/api/activities?work_id=${OBRA_ID}`);
       const CURRENT_USER = "Marcelo"; // depois vira dinâmico
 
 const minhasTasks = response.data.filter(
